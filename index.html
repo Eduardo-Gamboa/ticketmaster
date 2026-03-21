@@ -7,7 +7,7 @@
 <style>
 /* ========== RESET & BASE ========== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: Averta, helvetica, arial, sans-serif;
   background: #121212;
@@ -15,6 +15,8 @@ body {
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
@@ -429,11 +431,18 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   border-bottom: 1px solid #2a2a2a;
 }
 .account-top h1 { font-size: 32px; margin-bottom: 16px; }
-.account-tabs { display: flex; gap: 0; }
+.account-tabs {
+  display: flex; gap: 0;
+  overflow-x: auto; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+}
+.account-tabs::-webkit-scrollbar { display: none; }
 .account-tabs a {
   padding: 10px 16px; font-size: 14px; font-weight: 600;
   color: #bfbfbf; border-bottom: 2px solid transparent;
   transition: color .15s, border-color .15s;
+  white-space: nowrap; flex-shrink: 0;
 }
 .account-tabs a:hover { color: #fff; }
 .account-tabs a.active { color: #fff; border-bottom-color: #024DDF; }
@@ -627,129 +636,235 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 /* ========== TICKET DETAIL PAGE ========== */
-.ticket-detail-page { background: #121212; min-height: 100vh; }
+.ticket-detail-page { background: #efefef; min-height: 100vh; }
+
+/* Hero header */
 .tdp-header {
-  background: linear-gradient(135deg, #060614 0%, #0c1a40 45%, #06060f 100%);
+  background: url('bts-cover.jpg') center 25% / cover no-repeat;
   position: relative; overflow: hidden;
-  padding: 28px 32px 0;
+  padding: 20px 24px 0;
 }
 .tdp-header::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 60% 50%, rgba(2,77,223,.25) 0%, transparent 65%);
+  background: linear-gradient(to right, rgba(0,0,0,.78) 0%, rgba(0,0,0,.6) 55%, rgba(0,0,0,.35) 100%);
 }
 .tdp-header-inner {
   position: relative; z-index: 1;
-  max-width: 900px; margin: 0 auto;
+  max-width: 960px; margin: 0 auto;
+  padding-bottom: 22px;
+}
+
+/* Breadcrumbs */
+.tdp-breadcrumbs {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 2px;
+  font-size: 13px; color: rgba(255,255,255,.8); margin-bottom: 18px;
+}
+.tdp-breadcrumbs a { color: rgba(255,255,255,.8); transition: color .15s; }
+.tdp-breadcrumbs a:hover { color: #fff; text-decoration: underline; }
+.tdp-breadcrumbs .bc-sep { margin: 0 4px; color: rgba(255,255,255,.45); font-size: 11px; }
+.tdp-breadcrumbs .bc-current { color: rgba(255,255,255,.9); }
+
+/* Event row */
+.tdp-event-row {
   display: flex; align-items: flex-start; gap: 20px;
-  padding-bottom: 24px;
 }
 .tdp-date-badge {
-  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 8px; padding: 10px 14px;
-  text-align: center; flex-shrink: 0; min-width: 60px;
+  text-align: center; flex-shrink: 0; min-width: 56px;
 }
-.tdp-date-badge .db-month { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #bfbfbf; letter-spacing: .5px; }
-.tdp-date-badge .db-day { display: block; font-size: 34px; font-weight: 800; line-height: 1; color: #fff; }
-.tdp-event-info { flex: 1; }
-.tdp-event-info .ei-daytime { font-size: 14px; color: #9ab0d4; margin-bottom: 6px; }
-.tdp-event-info .ei-name { font-size: 22px; font-weight: 800; line-height: 1.2; color: #fff; margin-bottom: 6px; }
-.tdp-event-info .ei-venue { font-size: 14px; color: #9ab0d4; }
+.tdp-date-badge .db-month {
+  display: block; font-size: 13px; font-weight: 700;
+  text-transform: uppercase; color: #fff; letter-spacing: .5px; line-height: 1.2;
+}
+.tdp-date-badge .db-day {
+  display: block; font-size: 52px; font-weight: 800; line-height: 1; color: #fff;
+}
+.tdp-event-info { flex: 1; min-width: 0; }
+.tdp-event-info .ei-daytime { font-size: 14px; color: rgba(255,255,255,.8); margin-bottom: 5px; }
+.tdp-event-info .ei-name {
+  font-size: clamp(16px, 2.2vw, 22px); font-weight: 800; line-height: 1.2;
+  color: #66aaff; margin-bottom: 6px;
+  text-decoration: underline; cursor: pointer; word-break: break-word;
+}
+.tdp-event-info .ei-venue { font-size: 14px; color: rgba(255,255,255,.8); margin-bottom: 14px; }
+
+/* Share row */
+.tdp-share {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-size: 13px; color: rgba(255,255,255,.8);
+}
+.tdp-share-label { margin-right: 2px; }
+.tdp-share-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.4);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: border-color .15s, background .15s; background: none;
+}
+.tdp-share-icon:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+.tdp-share-icon svg { fill: #fff; }
+
+/* Tab bar — solid blue */
 .tdp-tabs {
-  max-width: 900px; margin: 0 auto;
-  display: flex; position: relative; z-index: 1;
+  background: #024DDF;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative; z-index: 1;
+  scrollbar-width: none;
+  padding: 0 24px;
 }
+.tdp-tabs::-webkit-scrollbar { display: none; }
 .tdp-tabs a {
-  padding: 14px 20px; font-size: 14px; font-weight: 600;
-  color: rgba(255,255,255,.55); border-bottom: 3px solid transparent;
+  padding: 16px 22px; font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,.7); border-bottom: 3px solid transparent;
   transition: color .15s, border-color .15s; white-space: nowrap;
 }
 .tdp-tabs a.active { color: #fff; border-bottom-color: #fff; }
 .tdp-tabs a:hover { color: #fff; }
+
+/* Content area */
 .tdp-content {
-  max-width: 700px; margin: 0 auto; padding: 28px 32px;
+  max-width: 960px; margin: 0 auto; padding: 28px 24px;
 }
-.tdp-section-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+.tdp-section-title { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 16px; }
+
+/* Tickets meta row */
 .tdp-tickets-meta {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 18px; flex-wrap: wrap;
 }
 .tdp-digital-count {
-  display: flex; align-items: center; gap: 8px; font-size: 14px; color: #bfbfbf;
+  display: flex; align-items: center; gap: 6px; font-size: 14px; color: #333;
 }
-.tdp-digital-count svg { width: 18px; height: 18px; fill: #bfbfbf; }
-.btn-tdp-transfer {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 9px 18px; border: 1.5px solid #bfbfbf; border-radius: 4px;
-  font-size: 14px; font-weight: 700; color: #fff;
-  transition: border-color .15s, background .15s;
+.tdp-digital-count svg { width: 18px; height: 18px; fill: #333; flex-shrink: 0; }
+.tdp-seats-together {
+  display: flex; align-items: center; gap: 6px; font-size: 14px; color: #333;
 }
-.btn-tdp-transfer:hover { border-color: #fff; background: rgba(255,255,255,.06); }
-.btn-tdp-transfer svg { width: 14px; height: 14px; fill: currentColor; }
-.tdp-phone-info {
+.tdp-seats-together svg { width: 18px; height: 18px; fill: #333; flex-shrink: 0; }
+.tdp-view-map {
+  font-size: 14px; color: #024DDF; font-weight: 600;
+  text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0;
+}
+.tdp-view-map:hover { color: #0139A7; }
+
+/* Action buttons */
+.tdp-action-btns {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 20px;
+}
+.btn-tdp-action {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 16px; border: 1.5px solid #333; border-radius: 4px;
+  font-size: 14px; font-weight: 600; color: #111; background: #fff;
+  cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit;
+}
+.btn-tdp-action:hover { border-color: #000; background: #f5f5f5; }
+.btn-tdp-action svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+.btn-fan-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #024DDF; color: #fff; border-radius: 3px;
+  font-size: 11px; font-weight: 700; width: 18px; height: 18px; flex-shrink: 0;
+}
+
+/* Info box */
+.tdp-info-box {
   display: flex; gap: 12px;
-  background: rgba(2,77,223,.1); border: 1px solid rgba(2,77,223,.35);
-  border-radius: 8px; padding: 14px 16px; margin-bottom: 28px;
+  background: #fff; border-left: 4px solid #024DDF;
+  border-radius: 4px; padding: 16px 18px;
+  margin-bottom: 26px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
 }
-.tdp-phone-info .pi-circle {
+.tdp-info-box .pi-circle {
   width: 22px; height: 22px; border-radius: 50%; background: #024DDF;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
 }
-.tdp-phone-info .pi-circle svg { width: 13px; height: 13px; fill: #fff; }
-.tdp-phone-info .pi-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-.tdp-phone-info .pi-desc { font-size: 13px; color: #9ab0d4; line-height: 1.5; }
+.tdp-info-box .pi-circle svg { width: 13px; height: 13px; fill: #fff; }
+.tdp-info-box .pi-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 4px; }
+.tdp-info-box .pi-desc { font-size: 13px; color: #555; line-height: 1.5; }
 
-/* Ticket Block */
-.ticket-block { margin-bottom: 28px; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 30px rgba(0,0,0,.5); }
-.tb-blue {
-  background: #1249D6; padding: 18px 22px 22px;
+/* Tickets grid */
+.tdp-tickets-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
 }
-.tb-blue-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.tb-blue-top .tb-type { font-size: 14px; color: rgba(255,255,255,.75); }
-.tb-info-btn { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.6); }
-.tb-info-btn svg { width: 13px; height: 13px; fill: rgba(255,255,255,.8); }
-.tb-seats { display: flex; gap: 32px; }
+
+/* Ticket Block — new card design */
+.ticket-block {
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.13); background: #fff;
+}
+.tb-blue { background: #024DDF; padding: 14px 18px 18px; }
+.tb-blue-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+}
+.tb-logo-wrap { display: flex; align-items: center; }
+.tb-logo-wrap svg { height: 16px; width: auto; }
+.tb-info-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.6); background: none; cursor: pointer;
+}
+.tb-info-btn svg { width: 13px; height: 13px; fill: rgba(255,255,255,.85); }
+.tb-type-row {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+}
+.tb-type { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.9); }
+.tb-seats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .tb-seat-item .si-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  font-size: 10px; font-weight: 700; letter-spacing: .8px;
   color: rgba(255,255,255,.65); text-transform: uppercase; margin-bottom: 3px;
 }
-.tb-seat-item .si-value { font-size: 40px; font-weight: 900; color: #fff; line-height: 1; }
+.tb-seat-item .si-value { font-size: 26px; font-weight: 900; color: #fff; line-height: 1; }
+/* Ticket image band */
 .tb-image {
-  position: relative; height: 220px; overflow: hidden;
-  background: url('bts-cover.jpg') center center / cover no-repeat;
+  position: relative; height: 160px; overflow: hidden;
+  background: url('bts-cover.jpg') center 30% / cover no-repeat;
+  flex-shrink: 0;
 }
-.tb-image::before { content: none; }
-.tb-image::after  { content: none; }
 .tb-image-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.85) 20%, rgba(0,0,0,.15) 70%, rgba(0,0,0,.0) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,.82) 20%, rgba(0,0,0,.1) 75%, transparent 100%);
 }
 .tb-image-text {
-  position: absolute; bottom: 16px; left: 22px; right: 22px;
+  position: absolute; bottom: 14px; left: 16px; right: 16px;
 }
-.tb-image-text h3 { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; line-height: 1.2; }
-.tb-image-text p { font-size: 12px; color: #9ab0d4; }
-.tb-white { background: #fff; padding: 22px; }
-.tb-white .tw-label { font-size: 13px; color: #555; text-align: center; margin-bottom: 14px; }
+.tb-image-text h3 {
+  font-size: 13px; font-weight: 800; color: #fff;
+  margin-bottom: 3px; line-height: 1.25;
+}
+.tb-image-text p { font-size: 11px; color: rgba(255,255,255,.75); }
+
+.tb-white { background: #fff; padding: 18px 18px 16px; }
+.tb-white .tw-label { font-size: 12px; color: #666; text-align: center; margin-bottom: 12px; }
 .btn-ver-entradas {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; padding: 16px; background: #000; color: #fff;
-  border-radius: 6px; font-size: 16px; font-weight: 700;
-  transition: background .15s; margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  width: 100%; padding: 13px; background: #000; color: #fff;
+  border-radius: 5px; font-size: 15px; font-weight: 700;
+  transition: background .15s; margin-bottom: 10px; border: none; cursor: pointer; font-family: inherit;
 }
 .btn-ver-entradas:hover { background: #1a1a1a; }
-.btn-ver-entradas svg { width: 22px; height: 22px; fill: #fff; }
+.btn-ver-entradas svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
 .btn-detalles-boleto {
   display: block; width: 100%; text-align: center;
-  font-size: 14px; font-weight: 700; color: #000; padding: 4px;
+  font-size: 13px; font-weight: 700; color: #111; padding: 4px;
+  background: none; border: none; cursor: pointer; font-family: inherit;
 }
 .btn-detalles-boleto:hover { text-decoration: underline; }
 
 @media (max-width: 719px) {
-  .tdp-header { padding: 20px 16px 0; }
+  .tdp-header { padding: 16px 16px 0; }
+  .tdp-tabs { padding: 0 8px; }
+  .tdp-tabs a { padding: 14px 14px; font-size: 13px; }
   .tdp-content { padding: 20px 16px; }
-  .tb-seats { gap: 20px; }
-  .tb-seat-item .si-value { font-size: 32px; }
+  .tdp-action-btns { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btn-tdp-action { padding: 12px 10px; font-size: 13px; }
+  .tdp-tickets-grid { grid-template-columns: 1fr; }
+  .tb-seat-item .si-value { font-size: 22px; }
+  .tdp-date-badge .db-day { font-size: 42px; }
+  .tdp-event-info .ei-name { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .tdp-action-btns { grid-template-columns: 1fr; }
+  .btn-tdp-action { padding: 14px 16px; }
 }
 
 /* ========== TRANSFER FORM PAGE ========== */
@@ -916,32 +1031,40 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 /* ========== BARCODE MODAL ========== */
 .barcode-modal {
   display: none; position: fixed; inset: 0; z-index: 3000;
-  overflow-y: auto; background: #fff;
+  overflow-y: auto; overflow-x: hidden;
+  background: #fff; width: 100%; max-width: 100vw; box-sizing: border-box;
 }
 .barcode-modal.open { display: block; }
 .bm-header {
   background: #000; height: 52px; padding: 0 12px;
   display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 1;
+  width: 100%; box-sizing: border-box; overflow: hidden;
 }
 .bm-close {
-  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 24px; font-weight: 300; border-radius: 50%;
   transition: background .15s;
 }
 .bm-close:hover { background: rgba(255,255,255,.12); }
-.bm-title { font-size: 16px; font-weight: 700; color: #fff; }
-.bm-help { font-size: 14px; color: #fff; padding: 8px 4px; }
+.bm-title {
+  font-size: 16px; font-weight: 700; color: #fff;
+  text-align: center; flex: 1; padding: 0 8px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bm-help { font-size: 14px; color: #fff; padding: 8px 4px; flex-shrink: 0; white-space: nowrap; }
 .bm-subheader {
   background: #111; padding: 10px 16px; text-align: center;
-  font-size: 11px; color: #9ab0d4; line-height: 1.4;
+  font-size: 11px; color: #9ab0d4; line-height: 1.5;
+  word-break: break-word; overflow-wrap: break-word; box-sizing: border-box; width: 100%;
 }
 .bm-nav {
   display: flex; align-items: center; justify-content: space-between;
-  background: #000; padding: 8px 16px;
+  background: #000; padding: 8px 12px; box-sizing: border-box; width: 100%;
 }
 .bm-nav-arrow {
-  width: 36px; height: 36px; border-radius: 50%;
+  width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,.3);
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 18px;
@@ -949,31 +1072,38 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 }
 .bm-nav-arrow:hover { border-color: #fff; background: rgba(255,255,255,.1); }
 .bm-nav-arrow.disabled { opacity: .25; pointer-events: none; }
-.bm-nav-counter { font-size: 13px; color: #bfbfbf; }
+.bm-nav-counter { font-size: 13px; color: #bfbfbf; text-align: center; flex: 1; }
 .bm-blue {
-  background: #1249D6; padding: 20px 24px 26px;
+  background: #1249D6; padding: 20px 16px 26px;
+  box-sizing: border-box; width: 100%;
 }
 .bm-boleto-type { font-size: 14px; color: rgba(255,255,255,.75); text-align: center; margin-bottom: 18px; }
 .bm-seat-grid {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
   border: 1px solid rgba(255,255,255,.25); border-radius: 6px; overflow: hidden;
+  width: 100%; box-sizing: border-box;
 }
 .bm-seat-cell {
-  padding: 12px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,.2);
+  padding: 12px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.2);
+  min-width: 0;
 }
 .bm-seat-cell:last-child { border-right: none; }
 .bm-seat-cell .sc-label {
   font-size: 10px; font-weight: 700; letter-spacing: .8px;
   color: rgba(255,255,255,.65); text-transform: uppercase; margin-bottom: 4px;
 }
-.bm-seat-cell .sc-value { font-size: 30px; font-weight: 900; color: #fff; line-height: 1; }
-.bm-white { background: #fff; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; }
-.bm-barcode-wrap {
-  width: 100%; max-width: 360px; background: #fff;
-  padding: 10px 10px 6px; margin-bottom: 10px;
-  position: relative; overflow: hidden;
+.bm-seat-cell .sc-value { font-size: clamp(20px, 6vw, 30px); font-weight: 900; color: #fff; line-height: 1; }
+.bm-white {
+  background: #fff; padding: 24px 16px;
+  display: flex; flex-direction: column; align-items: center;
+  box-sizing: border-box; width: 100%; overflow: hidden;
 }
-.bm-barcode-wrap canvas { width: 100%; height: auto; display: block; }
+.bm-barcode-wrap {
+  width: 100%; max-width: 100%; background: #fff;
+  padding: 10px 10px 6px; margin-bottom: 10px;
+  position: relative; overflow: hidden; box-sizing: border-box;
+}
+.bm-barcode-wrap canvas { width: 100%; height: auto; display: block; max-width: 100%; }
 
 /* Scanner beam */
 .bm-scanner-beam {
@@ -1736,16 +1866,23 @@ function renderTicketDetail(id) {
   document.title = "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY | Mis boletos | Ticketmaster MX";
 
   const iconPhone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M15.5 1h-8C6.1 1 5 2.1 5 3.5v17C5 21.9 6.1 23 7.5 23h8c1.4 0 2.5-1.1 2.5-2.5v-17C18 2.1 16.9 1 15.5 1zm-4 21c-.8 0-1.5-.7-1.5-1.5S10.7 19 11.5 19s1.5.7 1.5 1.5S12.3 22 11.5 22zm4.5-4H7V4h9v14z"/></svg>';
-  const iconExternal = '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>';
-  const iconBarcode = '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M1 23h3V1H1zm4 0h1V1H5zm2 0h2V1H7zm3 0h1V1h-1zm2 0h1V1h-1zm2 0h3V1h-3zm4 0h1V1h-1zm2 0h2V1h-2z"/></svg>';
+  const iconBarcode = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1 23h3V1H1zm4 0h1V1H5zm2 0h2V1H7zm3 0h1V1h-1zm2 0h1V1h-1zm2 0h3V1h-3zm4 0h1V1h-1zm2 0h2V1h-2z"/></svg>';
   const iconInfo2 = '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>';
+  const iconExternal = '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>';
+  const iconSeats = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 10.78V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5.78A2.25 2.25 0 0 0 4.25 15v6H6v-2h12v2h1.75v-6A2.25 2.25 0 0 0 21 10.78zM5 5h14v5.25H5zm14 12.5H5V15h14z"/></svg>';
+
+  /* Ticketmaster logo SVG for ticket card header */
+  const tmLogoSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 24" fill="#fff" height="16" aria-label="Ticketmaster"><path d="M41.57 6.27c-4.02 0-6.97 3.63-6.97 7.4 0 3.62 2.38 5.32 5.9 5.32 1.3 0 2.66-.3 3.9-.68l.4-2.5a8.98 8.98 0 0 1-3.75.86c-2.04 0-3.23-.71-3.39-2.62l-.02-.34v-.1a6.46 6.46 0 0 1 .52-2.41c.61-1.55 1.48-2.62 3.36-2.62 1.33 0 2.02.73 2.02 2.03 0 .28-.02.54-.07.83H39.1a7.57 7.57 0 0 0-.34 2.17h7.5c.2-.9.32-1.8.32-2.72 0-3.09-2-4.62-5.02-4.62zm-5.4.28h-4.15l-4.44 4.41h-.05L29.65 1h-3.19l-3.78 17.7h3.11l1.38-6.44h.05l3.16 6.45h3.6l-3.7-6.62 5.88-5.54zm15.16 8.8a5 5 0 0 1 .15-1.18l1.16-5.3h2.86l.5-2.32h-2.86l.79-3.61-3.42 1.1-.55 2.5h-2.3l-.51 2.32h2.3l-.9 4.11c-.2.97-.4 1.89-.4 2.83 0 2.34 1.52 3.2 3.69 3.2.54 0 1.16-.18 1.7-.3l.56-2.45a4.28 4.28 0 0 1-1.55.28c-.72 0-1.22-.44-1.22-1.18zm-47.14 0c0-.47.07-.9.14-1.18l1.16-5.3h2.86l.5-2.32H5.99l.79-3.61-3.43 1.1-.54 2.5H.5L0 8.87h2.3l-.9 4.11c-.21.97-.4 1.89-.4 2.83C1 18.14 2.52 19 4.69 19c.54 0 1.16-.18 1.7-.3l.56-2.45a4.27 4.27 0 0 1-1.55.28c-.71 0-1.22-.44-1.22-1.18zm12.48-1.98c0-2.29 1.42-4.65 3.97-4.65.88 0 1.7.21 2.33.62l.78-2.6a11.4 11.4 0 0 0-3.19-.47c-4.4 0-7.22 3.23-7.22 7.48 0 3.14 2.04 5.24 5.2 5.24 1.05 0 2.1-.1 3.07-.57l.36-2.5c-.83.4-1.81.61-2.6.61-2.18 0-2.7-1.58-2.7-3.16zM14.5 1.31h-3.19l-.67 3.02h3.2l.66-3.02zm-4.36 5.24L7.54 18.7h3.19l2.61-12.16h-3.19zm72.06-.27c-1.43 0-2.81.26-4.17.73l-.45 2.53a9.48 9.48 0 0 1 4.02-.95c1.12 0 2.45.35 2.45 1.58 0 .36 0 .71-.1 1.04h-1.11c-3 0-7.52.3-7.52 4.32 0 2.24 1.57 3.47 3.78 3.47 1.76 0 2.86-.78 3.95-2.15h.05l-.33 1.87h2.68c.29-2.3 1.5-7.06 1.5-8.7 0-2.85-2.3-3.74-4.75-3.74zM80 16.68c-.82 0-1.62-.42-1.62-1.27 0-2.05 2.56-2.31 4.1-2.31h1.13c-.5 1.96-1.24 3.58-3.61 3.58zM71.6 6.27c-1.72 0-3.5.73-4.31 2.31h-.05c-.17-1.47-1.67-2.31-3.12-2.31-1.5 0-2.9.66-3.75 1.9h-.05l.29-1.62h-2.98l-.26 1.35-2.23 10.8h3.18l1.26-5.78c.4-1.63 1-4.2 3.16-4.2.82 0 1.5.57 1.5 1.46 0 .74-.23 1.87-.4 2.6l-1.28 5.93h3.18L67 12.92c.4-1.65.95-4.2 3.17-4.2.8 0 1.5.57 1.5 1.46 0 .74-.24 1.87-.4 2.6l-1.3 5.93h3.2l1.27-5.81c.27-1 .55-2.22.55-3.3a3.4 3.4 0 0 0-3.4-3.33zm41.24 0c-4.02 0-6.97 3.63-6.97 7.4 0 3.62 2.38 5.32 5.9 5.32 1.3 0 2.66-.3 3.9-.68l.4-2.5a9 9 0 0 1-3.75.86c-2.04 0-3.23-.71-3.38-2.62-.01-.12-.03-.22-.03-.34v-.1c.02-.84.2-1.66.53-2.41.6-1.55 1.47-2.62 3.35-2.62 1.33 0 2.02.73 2.02 2.03 0 .28-.02.54-.07.83h-4.36a7.57 7.57 0 0 0-.34 2.17h7.5c.2-.9.32-1.8.32-2.72 0-3.09-2-4.62-5.02-4.62zm10.18 2.57h-.05l.43-2.3h-3.05l-.28 1.64-2.19 10.53h3.19l1.14-5.46c.4-1.96 1.5-3.96 3.76-3.96.4 0 .85.07 1.2.19l.68-3.1a4.9 4.9 0 0 0-1.22-.11c-1.47 0-3.04 1.25-3.61 2.57zm-20.87 6.51c0-.47.07-.9.14-1.18l1.17-5.3h2.85l.5-2.32h-2.85l.78-3.61-3.42 1.1-.55 2.5h-2.3l-.5 2.32h2.3l-.9 4.11c-.22.97-.4 1.89-.4 2.83 0 2.34 1.52 3.2 3.68 3.2.55 0 1.17-.18 1.71-.3l.55-2.45c-.4.17-.98.28-1.55.28-.71 0-1.21-.44-1.21-1.18zm-13.31-5.21c0 3.04 4.13 3.23 4.13 5.2 0 .98-1.12 1.33-2.19 1.33a6.01 6.01 0 0 1-3.04-.94l-.7 2.53a8.8 8.8 0 0 0 3.74.73c2.74 0 5.52-.95 5.52-4.1 0-2.98-4.14-3.55-4.14-5.08 0-.97 1.19-1.23 2.14-1.23.9 0 1.79.26 2.13.44l.69-2.38a13.27 13.27 0 0 0-2.98-.37c-2.53 0-5.3 1.01-5.3 3.87z"/></svg>';
 
   const ticketBlocksHTML = eventTickets.map((t, i) => `
     <div class="ticket-block">
       <div class="tb-blue">
         <div class="tb-blue-top">
-          <span class="tb-type">Boleto normal</span>
+          <div class="tb-logo-wrap">${tmLogoSvg}</div>
           <button class="tb-info-btn" aria-label="Informaci\u00f3n del boleto">${iconInfo2}</button>
+        </div>
+        <div class="tb-type-row">
+          <span class="tb-type">Venta ARMY</span>
         </div>
         <div class="tb-seats">
           <div class="tb-seat-item">
@@ -1757,7 +1894,7 @@ function renderTicketDetail(id) {
             <div class="si-value">${t.row}</div>
           </div>
           <div class="tb-seat-item">
-            <div class="si-label">Asiento</div>
+            <div class="si-label">Asiento(s)</div>
             <div class="si-value">${t.seat}</div>
           </div>
         </div>
@@ -1766,7 +1903,7 @@ function renderTicketDetail(id) {
         <div class="tb-image-overlay"></div>
         <div class="tb-image-text">
           <h3>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
-          <p>jue &middot; 7 may 2026 &middot; 8:00 p.m. &middot; Estadio GNP Seguros</p>
+          <p>dom &middot; 10 may 2026 &middot; 8:00 p.m. &middot; Estadio GNP Seguros</p>
         </div>
       </div>
       <div class="tb-white">
@@ -1784,36 +1921,44 @@ function renderTicketDetail(id) {
     <div class="view ticket-detail-page">
       <div class="tdp-header">
         <div class="tdp-header-inner">
-          <a href="#/account" class="tdp-back" aria-label="Volver a mis boletos" style="display:flex;align-items:center;gap:6px;color:#9ab0d4;font-size:13px;margin-top:6px;flex-shrink:0">
-            ${icons.arrowLeft}
-          </a>
-          <div style="flex:1">
-            <nav aria-label="Ruta de navegacion" style="margin-bottom:10px">
-              <ol class="breadcrumbs" style="font-size:12px">
-                <li><a href="#/" style="color:#9ab0d4">Inicio</a></li>
-                <li><span class="sep">${icons.chevronRight}</span></li>
-                <li><a href="#/account" style="color:#9ab0d4">Mis boletos</a></li>
-                <li><span class="sep">${icons.chevronRight}</span></li>
-                <li><span class="current" style="color:#fff">BTS</span></li>
-              </ol>
-            </nav>
-            <div style="display:flex;align-items:flex-start;gap:16px">
-              <div class="tdp-date-badge">
-                <span class="db-month">may</span>
-                <span class="db-day">7</span>
-              </div>
-              <div class="tdp-event-info">
-                <p class="ei-daytime">jue &middot; 8:00 p.m.</p>
-                <h1 class="ei-name">BTS WORLD TOUR &lsquo;ARIRANG&rsquo;</h1>
-                <p class="ei-venue">Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</p>
+          <nav class="tdp-breadcrumbs" aria-label="Ruta de navegaci\u00f3n">
+            <a href="#/">Inicio</a>
+            <span class="bc-sep">/</span>
+            <a href="#/account">Mis Boletos</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</span>
+          </nav>
+          <div class="tdp-event-row">
+            <div class="tdp-date-badge">
+              <span class="db-month">MAY</span>
+              <span class="db-day">10</span>
+            </div>
+            <div class="tdp-event-info">
+              <p class="ei-daytime">DOM &middot; 8:00 P.M.</p>
+              <h1 class="ei-name">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h1>
+              <p class="ei-venue">Estadio GNP Seguros &ndash; Ciudad de M\u00e9xico, CDMX</p>
+              <div class="tdp-share">
+                <span class="tdp-share-label">Comparte que vas a ir</span>
+                <button class="tdp-share-icon" aria-label="Compartir por WhatsApp">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                </button>
+                <button class="tdp-share-icon" aria-label="Compartir en Facebook">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </button>
+                <button class="tdp-share-icon" aria-label="Compartir en X">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </button>
+                <button class="tdp-share-icon" aria-label="Compartir por correo">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div class="tdp-tabs">
           <a href="#" class="active" onclick="return false">Boletos</a>
-          <a href="#" onclick="return false">Informaci\u00f3n del evento</a>
-          <a href="#" onclick="return false">Informaci\u00f3n del recinto</a>
+          <a href="#" onclick="return false">Informaci\u00f3n de evento</a>
+          <a href="#" onclick="return false">Informaci\u00f3n del Inmueble</a>
         </div>
       </div>
 
@@ -1825,21 +1970,35 @@ function renderTicketDetail(id) {
             ${iconPhone}
             <span>x2 Boletos digitales</span>
           </div>
-          <button class="btn-tdp-transfer" onclick="window.location.hash='#/transfer'">
-            Transferir
+          <div class="tdp-seats-together">
+            ${iconSeats}
+            <span>Seats together</span>
+          </div>
+          <button class="tdp-view-map" onclick="return false">Ver en el mapa</button>
+        </div>
+
+        <div class="tdp-action-btns">
+          <button class="btn-tdp-action" onclick="return false">
+            Venta de Fan a Fan
+            <span class="btn-fan-badge" aria-label="Ayuda">?</span>
+          </button>
+          <button class="btn-tdp-action" onclick="window.location.hash='#/transfer'">
+            Transferir a alguien
             ${iconExternal}
           </button>
         </div>
 
-        <div class="tdp-phone-info">
+        <div class="tdp-info-box">
           <div class="pi-circle">${iconInfo2}</div>
           <div>
-            <p class="pi-title">Tu tel\u00e9fono es tu boleto.</p>
+            <p class="pi-title">Tu boleto est\u00e1 listo</p>
             <p class="pi-desc">En la entrada del evento, muestra desde tu cuenta o App Ticketmaster el c\u00f3digo de cada boleto comprado. Las capturas de pantalla no ser\u00e1n v\u00e1lidas para ingresar al evento.</p>
           </div>
         </div>
 
-        ${ticketBlocksHTML}
+        <div class="tdp-tickets-grid">
+          ${ticketBlocksHTML}
+        </div>
       </div>
     </div>
 
@@ -1956,6 +2115,11 @@ function openBarcodeModal(ticketIndex) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   updateBarcodeDisplay();
+  // Redraw after layout so canvas CSS width is resolved before drawing
+  requestAnimationFrame(() => {
+    const canvas = document.getElementById('bmCanvas');
+    if (canvas) drawBarcode(canvas, Date.now());
+  });
   stopBarcodeTimer();
   barcodeTimerInterval = setInterval(() => {
     barcodeSecondsLeft--;
