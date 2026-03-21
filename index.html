@@ -867,6 +867,115 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   .btn-tdp-action { padding: 14px 16px; }
 }
 
+/* ========== EVENT INFO PANEL ========== */
+.tdp-panel { display: none; }
+.tdp-panel.active { display: block; }
+
+.ei-panel { max-width: 960px; margin: 0 auto; padding: 28px 24px; }
+
+/* Hero image card */
+.eip-hero {
+  border-radius: 12px; overflow: hidden;
+  background: url('bts-cover.jpg') center 30% / cover no-repeat;
+  position: relative; height: 220px; margin-bottom: 24px;
+}
+.eip-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.88) 25%, rgba(0,0,0,.2) 70%, transparent 100%);
+}
+.eip-hero-text {
+  position: absolute; bottom: 20px; left: 20px; right: 20px;
+}
+.eip-hero-text .eip-tag {
+  display: inline-block; background: #024DDF; color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 3px; margin-bottom: 8px;
+}
+.eip-hero-text h2 {
+  font-size: clamp(16px, 3vw, 22px); font-weight: 800; color: #fff; line-height: 1.2;
+  margin-bottom: 4px;
+}
+.eip-hero-text p { font-size: 13px; color: rgba(255,255,255,.8); }
+
+/* Info grid */
+.eip-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;
+}
+.eip-card {
+  background: #fff; border-radius: 10px; padding: 18px 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
+}
+.eip-card-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: #888; margin-bottom: 6px;
+}
+.eip-card-value {
+  font-size: 15px; font-weight: 700; color: #111; line-height: 1.3;
+}
+.eip-card-sub { font-size: 12px; color: #666; margin-top: 3px; }
+
+/* Description card */
+.eip-desc-card {
+  background: #fff; border-radius: 10px; padding: 20px 22px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.08); margin-bottom: 14px;
+}
+.eip-desc-card h3 {
+  font-size: 15px; font-weight: 800; color: #111; margin-bottom: 12px;
+  padding-bottom: 10px; border-bottom: 1px solid #eee;
+}
+.eip-desc-card p {
+  font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 10px;
+}
+.eip-desc-card p:last-child { margin-bottom: 0; }
+
+/* Members list */
+.eip-members {
+  background: #fff; border-radius: 10px; padding: 20px 22px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.08); margin-bottom: 14px;
+}
+.eip-members h3 {
+  font-size: 15px; font-weight: 800; color: #111; margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid #eee;
+}
+.eip-members-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px;
+}
+.eip-member-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: #f5f7ff; border-radius: 8px; padding: 10px 12px;
+}
+.eip-member-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #024DDF; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.eip-member-name { font-size: 12px; font-weight: 700; color: #111; line-height: 1.2; }
+.eip-member-role { font-size: 10px; color: #666; }
+
+/* Notice card */
+.eip-notice {
+  background: #fff8e1; border-left: 4px solid #FFB932;
+  border-radius: 4px; padding: 14px 16px; margin-bottom: 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.eip-notice svg { flex-shrink: 0; margin-top: 1px; }
+.eip-notice p { font-size: 13px; color: #333; line-height: 1.6; }
+.eip-notice strong { color: #111; }
+
+@media (max-width: 600px) {
+  .eip-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .eip-card { padding: 14px 16px; }
+  .eip-card-value { font-size: 14px; }
+  .eip-hero { height: 180px; }
+  .ei-panel { padding: 20px 16px; }
+}
+@media (max-width: 400px) {
+  .eip-grid { grid-template-columns: 1fr; }
+  .eip-members-grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* ========== TRANSFER FORM PAGE ========== */
 .transfer-form-page { background: #121212; min-height: 100vh; }
 .tfp-header {
@@ -1498,6 +1607,19 @@ const icons = {
   tmT: '<svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M11.23 17.47c0-.59.1-1.12.18-1.47l1.45-6.62h3.57l.63-2.88h-3.57l.98-4.5-4.28 1.38-.68 3.12H6.62L6 9.38h2.88L7.75 14.5a16 16 0 0 0-.5 3.52c0 2.92 1.9 3.98 4.6 3.98.69 0 1.46-.21 2.15-.36l.68-3.06c-.5.21-1.22.36-1.93.36-.9 0-1.52-.56-1.52-1.47"/></svg>',
 };
 
+// ========== TICKET DETAIL TABS ==========
+function switchTdpTab(name) {
+  const panels = document.querySelectorAll('.tdp-panel');
+  panels.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('tdp-panel-' + name);
+  if (target) target.classList.add('active');
+
+  const tabs = document.querySelectorAll('.tdp-tabs a');
+  tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+  const activeTab = document.getElementById('tab-btn-' + name);
+  if (activeTab) { activeTab.classList.add('active'); activeTab.setAttribute('aria-selected', 'true'); }
+}
+
 // ========== ROUTER ==========
 const mainEl = document.getElementById('main-content');
 
@@ -1955,51 +2077,191 @@ function renderTicketDetail(id) {
             </div>
           </div>
         </div>
-        <div class="tdp-tabs">
-          <a href="#" class="active" onclick="return false">Boletos</a>
-          <a href="#" onclick="return false">Informaci\u00f3n de evento</a>
-          <a href="#" onclick="return false">Informaci\u00f3n del Inmueble</a>
+        <div class="tdp-tabs" role="tablist">
+          <a href="#" role="tab" aria-selected="true" class="active" id="tab-btn-boletos" onclick="switchTdpTab('boletos');return false;">Boletos</a>
+          <a href="#" role="tab" aria-selected="false" id="tab-btn-evento" onclick="switchTdpTab('evento');return false;">Informaci\u00f3n de evento</a>
+          <a href="#" role="tab" aria-selected="false" id="tab-btn-inmueble" onclick="switchTdpTab('inmueble');return false;">Informaci\u00f3n del Inmueble</a>
         </div>
       </div>
 
-      <div class="tdp-content">
-        <h2 class="tdp-section-title">Mis boletos</h2>
+      <!-- Panel: Boletos -->
+      <div class="tdp-panel active" id="tdp-panel-boletos" role="tabpanel">
+        <div class="tdp-content">
+          <h2 class="tdp-section-title">Mis boletos</h2>
 
-        <div class="tdp-tickets-meta">
-          <div class="tdp-digital-count">
-            ${iconPhone}
-            <span>x2 Boletos digitales</span>
+          <div class="tdp-tickets-meta">
+            <div class="tdp-digital-count">
+              ${iconPhone}
+              <span>x2 Boletos digitales</span>
+            </div>
+            <div class="tdp-seats-together">
+              ${iconSeats}
+              <span>Seats together</span>
+            </div>
+            <button class="tdp-view-map" onclick="return false">Ver en el mapa</button>
           </div>
-          <div class="tdp-seats-together">
-            ${iconSeats}
-            <span>Seats together</span>
+
+          <div class="tdp-action-btns">
+            <button class="btn-tdp-action" onclick="return false">
+              Venta de Fan a Fan
+              <span class="btn-fan-badge" aria-label="Ayuda">?</span>
+            </button>
+            <button class="btn-tdp-action" onclick="window.location.hash='#/transfer'">
+              Transferir a alguien
+              ${iconExternal}
+            </button>
           </div>
-          <button class="tdp-view-map" onclick="return false">Ver en el mapa</button>
-        </div>
 
-        <div class="tdp-action-btns">
-          <button class="btn-tdp-action" onclick="return false">
-            Venta de Fan a Fan
-            <span class="btn-fan-badge" aria-label="Ayuda">?</span>
-          </button>
-          <button class="btn-tdp-action" onclick="window.location.hash='#/transfer'">
-            Transferir a alguien
-            ${iconExternal}
-          </button>
-        </div>
-
-        <div class="tdp-info-box">
-          <div class="pi-circle">${iconInfo2}</div>
-          <div>
-            <p class="pi-title">Tu boleto est\u00e1 listo</p>
-            <p class="pi-desc">En la entrada del evento, muestra desde tu cuenta o App Ticketmaster el c\u00f3digo de cada boleto comprado. Las capturas de pantalla no ser\u00e1n v\u00e1lidas para ingresar al evento.</p>
+          <div class="tdp-info-box">
+            <div class="pi-circle">${iconInfo2}</div>
+            <div>
+              <p class="pi-title">Tu boleto est\u00e1 listo</p>
+              <p class="pi-desc">En la entrada del evento, muestra desde tu cuenta o App Ticketmaster el c\u00f3digo de cada boleto comprado. Las capturas de pantalla no ser\u00e1n v\u00e1lidas para ingresar al evento.</p>
+            </div>
           </div>
-        </div>
 
-        <div class="tdp-tickets-grid">
-          ${ticketBlocksHTML}
+          <div class="tdp-tickets-grid">
+            ${ticketBlocksHTML}
+          </div>
         </div>
       </div>
+
+      <!-- Panel: Información de evento -->
+      <div class="tdp-panel" id="tdp-panel-evento" role="tabpanel">
+        <div class="ei-panel">
+
+          <!-- Hero foto -->
+          <div class="eip-hero">
+            <div class="eip-hero-overlay"></div>
+            <div class="eip-hero-text">
+              <span class="eip-tag">K-Pop &bull; World Tour</span>
+              <h2>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h2>
+              <p>Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</p>
+            </div>
+          </div>
+
+          <!-- Grid de datos clave -->
+          <div class="eip-grid">
+            <div class="eip-card">
+              <div class="eip-card-label">Fecha</div>
+              <div class="eip-card-value">Domingo 10 de mayo, 2026</div>
+              <div class="eip-card-sub">8:00 p.m. &bull; Puertas: 5:00 p.m.</div>
+            </div>
+            <div class="eip-card">
+              <div class="eip-card-label">Recinto</div>
+              <div class="eip-card-value">Estadio GNP Seguros</div>
+              <div class="eip-card-sub">Ciudad de M\u00e9xico, CDMX</div>
+            </div>
+            <div class="eip-card">
+              <div class="eip-card-label">G\u00e9nero</div>
+              <div class="eip-card-value">K-Pop / Pop coreano</div>
+              <div class="eip-card-sub">Hip Hop &bull; R&amp;B &bull; EDM</div>
+            </div>
+            <div class="eip-card">
+              <div class="eip-card-label">Restricci\u00f3n de edad</div>
+              <div class="eip-card-value">Apto para todos</div>
+              <div class="eip-card-sub">Menores con adulto responsable</div>
+            </div>
+            <div class="eip-card">
+              <div class="eip-card-label">Duración aprox.</div>
+              <div class="eip-card-value">3 horas</div>
+              <div class="eip-card-sub">Incluye intervalo</div>
+            </div>
+            <div class="eip-card">
+              <div class="eip-card-label">Productora</div>
+              <div class="eip-card-value">HYBE &bull; Live Nation</div>
+              <div class="eip-card-sub">OCESA &bull; CIE M\u00e9xico</div>
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="eip-desc-card">
+            <h3>Sobre el concierto</h3>
+            <p>BTS regresa a M\u00e9xico con su tan esperado <strong>World Tour &lsquo;ARIRANG&rsquo;</strong>, una gira global que celebra la herencia cultural coreana y el poderoso v\u00ednculo del grupo con sus fans alrededor del mundo. El nombre &lsquo;Arirang&rsquo; hace referencia a la canci\u00f3n folcl\u00f3rica coreana m\u00e1s emblem\u00e1tica, s\u00edmbolo de identidad, resistencia y uni\u00f3n.</p>
+            <p>El espect\u00e1culo incluir\u00e1 una producci\u00f3n audiovisual de \u00faltima generaci\u00f3n, con pantallas LED de 360\u00b0, efectos pir\u00f3tecnicos, coreograf\u00edas en vivo y un set list de m\u00e1s de 30 canciones que recorrer\u00e1 toda su discograf\u00eda: desde \u00e9xitos tempranos como <em>I Need U</em> y <em>FIRE</em>, hasta los hits globales de su era en solitario y en grupo como <em>Dynamite</em>, <em>Butter</em>, <em>DNA</em>, <em>Boy With Luv</em> y <em>MIC Drop</em>.</p>
+            <p>La cita en el <strong>Estadio GNP Seguros</strong> ser\u00e1 hist\u00f3rica: una noche \u00fanica que el ARMY mexicano llevar\u00e1 en el coraz\u00f3n para siempre.</p>
+          </div>
+
+          <!-- Integrantes -->
+          <div class="eip-members">
+            <h3>Integrantes de BTS</h3>
+            <div class="eip-members-grid">
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar">RM</div>
+                <div>
+                  <div class="eip-member-name">RM</div>
+                  <div class="eip-member-role">Rap &bull; L\u00edder</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#1249D6">Jin</div>
+                <div>
+                  <div class="eip-member-name">Jin</div>
+                  <div class="eip-member-role">Vocal</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#5b21b6">SG</div>
+                <div>
+                  <div class="eip-member-name">SUGA</div>
+                  <div class="eip-member-role">Rap</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#0e7490">JH</div>
+                <div>
+                  <div class="eip-member-name">j-hope</div>
+                  <div class="eip-member-role">Rap &bull; Dance</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#be123c">JM</div>
+                <div>
+                  <div class="eip-member-name">Jimin</div>
+                  <div class="eip-member-role">Vocal &bull; Dance</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#b45309">V</div>
+                <div>
+                  <div class="eip-member-name">V</div>
+                  <div class="eip-member-role">Vocal</div>
+                </div>
+              </div>
+              <div class="eip-member-pill">
+                <div class="eip-member-avatar" style="background:#166534">JK</div>
+                <div>
+                  <div class="eip-member-name">Jung Kook</div>
+                  <div class="eip-member-role">Vocal &bull; Centro</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aviso importante -->
+          <div class="eip-notice">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFB932"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <p><strong>Informaci\u00f3n importante:</strong> Est\u00e1 prohibido el ingreso con c\u00e1maras profesionales, gr\u00e1baciones de audio/video, objetos punzocortantes, bebidas en envase de vidrio o aluminio y cualquier objeto que pueda representar un riesgo para los asistentes. El set list y la duraci\u00f3n pueden estar sujetos a cambios sin previo aviso.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Panel: Información del Inmueble (placeholder) -->
+      <div class="tdp-panel" id="tdp-panel-inmueble" role="tabpanel">
+        <div class="ei-panel">
+          <div class="eip-desc-card">
+            <h3>Estadio GNP Seguros</h3>
+            <p>Av. Insurgentes Sur 3695, La Joya, Tlalpan, 14090 Ciudad de M\u00e9xico, CDMX.</p>
+            <p>Capacidad: 87,000 espectadores. El recinto cuenta con accesos para personas con discapacidad, estacionamiento, sanitarios en todos los niveles y puestos de alimentos y bebidas distribuidos por todo el estadio.</p>
+          </div>
+          <div class="eip-notice">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFB932"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <p>Se recomienda llegar con al menos <strong>2 horas de anticipaci\u00f3n</strong> para evitar filas en los accesos. Utiliza transporte p\u00fablico: L\u00ednea 3 del Metro, estaci\u00f3n Estadio Azteca.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Barcode Modal -->
