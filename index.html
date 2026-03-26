@@ -760,6 +760,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 }
 .btn-tdp-action:hover { border-color: #000; background: #f5f5f5; }
 .btn-tdp-action svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+.btn-tdp-action--disabled,
+.btn-tdp-action--disabled:hover {
+  border-color: #ccc; color: #aaa; background: #f9f9f9;
+  cursor: not-allowed; pointer-events: none; opacity: .6;
+}
 .btn-fan-badge {
   display: inline-flex; align-items: center; justify-content: center;
   background: #024DDF; color: #fff; border-radius: 3px;
@@ -1115,52 +1120,89 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 .btn-tfp-send:hover { background: #0d3aab; }
 .btn-tfp-send:disabled { background: #a0b4e8; cursor: not-allowed; }
 
-/* ========== TRANSFER SUCCESS MODAL ========== */
+/* ========== TRANSFER SUCCESS SCREEN ========== */
 .tsm-overlay {
   display: none; position: fixed; inset: 0; z-index: 4000;
-  background: rgba(0,0,0,.55); backdrop-filter: blur(3px);
-  align-items: center; justify-content: center; padding: 20px;
+  background: #fff; overflow-y: auto;
 }
-.tsm-overlay.open { display: flex; }
-.tsm-card {
-  background: #fff; border-radius: 16px;
-  max-width: 420px; width: 100%;
-  padding: 40px 32px 32px;
-  text-align: center;
-  animation: tsmIn .3s cubic-bezier(.34,1.56,.64,1) both;
+.tsm-overlay.open { display: block; }
+.tsm-top-bar {
+  background: #1b2a4a; height: 52px; padding: 0 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 1;
 }
-@keyframes tsmIn { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.tsm-icon-wrap {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: #e8f5e9; margin: 0 auto 20px;
-  display: flex; align-items: center; justify-content: center;
+.tsm-back-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: none; border: none; color: #fff;
+  font-size: 14px; font-weight: 500; cursor: pointer; padding: 0;
 }
-.tsm-icon-wrap svg { width: 38px; height: 38px; fill: #2e7d32; }
-.tsm-title { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 10px; }
-.tsm-email { color: #1249D6; font-weight: 700; }
-.tsm-desc { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 8px; }
-.tsm-time {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: #f0f4ff; border: 1px solid #c7d7f9;
-  border-radius: 20px; padding: 6px 14px;
-  font-size: 13px; font-weight: 600; color: #1249D6;
-  margin: 12px 0 24px;
+.tsm-back-btn svg { fill: #fff; width: 18px; height: 18px; }
+.tsm-top-title { color: #fff; font-size: 15px; font-weight: 700; }
+.tsm-help-btn {
+  background: none; border: none; color: #fff;
+  font-size: 14px; font-weight: 500; cursor: pointer; padding: 0;
 }
-.tsm-time svg { width: 15px; height: 15px; fill: #1249D6; }
-.tsm-tickets {
-  background: #f7f7f7; border-radius: 8px; padding: 12px 16px;
-  text-align: left; margin-bottom: 24px;
+.tsm-event-strip {
+  background: #111; padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 14px;
 }
-.tsm-tickets p { font-size: 13px; color: #444; padding: 4px 0; border-bottom: 1px solid #eee; }
-.tsm-tickets p:last-child { border-bottom: none; }
-.tsm-tickets strong { color: #111; }
-.btn-tsm-close {
-  display: block; width: 100%; padding: 14px;
-  background: #1249D6; color: #fff;
-  border: none; border-radius: 6px; font-size: 15px; font-weight: 700;
-  cursor: pointer; transition: background .15s;
+.tsm-ev-day-num {
+  font-size: 38px; font-weight: 900; color: #fff; line-height: 1; min-width: 44px;
 }
-.btn-tsm-close:hover { background: #0d3aab; }
+.tsm-ev-info { flex: 1; }
+.tsm-ev-meta {
+  font-size: 11px; color: rgba(255,255,255,.6);
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px;
+}
+.tsm-ev-title { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 4px; }
+.tsm-ev-venue { font-size: 12px; color: rgba(255,255,255,.6); }
+.tsm-body {
+  background: #fff; padding: 36px 24px 48px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  max-width: 480px; margin: 0 auto;
+}
+.tsm-check-circle {
+  width: 56px; height: 56px; border-radius: 50%; background: #2e7d32;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.tsm-check-circle svg { width: 30px; height: 30px; fill: #fff; }
+.tsm-title {
+  font-size: 20px; font-weight: 800; color: #111;
+  margin-bottom: 6px; line-height: 1.3;
+}
+.tsm-email-line { font-size: 14px; color: #666; margin-bottom: 24px; }
+.tsm-hr { width: 100%; border: none; border-top: 1px solid #e0e0e0; margin: 0 0 20px; }
+.tsm-ticket-card {
+  width: 100%; border: 1px solid #e0e0e0; border-radius: 6px;
+  overflow: hidden; margin-bottom: 20px;
+}
+.tsm-card-header {
+  background: #f5f5f5; padding: 10px 16px; text-align: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  color: #555; text-transform: uppercase;
+  border-bottom: 1px solid #e0e0e0;
+}
+.tsm-seat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  padding: 16px 12px;
+}
+.tsm-seat-col { text-align: center; }
+.tsm-seat-col + .tsm-seat-col { border-left: 1px solid #e0e0e0; }
+.tsm-seat-lbl {
+  font-size: 10px; color: #888; text-transform: uppercase;
+  letter-spacing: .5px; margin-bottom: 5px;
+}
+.tsm-seat-val { font-size: 24px; font-weight: 900; color: #111; line-height: 1; }
+.tsm-note {
+  font-size: 13px; color: #444; line-height: 1.6;
+  text-align: left; width: 100%; margin-bottom: 20px;
+}
+.tsm-back-link {
+  background: none; border: none; color: #1249D6;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  padding: 8px 0; text-decoration: none;
+}
+.tsm-back-link:hover { text-decoration: underline; }
 
 /* ========== BARCODE MODAL ========== */
 .barcode-modal {
@@ -1582,9 +1624,9 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 // ========== EVENT DATA ==========
 const events = [
   // Mexico events
-  { id: 1, date: '2026-05-07', month: 'may', dayNum: '07', day: 'jue', time: '8:00 p.m.', city: 'Ciudad de M\u00e9xico, CDMX', venue: 'Estadio GNP Seguros', title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY", available: false, country: 'mx', region: 'mexico' },
+  { id: 1, date: '2026-05-10', month: 'may', dayNum: '10', day: 'dom', time: '8:00 p.m.', city: 'Ciudad de M\u00e9xico, CDMX', venue: 'Estadio GNP Seguros', title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY", available: false, country: 'mx', region: 'mexico' },
   { id: 2, date: '2026-05-09', month: 'may', dayNum: '09', day: 's\u00e1b', time: '8:00 p.m.', city: 'Ciudad de M\u00e9xico, CDMX', venue: 'Estadio GNP Seguros', title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY", available: false, country: 'mx', region: 'mexico' },
-  { id: 3, date: '2026-05-07', month: 'may', dayNum: '7', day: 'jue', time: '8:00 p.m.', city: 'Ciudad de M\u00e9xico, CDMX', venue: 'Estadio GNP Seguros', title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY", available: false, country: 'mx', region: 'mexico' },
+  { id: 3, date: '2026-05-10', month: 'may', dayNum: '10', day: 'dom', time: '8:00 p.m.', city: 'Ciudad de M\u00e9xico, CDMX', venue: 'Estadio GNP Seguros', title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY", available: false, country: 'mx', region: 'mexico' },
   // International events
   { id: 4, date: '2026-04-25', month: 'abr', dayNum: '25', day: 's\u00e1b', time: '8:00 p.m.', city: 'Tampa, FL, Estados Unidos', venue: 'Raymond James Stadium', title: "BTS WORLD TOUR 'ARIRANG' IN TAMPA", available: true, country: 'us', region: 'international' },
   { id: 5, date: '2026-04-26', month: 'abr', dayNum: '26', day: 'dom', time: '8:00 p.m.', city: 'Tampa, FL, Estados Unidos', venue: 'Raymond James Stadium', title: "BTS WORLD TOUR 'ARIRANG' IN TAMPA", available: true, country: 'us', region: 'international' },
@@ -1607,7 +1649,7 @@ const userTickets = [
   {
     id: 1, year: 2026,
     title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-    date: 'jue \u00b7 7 may 2026',
+    date: 'dom \u00b7 10 may 2026',
     venue: 'Estadio GNP Seguros',
     order: 'Compra #29-261345/MXC'
   }
@@ -2001,8 +2043,8 @@ function renderTicketsList() {
 
 // ========== TICKET DETAIL VIEW ==========
 const eventTickets = [
-  { seat: '12', section: 'NA27C', row: '2' },
-  { seat: '13', section: 'NA27C', row: '2' },
+  { seat: '20', section: 'NA27C', row: '4' },
+  { seat: '21', section: 'NA27C', row: '4' },
 ];
 
 let barcodeTimerInterval = null;
@@ -2086,7 +2128,7 @@ function renderTicketDetail(id) {
         <div class="tb-image-overlay"></div>
         <div class="tb-image-text">
           <h3>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
-          <p>jue &middot; 7 may 2026 &middot; 8:00 p.m. &middot; Estadio GNP Seguros</p>
+          <p>dom &middot; 10 may 2026 &middot; 8:00 p.m. &middot; Estadio GNP Seguros</p>
         </div>
       </div>
       <div class="tb-white">
@@ -2118,10 +2160,10 @@ function renderTicketDetail(id) {
           <div class="tdp-event-row">
             <div class="tdp-date-badge">
               <span class="db-month">MAY</span>
-              <span class="db-day">7</span>
+              <span class="db-day">10</span>
             </div>
             <div class="tdp-event-info">
-              <p class="ei-daytime">JUE &middot; 8:00 P.M.</p>
+              <p class="ei-daytime">DOM &middot; 8:00 P.M.</p>
               <h1 class="ei-name">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h1>
               <p class="ei-venue">Estadio GNP Seguros &ndash; Ciudad de M\u00e9xico, CDMX</p>
               <div class="tdp-share">
@@ -2157,7 +2199,7 @@ function renderTicketDetail(id) {
           <div class="tdp-tickets-meta">
             <div class="tdp-digital-count">
               ${iconPhone}
-              <span>x2 Boletos digitales</span>
+              <span>${transferState ? 'No tienes boletos ahora.' : 'x2 Boletos digitales'}</span>
             </div>
             <div class="tdp-seats-together">
               ${iconSeats}
@@ -2167,11 +2209,11 @@ function renderTicketDetail(id) {
           </div>
 
           <div class="tdp-action-btns">
-            <button class="btn-tdp-action" onclick="return false">
+            <button class="btn-tdp-action${transferState ? ' btn-tdp-action--disabled' : ''}" ${transferState ? 'disabled aria-disabled="true"' : ''} onclick="return false">
               Venta de Fan a Fan
               <span class="btn-fan-badge" aria-label="Ayuda">?</span>
             </button>
-            <button class="btn-tdp-action" onclick="window.location.hash='#/transfer'">
+            <button class="btn-tdp-action${transferState ? ' btn-tdp-action--disabled' : ''}" ${transferState ? 'disabled aria-disabled="true"' : `onclick="window.location.hash='#/transfer'"`}>
               Transferir a alguien
               ${iconExternal}
             </button>
@@ -2208,7 +2250,7 @@ function renderTicketDetail(id) {
           <div class="eip-grid">
             <div class="eip-card">
               <div class="eip-card-label">Fecha</div>
-              <div class="eip-card-value">Jueves 7 de mayo, 2026</div>
+              <div class="eip-card-value">Domingo 10 de mayo, 2026</div>
               <div class="eip-card-sub">8:00 p.m. &bull; Puertas: 5:00 p.m.</div>
             </div>
             <div class="eip-card">
@@ -2336,7 +2378,7 @@ function renderTicketDetail(id) {
         <button class="bm-help" onclick="return false">Ayuda</button>
       </div>
       <div class="bm-subheader">
-        BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; jue, may 7, 2026 &bull; 8:00 p.m. &bull; Estadio GNP Seguros
+        BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; dom, may 10, 2026 &bull; 8:00 p.m. &bull; Estadio GNP Seguros
       </div>
       <div class="bm-nav">
         <button class="bm-nav-arrow" id="bmPrev" onclick="changeBarcodeTicket(-1)" aria-label="Boleto anterior">&#8249;</button>
@@ -2352,11 +2394,11 @@ function renderTicketDetail(id) {
           </div>
           <div class="bm-seat-cell">
             <div class="sc-label">Fila</div>
-            <div class="sc-value" id="bmRow">2</div>
+            <div class="sc-value" id="bmRow">4</div>
           </div>
           <div class="bm-seat-cell">
             <div class="sc-label">Asiento</div>
-            <div class="sc-value" id="bmSeat">12</div>
+            <div class="sc-value" id="bmSeat">20</div>
           </div>
         </div>
       </div>
@@ -2526,10 +2568,10 @@ function renderTransfer() {
         <div class="tfp-header-inner">
           <div class="tfp-date-badge">
             <span class="db-month">may</span>
-            <span class="db-day">7</span>
+            <span class="db-day">10</span>
           </div>
           <div class="tfp-event-info">
-            <p class="ei-daytime">jue &middot; 8:00 P.M.</p>
+            <p class="ei-daytime">dom &middot; 8:00 P.M.</p>
             <p class="ei-name">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</p>
             <p class="ei-venue">Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</p>
           </div>
@@ -2554,14 +2596,14 @@ function renderTransfer() {
           <div class="tfp-check">${iconCheck}</div>
           <div>
             <p class="tfp-ticket-label">Boleto normal</p>
-            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 2 &mdash; Asiento 12 &bull; Ref: NA27C-F2-012</p>
+            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 4 &mdash; Asiento 20 &bull; Ref: NA27C-F4-020</p>
           </div>
         </div>
         <div class="tfp-ticket-item selected" id="tfpT2" onclick="tfpToggle(this)">
           <div class="tfp-check">${iconCheck}</div>
           <div>
             <p class="tfp-ticket-label">Boleto normal</p>
-            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 2 &mdash; Asiento 13 &bull; Ref: NA27C-F2-013</p>
+            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 4 &mdash; Asiento 21 &bull; Ref: NA27C-F4-021</p>
           </div>
         </div>
 
@@ -2610,27 +2652,41 @@ function renderTransfer() {
       </div>
     </div>
 
-    <!-- Success Modal -->
-    <div class="tsm-overlay" id="tsmOverlay">
-      <div class="tsm-card" role="dialog" aria-modal="true" aria-labelledby="tsmTitle">
-        <div class="tsm-icon-wrap">
+    <!-- Transfer Success Screen -->
+    <div class="tsm-overlay" id="tsmOverlay" role="dialog" aria-modal="true" aria-labelledby="tsmTitle">
+      <!-- Top bar -->
+      <div class="tsm-top-bar">
+        <button class="tsm-back-btn" onclick="closeTransferSuccess()">
+          <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          Atr\u00e1s
+        </button>
+        <span class="tsm-top-title">Boletos de transferencia</span>
+        <button class="tsm-help-btn">Ayuda</button>
+      </div>
+      <!-- Event strip -->
+      <div class="tsm-event-strip">
+        <div class="tsm-ev-day-num">10</div>
+        <div class="tsm-ev-info">
+          <div class="tsm-ev-meta">MAY &nbsp; dom &middot; 8:00 P.M.</div>
+          <div class="tsm-ev-title">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</div>
+          <div class="tsm-ev-venue">Estadio GNP Seguros &middot; Ciudad de M\u00e9xico, CDMX</div>
+        </div>
+      </div>
+      <!-- Body -->
+      <div class="tsm-body">
+        <div class="tsm-check-circle">
           <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
         </div>
-        <h2 class="tsm-title" id="tsmTitle">\u00a1Boletos enviados!</h2>
-        <p class="tsm-desc">
-          Tus boletos fueron transferidos exitosamente a<br>
-          <span class="tsm-email" id="tsmRecipientEmail"></span>
-        </p>
-        <div class="tsm-time">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-          Tiempo estimado de entrega: ~15 minutos
+        <h2 class="tsm-title" id="tsmTitle">Enviaste <span id="tsmCountLabel">un boleto</span> to <span id="tsmRecipientName"></span></h2>
+        <p class="tsm-email-line" id="tsmRecipientEmail"></p>
+        <hr class="tsm-hr">
+        <div class="tsm-ticket-card">
+          <div class="tsm-card-header">VENTA ARMY MEMBERSHIP</div>
+          <div class="tsm-seat-grid" id="tsmSeatGrid"></div>
         </div>
-        <div class="tsm-tickets" id="tsmTicketList"></div>
-        <p class="tsm-desc" style="font-size:12px;color:#888;margin-bottom:0">
-          El receptor recibir\u00e1 un correo con instrucciones para aceptar los boletos.
-          Las capturas de pantalla no ser\u00e1n v\u00e1lidas para ingresar al evento.
-        </p>
-        <button class="btn-tsm-close" style="margin-top:20px" onclick="closeTransferSuccess()">Volver a mis boletos</button>
+        <p class="tsm-note">Una vez aceptado, el(los) boleto(s) no estar\u00e1(n) disponible(s) en tu cuenta</p>
+        <hr class="tsm-hr">
+        <button class="tsm-back-link" onclick="closeTransferSuccess()">Regresar a mis boletos</button>
       </div>
     </div>
   `;
@@ -2673,17 +2729,44 @@ function submitTransfer() {
     return el && el.classList.contains('selected');
   });
 
-  const labels = { tfpT1: 'Secci\u00f3n NA27C \u2022 Fila 2 \u2022 Asiento 12', tfpT2: 'Secci\u00f3n NA27C \u2022 Fila 2 \u2022 Asiento 13' };
   const indexMap = { tfpT1: 0, tfpT2: 1 };
+  const seatsData = { tfpT1: { seccion: 'NA27C', fila: '4', asiento: '20' }, tfpT2: { seccion: 'NA27C', fila: '4', asiento: '21' } };
 
+  // Recipient name
+  const nombreVal = (document.getElementById('tfpNombre') || {}).value || '';
+  const apellidoVal = (document.getElementById('tfpApellido') || {}).value || '';
+  const fullName = (nombreVal + ' ' + apellidoVal).trim() || email.value.trim();
+  const nameEl = document.getElementById('tsmRecipientName');
+  if (nameEl) nameEl.textContent = fullName;
+
+  // Email line
   const emailEl = document.getElementById('tsmRecipientEmail');
   if (emailEl) emailEl.textContent = email.value.trim();
 
-  const listEl = document.getElementById('tsmTicketList');
-  if (listEl) {
-    listEl.innerHTML = selected.map(id =>
-      `<p><strong>Boleto normal</strong> &mdash; ${labels[id]}</p>`
-    ).join('');
+  // Count label
+  const countEl = document.getElementById('tsmCountLabel');
+  if (countEl) countEl.textContent = selected.length === 1 ? 'un boleto' : selected.length + ' boletos';
+
+  // Seat grid — show first selected ticket data
+  const seatGridEl = document.getElementById('tsmSeatGrid');
+  if (seatGridEl && selected.length > 0) {
+    const d = seatsData[selected[0]];
+    const asientoLabel = selected.length > 1
+      ? seatsData[selected[0]].asiento + '-' + seatsData[selected[selected.length - 1]].asiento
+      : d.asiento;
+    seatGridEl.innerHTML = `
+      <div class="tsm-seat-col">
+        <div class="tsm-seat-lbl">Secci\u00f3n</div>
+        <div class="tsm-seat-val">${d.seccion}</div>
+      </div>
+      <div class="tsm-seat-col">
+        <div class="tsm-seat-lbl">Fila</div>
+        <div class="tsm-seat-val">${d.fila}</div>
+      </div>
+      <div class="tsm-seat-col">
+        <div class="tsm-seat-lbl">Asiento(s)</div>
+        <div class="tsm-seat-val">${asientoLabel}</div>
+      </div>`;
   }
 
   // Persist transfer state for the session (cleared on page reload)
@@ -2825,7 +2908,7 @@ function renderTransferError() {
                 <h3>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
                 <div class="transfer-info-row">
                   ${icons.calendar}
-                  <span>jue &middot; 7 may 2026 &mdash; 8:00 p.m.</span>
+                  <span>dom &middot; 10 may 2026 &mdash; 8:00 p.m.</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.location}
@@ -2833,7 +2916,7 @@ function renderTransferError() {
                 </div>
                 <div class="transfer-info-row">
                   ${icons.tickets}
-                  <span>2 boletos &bull; Secci\u00f3n NA27C &bull; Fila 2 &bull; Asientos 12 y 13</span>
+                  <span>2 boletos &bull; Secci\u00f3n NA27C &bull; Fila 4 &bull; Asientos 20 y 21</span>
                 </div>
                 <div class="transfer-info-row" style="font-size:11px;color:#646464">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="#646464"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
