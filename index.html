@@ -2199,7 +2199,7 @@ function renderTicketDetail(id) {
           <div class="tdp-tickets-meta">
             <div class="tdp-digital-count">
               ${iconPhone}
-              <span>${transferState ? 'No tienes boletos ahora.' : 'x2 Boletos digitales'}</span>
+              <span>${remainingTickets.length === 0 ? 'No tienes boletos ahora.' : `x${remainingTickets.length} Boleto${remainingTickets.length > 1 ? 's' : ''} digital${remainingTickets.length > 1 ? 'es' : ''}`}</span>
             </div>
             <div class="tdp-seats-together">
               ${iconSeats}
@@ -2209,11 +2209,11 @@ function renderTicketDetail(id) {
           </div>
 
           <div class="tdp-action-btns">
-            <button class="btn-tdp-action${transferState ? ' btn-tdp-action--disabled' : ''}" ${transferState ? 'disabled aria-disabled="true"' : ''} onclick="return false">
+            <button class="btn-tdp-action${remainingTickets.length === 0 ? ' btn-tdp-action--disabled' : ''}" ${remainingTickets.length === 0 ? 'disabled aria-disabled="true"' : ''} onclick="return false">
               Venta de Fan a Fan
               <span class="btn-fan-badge" aria-label="Ayuda">?</span>
             </button>
-            <button class="btn-tdp-action${transferState ? ' btn-tdp-action--disabled' : ''}" ${transferState ? 'disabled aria-disabled="true"' : `onclick="window.location.hash='#/transfer'"`}>
+            <button class="btn-tdp-action${remainingTickets.length === 0 ? ' btn-tdp-action--disabled' : ''}" ${remainingTickets.length === 0 ? 'disabled aria-disabled="true"' : `onclick="window.location.hash='#/transfer'"`}>
               Transferir a alguien
               ${iconExternal}
             </button>
@@ -2592,20 +2592,23 @@ function renderTransfer() {
           <button onclick="tfpSelectAll(false)">Anular la selecci\u00f3n de todo</button>
         </div>
 
-        <div class="tfp-ticket-item selected" id="tfpT1" onclick="tfpToggle(this)">
-          <div class="tfp-check">${iconCheck}</div>
-          <div>
-            <p class="tfp-ticket-label">Boleto normal</p>
-            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 4 &mdash; Asiento 20 &bull; Ref: NA27C-F4-020</p>
-          </div>
-        </div>
-        <div class="tfp-ticket-item selected" id="tfpT2" onclick="tfpToggle(this)">
-          <div class="tfp-check">${iconCheck}</div>
-          <div>
-            <p class="tfp-ticket-label">Boleto normal</p>
-            <p class="tfp-ticket-ref">Secci\u00f3n NA27C / Fila 4 &mdash; Asiento 21 &bull; Ref: NA27C-F4-021</p>
-          </div>
-        </div>
+        ${(() => {
+          const alreadyTransferred = _transferState ? _transferState.indices : [];
+          const allTfpTickets = [
+            { id: 'tfpT1', index: 0, ref: 'Secci\u00f3n NA27C / Fila 4 \u2014 Asiento 20 \u2022 Ref: NA27C-F4-020' },
+            { id: 'tfpT2', index: 1, ref: 'Secci\u00f3n NA27C / Fila 4 \u2014 Asiento 21 \u2022 Ref: NA27C-F4-021' },
+          ];
+          return allTfpTickets
+            .filter(t => !alreadyTransferred.includes(t.index))
+            .map(t => `
+              <div class="tfp-ticket-item selected" id="${t.id}" onclick="tfpToggle(this)">
+                <div class="tfp-check">${iconCheck}</div>
+                <div>
+                  <p class="tfp-ticket-label">Boleto normal</p>
+                  <p class="tfp-ticket-ref">${t.ref}</p>
+                </div>
+              </div>`).join('');
+        })()}
 
         <hr class="tfp-divider">
 
@@ -2729,6 +2732,8 @@ function submitTransfer() {
     return el && el.classList.contains('selected');
   });
 
+  if (selected.length === 0) return;
+
   const indexMap = { tfpT1: 0, tfpT2: 1 };
   const seatsData = { tfpT1: { seccion: 'NA27C', fila: '4', asiento: '20' }, tfpT2: { seccion: 'NA27C', fila: '4', asiento: '21' } };
 
@@ -2770,9 +2775,10 @@ function submitTransfer() {
   }
 
   // Persist transfer state for the session (cleared on page reload)
+  const prevIndices = _transferState ? _transferState.indices : [];
   _transferState = {
     email: email.value.trim(),
-    indices: selected.map(id => indexMap[id])
+    indices: [...new Set([...prevIndices, ...selected.map(id => indexMap[id])])]
   };
 
   const overlay = document.getElementById('tsmOverlay');
