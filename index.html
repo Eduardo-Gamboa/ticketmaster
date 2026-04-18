@@ -2143,8 +2143,8 @@ function renderTicketsList() {
 
 // ========== TICKET DETAIL VIEW ==========
 const eventTickets = [
-  { seat: '20', section: 'NA27C', row: '4' },
-  { seat: '21', section: 'NA27C', row: '4' },
+  { seat: '16', section: 'NA27C', row: '6' },
+  { seat: '17', section: 'NA27C', row: '6' },
 ];
 
 let barcodeTimerInterval = null;
@@ -2665,8 +2665,8 @@ function renderTransfer() {
 
   const alreadyTransferred = _transferState ? _transferState.indices : [];
   const allTfpTickets = [
-    { id: 'tfpT1', index: 0, section: 'NA27C', row: '4', seat: '20' },
-    { id: 'tfpT2', index: 1, section: 'NA27C', row: '4', seat: '21' },
+    { id: 'tfpT1', index: 0, section: 'NA27C', row: '6', seat: '16' },
+    { id: 'tfpT2', index: 1, section: 'NA27C', row: '6', seat: '17' },
   ];
   const availableTickets = allTfpTickets.filter(t => !alreadyTransferred.includes(t.index));
 
@@ -2841,7 +2841,7 @@ function submitTransfer() {
   if (selected.length === 0) return;
 
   const indexMap = { tfpT1: 0, tfpT2: 1 };
-  const seatsData = { tfpT1: { seccion: 'NA27C', fila: '4', asiento: '20' }, tfpT2: { seccion: 'NA27C', fila: '4', asiento: '21' } };
+  const seatsData = { tfpT1: { seccion: 'NA27C', fila: '6', asiento: '16' }, tfpT2: { seccion: 'NA27C', fila: '6', asiento: '17' } };
 
   // Recipient name
   const nombreVal = (document.getElementById('tfpNombre') || {}).value || '';
