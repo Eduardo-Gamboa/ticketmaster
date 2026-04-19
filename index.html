@@ -1233,11 +1233,26 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   overflow: hidden; background: #f7f7f7; padding: 14px;
 }
 .map-svg-wrap svg { width: 100%; height: auto; display: block; }
-.map-legend { margin-top: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
-.map-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
-.map-legend-box { width: 13px; height: 13px; border-radius: 2px; flex-shrink: 0; }
+.map-legend { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.map-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; }
+.map-legend-box { width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.08); }
 .map-legend-box.blue { background: #1249D6; }
 .map-legend-box.gray { background: #b0b0b0; }
+.map-legend-box.rojo { background: #d62828; }
+.map-legend-box.amarillo { background: #d8a441; }
+.map-legend-box.rosa { background: #f0a5bb; }
+.map-legend-box.azul { background: #4a8ab5; }
+.map-legend-box.morado { background: #a87bc4; }
+.map-legend-box.cafe { background: #8a6a4a; }
+.map-legend-box.zonagnp { background: #e06427; }
+.map-legend-box.verdeb { background: #1f8a4c; }
+.map-legend-box.naranjab { background: #ef8836; }
+.map-legend-box.verdec { background: #7dbe46; }
+.map-legend-box.naranjac { background: #f4a27c; }
+.map-legend-box.naranjacc { background: #f8c1a2; }
+.map-legend-box.generalb { background: #4f8a88; }
+.map-legend-box.pcd { background: #1249D6; border-radius: 50%; }
+.map-legend-note { grid-column: 1 / -1; font-size: 11px; color: #666; font-style: italic; margin-top: 4px; }
 
 /* ========== TRANSFER SUCCESS SCREEN ========== */
 .tsm-overlay {
@@ -3047,7 +3062,7 @@ function renderTransferError() {
                 </div>
                 <div class="transfer-info-row">
                   ${icons.tickets}
-                  <span>2 boletos &bull; Secci\u00f3n NA27C &bull; Fila 4 &bull; Asientos 20 y 21</span>
+                  <span>2 boletos &bull; Secci\u00f3n NA27C &bull; Fila 6 &bull; Asientos 16 y 17</span>
                 </div>
                 <div class="transfer-info-row" style="font-size:11px;color:#646464">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="#646464"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -3209,151 +3224,281 @@ document.addEventListener('keydown', (e) => {
   <div class="map-modal-body">
     <div class="map-section-tag">
       <div class="map-section-dot"></div>
-      <span>Tu secci&oacute;n: NA27C &mdash; Fila 4</span>
+      <span>Tu secci&oacute;n: NA27C &mdash; Fila 6</span>
     </div>
 
     <div class="map-svg-wrap">
-      <svg viewBox="0 0 560 490" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer stadium shell -->
-        <path fill="#c2c2c2" d="M 120,22 L 440,22 L 530,96 L 530,390 L 440,462 L 120,462 L 30,390 L 30,96 Z"/>
-        <!-- Main seating ring -->
-        <path fill="#cecece" d="M 148,50 L 412,50 L 500,108 L 500,374 L 412,434 L 148,434 L 60,374 L 60,108 Z"/>
-        <!-- Inner bowl -->
-        <path fill="#dadada" d="M 176,86 L 384,86 L 460,136 L 460,356 L 384,406 L 176,406 L 100,356 L 100,136 Z"/>
-        <!-- Floor / pit area -->
-        <path fill="#c8c8c8" d="M 198,126 L 362,126 L 432,163 L 432,330 L 362,366 L 198,366 L 128,330 L 128,163 Z"/>
-        <!-- Cross runway - horizontal -->
-        <rect x="128" y="220" width="304" height="48" rx="3" fill="#bcbcbc"/>
-        <!-- Cross runway - vertical -->
-        <rect x="252" y="126" width="56" height="240" rx="3" fill="#bcbcbc"/>
-        <!-- Stage oval -->
-        <ellipse cx="280" cy="244" rx="64" ry="48" fill="#aeaeae"/>
-        <text x="280" y="248" text-anchor="middle" dominant-baseline="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#666" letter-spacing="0.5">ESCENARIO</text>
+      <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif">
+        <!-- Colors used:
+             Naranja CC #f8c1a2  Naranja C #f4a27c  Naranja B #ef8836
+             Verde C #7dbe46     Verde B #1f8a4c    Zona GNP #e06427
+             Rojo #d62828        Amarillo #d8a441   Rosa #f0a5bb
+             Azul #4a8ab5        Morado #a87bc4     Cafe #8a6a4a
+             General B #4f8a88   Highlight NA27C #1249D6 -->
 
-        <!-- ===== OUTER TOP SECTIONS (NARANJA CC row) ===== -->
-        <rect x="130" y="26" width="34" height="22" rx="2" fill="#a6a6a6"/>
-        <rect x="168" y="24" width="34" height="24" rx="2" fill="#a6a6a6"/>
-        <rect x="206" y="22" width="34" height="26" rx="2" fill="#a6a6a6"/>
-        <rect x="244" y="22" width="34" height="26" rx="2" fill="#a6a6a6"/>
-        <rect x="282" y="22" width="34" height="26" rx="2" fill="#a6a6a6"/>
-        <!-- NA27C - highlighted section (upper-right) -->
-        <rect x="320" y="22" width="44" height="26" rx="2" fill="#1249D6"/>
-        <rect x="368" y="24" width="34" height="24" rx="2" fill="#a6a6a6"/>
-        <rect x="406" y="26" width="34" height="22" rx="2" fill="#a6a6a6"/>
-        <!-- Map pin above NA27C -->
-        <g transform="translate(342,20)">
-          <path d="M 0,-17 C -8,-17 -13,-11 -13,-5 C -13,4 0,18 0,18 C 0,18 13,4 13,-5 C 13,-11 8,-17 0,-17 Z" fill="#1249D6"/>
-          <circle cx="0" cy="-5" r="5" fill="white"/>
+        <!-- ======= OUTER STADIUM SHELL ======= -->
+        <path fill="#d9d9d9" stroke="#bdbdbd" stroke-width="1"
+              d="M 160,20 L 740,20 L 870,118 L 870,522 L 740,620 L 160,620 L 30,522 L 30,118 Z"/>
+
+        <!-- Ticketmaster watermark -->
+        <g transform="translate(48,42)" font-size="11" font-weight="700" fill="#8b8b8b">
+          <text>ticketmaster&#174;</text>
         </g>
 
-        <!-- ===== OUTER LEFT SECTIONS ===== -->
-        <rect x="32" y="100" width="24" height="40" rx="2" fill="#a6a6a6"/>
-        <rect x="32" y="144" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="32" y="200" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="32" y="256" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="32" y="312" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="32" y="368" width="24" height="40" rx="2" fill="#a6a6a6"/>
+        <!-- ======= OUTER ROW: NARANJA CC (TOP) ======= -->
+        <!-- Left group -->
+        <g font-size="10" font-weight="700" fill="#3a2a1e" text-anchor="middle">
+          <rect x="210" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="236" y="49">26</text>
+          <rect x="266" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="292" y="49">28</text>
+          <rect x="322" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="348" y="49">30</text>
+          <text x="290" y="18" font-size="10" fill="#555">NARANJA CC</text>
+        </g>
+        <!-- ACCESO GENERAL gate (center top) -->
+        <rect x="380" y="22" width="70" height="44" rx="2" fill="#c9c9c9"/>
+        <text x="415" y="40" text-anchor="middle" font-size="8" fill="#3a3a3a" font-weight="700">ACCESO</text>
+        <text x="415" y="52" text-anchor="middle" font-size="8" fill="#3a3a3a" font-weight="700">GENERAL</text>
+        <!-- Right group -->
+        <g font-size="10" font-weight="700" fill="#3a2a1e" text-anchor="middle">
+          <rect x="456" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="482" y="49">29</text>
+          <rect x="512" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="538" y="49">27</text>
+          <rect x="568" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="594" y="49">25</text>
+          <rect x="624" y="28" width="52" height="32" rx="2" fill="#f8c1a2"/><text x="650" y="49">23</text>
+          <text x="556" y="18" font-size="10" fill="#555">NARANJA CC</text>
+        </g>
 
-        <!-- ===== OUTER RIGHT SECTIONS ===== -->
-        <rect x="504" y="100" width="24" height="40" rx="2" fill="#a6a6a6"/>
-        <rect x="504" y="144" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="504" y="200" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="504" y="256" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="504" y="312" width="24" height="52" rx="2" fill="#a6a6a6"/>
-        <rect x="504" y="368" width="24" height="40" rx="2" fill="#a6a6a6"/>
+        <!-- ======= SECOND RING: NARANJA C (outer arc around top) ======= -->
+        <!-- Vertical NARANJA C label on left upper -->
+        <text x="168" y="60" font-size="10" fill="#555" transform="rotate(-90 168 60)" text-anchor="middle">NARANJA C</text>
+        <!-- Left outer arc: 24 22 20 18 16 (tilted down-left) -->
+        <g font-size="10" font-weight="700" fill="#fff" text-anchor="middle">
+          <rect x="176" y="64" width="34" height="38" rx="2" fill="#f4a27c"/><text x="193" y="87" fill="#3a2a1e">24</text>
+          <rect x="178" y="106" width="34" height="38" rx="2" fill="#f4a27c"/><text x="195" y="129" fill="#3a2a1e">22</text>
+          <rect x="184" y="148" width="34" height="38" rx="2" fill="#f4a27c"/><text x="201" y="171" fill="#3a2a1e">20</text>
+          <rect x="192" y="190" width="34" height="38" rx="2" fill="#f4a27c"/><text x="209" y="213" fill="#3a2a1e">18</text>
+          <rect x="204" y="232" width="34" height="38" rx="2" fill="#f4a27c"/><text x="221" y="255" fill="#3a2a1e">16</text>
+        </g>
+        <!-- Left inner arc of Naranja C (smaller, next to the bowl) -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#3a2a1e">
+          <rect x="214" y="66" width="32" height="34" rx="2" fill="#f4a27c"/><text x="230" y="86">16</text>
+          <rect x="216" y="104" width="30" height="36" rx="2" fill="#f4a27c"/><text x="231" y="124">18</text>
+          <rect x="222" y="144" width="28" height="36" rx="2" fill="#f4a27c"/><text x="236" y="164">14</text>
+          <rect x="230" y="184" width="26" height="36" rx="2" fill="#f4a27c"/><text x="243" y="204">12</text>
+        </g>
+        <!-- Verde C band - left -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#223">
+          <rect x="250" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="268" y="86">20</text>
+          <rect x="290" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="308" y="86">22</text>
+          <rect x="330" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="348" y="86">24</text>
+          <rect x="250" y="102" width="120" height="22" rx="2" fill="#7dbe46"/><text x="310" y="117" font-size="10" font-weight="700">VERDE C</text>
+        </g>
+        <!-- Small Verde C yellow-ish flanking accents near middle (as per reference) -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#223">
+          <rect x="370" y="66" width="28" height="32" rx="2" fill="#c9c9c9"/><text x="384" y="86">14</text>
+        </g>
 
-        <!-- ===== OUTER BOTTOM SECTIONS ===== -->
-        <rect x="130" y="442" width="34" height="18" rx="2" fill="#a6a6a6"/>
-        <rect x="168" y="440" width="34" height="20" rx="2" fill="#a6a6a6"/>
-        <rect x="206" y="438" width="34" height="22" rx="2" fill="#a6a6a6"/>
-        <rect x="244" y="438" width="34" height="22" rx="2" fill="#a6a6a6"/>
-        <rect x="282" y="438" width="34" height="22" rx="2" fill="#a6a6a6"/>
-        <rect x="320" y="438" width="44" height="22" rx="2" fill="#a6a6a6"/>
-        <rect x="368" y="440" width="34" height="20" rx="2" fill="#a6a6a6"/>
-        <rect x="406" y="442" width="34" height="18" rx="2" fill="#a6a6a6"/>
+        <!-- Right Verde C band -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#223">
+          <rect x="462" y="66" width="28" height="32" rx="2" fill="#c9c9c9"/><text x="476" y="86">14</text>
+          <rect x="494" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="512" y="86">23</text>
+          <rect x="534" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="552" y="86">21</text>
+          <rect x="574" y="66" width="36" height="32" rx="2" fill="#7dbe46"/><text x="592" y="86">19</text>
+          <rect x="494" y="102" width="120" height="22" rx="2" fill="#7dbe46"/><text x="554" y="117" font-size="10" font-weight="700">VERDE C</text>
+        </g>
 
-        <!-- ===== INNER RING - TOP ===== -->
-        <rect x="150" y="54" width="30" height="29" rx="2" fill="#b4b4b4"/>
-        <rect x="184" y="51" width="30" height="31" rx="2" fill="#b4b4b4"/>
-        <rect x="218" y="50" width="30" height="33" rx="2" fill="#b4b4b4"/>
-        <rect x="252" y="50" width="26" height="33" rx="2" fill="#b4b4b4"/>
-        <rect x="282" y="50" width="30" height="33" rx="2" fill="#b4b4b4"/>
-        <rect x="316" y="51" width="30" height="31" rx="2" fill="#b4b4b4"/>
-        <rect x="350" y="51" width="30" height="31" rx="2" fill="#b4b4b4"/>
-        <rect x="384" y="54" width="30" height="29" rx="2" fill="#b4b4b4"/>
+        <!-- Right inner arc of Naranja C (NA27C highlight is here) -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#3a2a1e">
+          <rect x="614" y="66" width="32" height="34" rx="2" fill="#f4a27c"/><text x="630" y="86">17</text>
+          <rect x="618" y="104" width="30" height="36" rx="2" fill="#f4a27c"/><text x="633" y="124">15</text>
+          <rect x="624" y="144" width="28" height="36" rx="2" fill="#f4a27c"/><text x="638" y="164">13</text>
+          <rect x="634" y="184" width="26" height="36" rx="2" fill="#f4a27c"/><text x="647" y="204">11</text>
+        </g>
+        <!-- Right outer arc (Naranja C) — NA27C is the block labeled 27 -->
+        <g font-size="10" font-weight="700" text-anchor="middle">
+          <!-- NA27C highlighted -->
+          <rect x="650" y="64" width="36" height="38" rx="2" fill="#1249D6"/><text x="668" y="87" fill="#fff">27</text>
+          <rect x="688" y="64" width="34" height="38" rx="2" fill="#f4a27c"/><text x="705" y="87" fill="#3a2a1e">25</text>
+          <rect x="688" y="106" width="34" height="38" rx="2" fill="#f4a27c"/><text x="705" y="129" fill="#3a2a1e">23</text>
+          <rect x="682" y="148" width="34" height="38" rx="2" fill="#f4a27c"/><text x="699" y="171" fill="#3a2a1e">21</text>
+          <rect x="674" y="190" width="34" height="38" rx="2" fill="#f4a27c"/><text x="691" y="213" fill="#3a2a1e">19</text>
+          <rect x="662" y="232" width="34" height="38" rx="2" fill="#f4a27c"/><text x="679" y="255" fill="#3a2a1e">17</text>
+        </g>
+        <!-- Map pin above NA27C -->
+        <g transform="translate(668,48)">
+          <path d="M 0,-22 C -10,-22 -17,-14 -17,-6 C -17,6 0,22 0,22 C 0,22 17,6 17,-6 C 17,-14 10,-22 0,-22 Z"
+                fill="#1249D6" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="0" cy="-7" r="6" fill="#fff"/>
+        </g>
+        <!-- Vertical NARANJA C label on right upper -->
+        <text x="735" y="60" font-size="10" fill="#555" transform="rotate(90 735 60)" text-anchor="middle">NARANJA C</text>
 
-        <!-- ===== INNER RING - BOTTOM ===== -->
-        <rect x="150" y="415" width="30" height="17" rx="2" fill="#b4b4b4"/>
-        <rect x="184" y="413" width="30" height="19" rx="2" fill="#b4b4b4"/>
-        <rect x="218" y="411" width="30" height="21" rx="2" fill="#b4b4b4"/>
-        <rect x="252" y="411" width="26" height="21" rx="2" fill="#b4b4b4"/>
-        <rect x="282" y="411" width="30" height="21" rx="2" fill="#b4b4b4"/>
-        <rect x="316" y="413" width="30" height="19" rx="2" fill="#b4b4b4"/>
-        <rect x="350" y="413" width="30" height="19" rx="2" fill="#b4b4b4"/>
-        <rect x="384" y="415" width="30" height="17" rx="2" fill="#b4b4b4"/>
+        <!-- "32" tiny corner markers (echoing reference's small numbers) -->
+        <text x="244" y="72" font-size="7" fill="#555" text-anchor="middle">32</text>
+        <text x="716" y="72" font-size="7" fill="#555" text-anchor="middle">32</text>
 
-        <!-- ===== INNER RING - LEFT ===== -->
-        <rect x="62" y="110" width="34" height="28" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="142" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="188" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="234" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="280" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="326" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="62" y="372" width="34" height="28" rx="2" fill="#b4b4b4"/>
+        <!-- ======= LEFT VERTICAL BANDS: NARANJA B and ZONA GNP ======= -->
+        <!-- NARANJA B label -->
+        <text x="92" y="320" font-size="11" fill="#555" font-weight="700" transform="rotate(-90 92 320)" text-anchor="middle">NARANJA B</text>
+        <!-- Naranja B column (left) -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="108" y="108" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="132">16</text>
+          <rect x="108" y="152" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="176">14</text>
+          <rect x="108" y="196" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="220">12</text>
+          <rect x="108" y="240" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="264">10</text>
+          <rect x="108" y="284" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="308">8</text>
+          <rect x="108" y="328" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="352">6</text>
+          <rect x="108" y="372" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="396">4</text>
+          <rect x="108" y="416" width="38" height="40" rx="2" fill="#ef8836"/><text x="127" y="440">2</text>
+        </g>
+        <!-- Verde B caps left top and bottom -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="148" y="280" width="36" height="24" rx="2" fill="#1f8a4c"/><text x="166" y="296">14</text>
+          <rect x="158" y="240" width="34" height="36" rx="2" fill="#1f8a4c"/><text x="175" y="262">14</text>
+          <rect x="168" y="200" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="185" y="222">16</text>
+          <rect x="148" y="308" width="36" height="34" rx="2" fill="#1f8a4c"/><text x="166" y="330">12</text>
+          <rect x="158" y="344" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="175" y="366">12</text>
+          <rect x="168" y="380" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="185" y="402">10</text>
+        </g>
+        <!-- Zona GNP label (left) -->
+        <text x="74" y="400" font-size="11" fill="#555" font-weight="700" transform="rotate(-90 74 400)" text-anchor="middle">ZONA GNP</text>
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="56" y="288" width="42" height="40" rx="2" fill="#e06427"/><text x="77" y="312">10</text>
+          <rect x="56" y="332" width="42" height="40" rx="2" fill="#e06427"/><text x="77" y="356">8</text>
+          <rect x="56" y="376" width="42" height="40" rx="2" fill="#e06427"/><text x="77" y="400">6</text>
+          <rect x="56" y="420" width="42" height="40" rx="2" fill="#e06427"/><text x="77" y="444">4</text>
+          <rect x="56" y="464" width="42" height="40" rx="2" fill="#e06427"/><text x="77" y="488">2</text>
+        </g>
 
-        <!-- ===== INNER RING - RIGHT ===== -->
-        <rect x="464" y="110" width="34" height="28" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="142" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="188" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="234" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="280" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="326" width="34" height="42" rx="2" fill="#b4b4b4"/>
-        <rect x="464" y="372" width="34" height="28" rx="2" fill="#b4b4b4"/>
+        <!-- ======= RIGHT VERTICAL BANDS: NARANJA B and ZONA GNP ======= -->
+        <text x="828" y="320" font-size="11" fill="#555" font-weight="700" transform="rotate(90 828 320)" text-anchor="middle">NARANJA B</text>
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="754" y="108" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="132">17</text>
+          <rect x="754" y="152" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="176">15</text>
+          <rect x="754" y="196" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="220">13</text>
+          <rect x="754" y="240" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="264">11</text>
+          <rect x="754" y="284" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="308">9</text>
+          <rect x="754" y="328" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="352">7</text>
+          <rect x="754" y="372" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="396">5</text>
+          <rect x="754" y="416" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="440">3</text>
+          <rect x="754" y="460" width="38" height="40" rx="2" fill="#ef8836"/><text x="773" y="484">1</text>
+        </g>
+        <!-- Verde B caps right -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="716" y="200" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="733" y="222">15</text>
+          <rect x="708" y="240" width="34" height="36" rx="2" fill="#1f8a4c"/><text x="725" y="262">13</text>
+          <rect x="716" y="280" width="34" height="24" rx="2" fill="#1f8a4c"/><text x="733" y="296">11</text>
+          <rect x="716" y="308" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="733" y="330">13</text>
+          <rect x="708" y="344" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="725" y="366">11</text>
+          <rect x="716" y="380" width="34" height="34" rx="2" fill="#1f8a4c"/><text x="733" y="402">9</text>
+        </g>
+        <!-- Zona GNP right -->
+        <text x="846" y="400" font-size="11" fill="#555" font-weight="700" transform="rotate(90 846 400)" text-anchor="middle">ZONA GNP</text>
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="802" y="288" width="42" height="40" rx="2" fill="#e06427"/><text x="823" y="312">9</text>
+          <rect x="802" y="332" width="42" height="40" rx="2" fill="#e06427"/><text x="823" y="356">7</text>
+          <rect x="802" y="376" width="42" height="40" rx="2" fill="#e06427"/><text x="823" y="400">5</text>
+          <rect x="802" y="420" width="42" height="40" rx="2" fill="#e06427"/><text x="823" y="444">3</text>
+          <rect x="802" y="464" width="42" height="40" rx="2" fill="#e06427"/><text x="823" y="488">1</text>
+        </g>
 
-        <!-- ===== MAIN BOWL - TOP ===== -->
-        <rect x="178" y="88" width="22" height="35" rx="2" fill="#c0c0c0"/>
-        <rect x="204" y="86" width="22" height="37" rx="2" fill="#c0c0c0"/>
-        <rect x="230" y="86" width="20" height="37" rx="2" fill="#c0c0c0"/>
-        <rect x="314" y="86" width="20" height="37" rx="2" fill="#c0c0c0"/>
-        <rect x="338" y="86" width="22" height="37" rx="2" fill="#c0c0c0"/>
-        <rect x="364" y="88" width="22" height="35" rx="2" fill="#c0c0c0"/>
+        <!-- ======= GENERAL B: two teal triangles with a central gap ======= -->
+        <polygon fill="#4f8a88" points="260,140 448,140 360,360 260,360"/>
+        <polygon fill="#4f8a88" points="462,140 650,140 650,360 550,360"/>
+        <text x="360" y="258" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">GENERAL B</text>
 
-        <!-- ===== MAIN BOWL - BOTTOM ===== -->
-        <rect x="178" y="370" width="22" height="34" rx="2" fill="#c0c0c0"/>
-        <rect x="204" y="372" width="22" height="32" rx="2" fill="#c0c0c0"/>
-        <rect x="230" y="374" width="20" height="30" rx="2" fill="#c0c0c0"/>
-        <rect x="314" y="374" width="20" height="30" rx="2" fill="#c0c0c0"/>
-        <rect x="338" y="372" width="22" height="32" rx="2" fill="#c0c0c0"/>
-        <rect x="364" y="370" width="22" height="34" rx="2" fill="#c0c0c0"/>
+        <!-- Small gate labels between General B and floor -->
+        <g font-size="7" font-weight="700" fill="#555" text-anchor="middle">
+          <text x="290" y="378">GATE 86</text>
+          <text x="340" y="378">GATE 87</text>
+          <text x="390" y="378">GATE 88</text>
+          <text x="520" y="378">GATE 85</text>
+          <text x="570" y="378">GATE 86</text>
+          <text x="620" y="378">GATE 87</text>
+        </g>
 
-        <!-- ===== MAIN BOWL - LEFT ===== -->
-        <rect x="102" y="138" width="24" height="22" rx="2" fill="#c0c0c0"/>
-        <rect x="102" y="164" width="24" height="36" rx="2" fill="#c0c0c0"/>
-        <rect x="102" y="204" width="24" height="14" rx="2" fill="#c0c0c0"/>
-        <rect x="102" y="272" width="24" height="14" rx="2" fill="#c0c0c0"/>
-        <rect x="102" y="292" width="24" height="36" rx="2" fill="#c0c0c0"/>
-        <rect x="102" y="332" width="24" height="22" rx="2" fill="#c0c0c0"/>
+        <!-- ======= FLOOR ROWS ======= -->
+        <!-- Row 1 (back of floor): MORADO + AZUL + MORADO -->
+        <g font-size="8" font-weight="700" text-anchor="middle" fill="#fff">
+          <!-- Left morado -->
+          <rect x="258" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="280" y="406">MORA</text><text x="280" y="418">30</text>
+          <rect x="304" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="326" y="406">MORA</text><text x="326" y="418">28</text>
+          <rect x="350" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="372" y="406">MORA</text><text x="372" y="418">26</text>
+          <!-- Center AZUL (back) -->
+          <rect x="396" y="388" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="418" y="406">AZUL</text><text x="418" y="418">24</text>
+          <rect x="442" y="388" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="464" y="406">AZUL</text><text x="464" y="418">22</text>
+          <rect x="488" y="388" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="510" y="406">AZUL</text><text x="510" y="418">21</text>
+          <rect x="534" y="388" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="556" y="406">AZUL</text><text x="556" y="418">23</text>
+          <!-- Right morado -->
+          <rect x="580" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="602" y="406">MORA</text><text x="602" y="418">25</text>
+          <rect x="626" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="648" y="406">MORA</text><text x="648" y="418">27</text>
+          <rect x="672" y="388" width="44" height="42" rx="2" fill="#a87bc4"/><text x="694" y="406">MORA</text><text x="694" y="418">29</text>
+        </g>
 
-        <!-- ===== MAIN BOWL - RIGHT ===== -->
-        <rect x="434" y="138" width="24" height="22" rx="2" fill="#c0c0c0"/>
-        <rect x="434" y="164" width="24" height="36" rx="2" fill="#c0c0c0"/>
-        <rect x="434" y="204" width="24" height="14" rx="2" fill="#c0c0c0"/>
-        <rect x="434" y="272" width="24" height="14" rx="2" fill="#c0c0c0"/>
-        <rect x="434" y="292" width="24" height="36" rx="2" fill="#c0c0c0"/>
-        <rect x="434" y="332" width="24" height="22" rx="2" fill="#c0c0c0"/>
+        <!-- Row 2: AZUL + ROSA + AMAR + ROSA + AZUL -->
+        <g font-size="8" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="258" y="434" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="280" y="452">AZUL</text><text x="280" y="464">20</text>
+          <rect x="304" y="434" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="326" y="452" fill="#3a2a1e">ROSA</text><text x="326" y="464" fill="#3a2a1e">18</text>
+          <rect x="350" y="434" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="372" y="452" fill="#3a2a1e">ROSA</text><text x="372" y="464" fill="#3a2a1e">16</text>
+          <rect x="396" y="434" width="44" height="42" rx="2" fill="#d8a441"/><text x="418" y="452">AMAR</text><text x="418" y="464">14</text>
+          <rect x="442" y="434" width="44" height="42" rx="2" fill="#d8a441"/><text x="464" y="452">AMAR</text><text x="464" y="464">12</text>
+          <rect x="488" y="434" width="44" height="42" rx="2" fill="#d8a441"/><text x="510" y="452">AMAR</text><text x="510" y="464">11</text>
+          <rect x="534" y="434" width="44" height="42" rx="2" fill="#d8a441"/><text x="556" y="452">AMAR</text><text x="556" y="464">13</text>
+          <rect x="580" y="434" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="602" y="452" fill="#3a2a1e">ROSA</text><text x="602" y="464" fill="#3a2a1e">15</text>
+          <rect x="626" y="434" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="648" y="452" fill="#3a2a1e">ROSA</text><text x="648" y="464" fill="#3a2a1e">17</text>
+          <rect x="672" y="434" width="44" height="42" rx="2" fill="#4a8ab5"/><text x="694" y="452">AZUL</text><text x="694" y="464">19</text>
+        </g>
+
+        <!-- Row 3 (front, closest to stage): ROSA + ROJO + ROSA -->
+        <g font-size="8" font-weight="700" text-anchor="middle" fill="#fff">
+          <rect x="304" y="480" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="326" y="498" fill="#3a2a1e">ROSA</text><text x="326" y="510" fill="#3a2a1e">8</text>
+          <rect x="350" y="480" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="372" y="498" fill="#3a2a1e">ROSA</text><text x="372" y="510" fill="#3a2a1e">6</text>
+          <rect x="396" y="480" width="44" height="42" rx="2" fill="#d62828"/><text x="418" y="498">ROJO</text><text x="418" y="510">4</text>
+          <rect x="442" y="480" width="44" height="42" rx="2" fill="#d62828"/><text x="464" y="498">ROJO</text><text x="464" y="510">2</text>
+          <rect x="488" y="480" width="44" height="42" rx="2" fill="#d62828"/><text x="510" y="498">ROJO</text><text x="510" y="510">1</text>
+          <rect x="534" y="480" width="44" height="42" rx="2" fill="#d62828"/><text x="556" y="498">ROJO</text><text x="556" y="510">3</text>
+          <rect x="580" y="480" width="44" height="42" rx="2" fill="#d62828"/><text x="602" y="498">ROJO</text><text x="602" y="510">5</text>
+          <rect x="626" y="480" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="648" y="498" fill="#3a2a1e">ROSA</text><text x="648" y="510" fill="#3a2a1e">5</text>
+          <rect x="672" y="480" width="44" height="42" rx="2" fill="#f0a5bb"/><text x="694" y="498" fill="#3a2a1e">ROSA</text><text x="694" y="510" fill="#3a2a1e">7</text>
+        </g>
+
+        <!-- ACCESO PLATINO labels (left and right of floor rows) -->
+        <text x="220" y="458" font-size="8" font-weight="700" fill="#555" text-anchor="middle">ACCESO</text>
+        <text x="220" y="470" font-size="8" font-weight="700" fill="#555" text-anchor="middle">PLATINO</text>
+        <text x="740" y="458" font-size="8" font-weight="700" fill="#555" text-anchor="middle">ACCESO</text>
+        <text x="740" y="470" font-size="8" font-weight="700" fill="#555" text-anchor="middle">PLATINO</text>
+
+        <!-- ======= STAGE ======= -->
+        <rect x="360" y="548" width="180" height="48" rx="3" fill="#3a3a3a"/>
+        <text x="450" y="578" font-size="18" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="2">ESCENARIO</text>
+
+        <!-- ======= OUTER BOTTOM small NARANJA CC seats (mirrored) ======= -->
+        <g font-size="9" font-weight="700" text-anchor="middle" fill="#3a2a1e">
+          <rect x="210" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+          <rect x="252" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+          <rect x="294" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+          <rect x="566" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+          <rect x="608" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+          <rect x="650" y="584" width="40" height="26" rx="2" fill="#f8c1a2"/>
+        </g>
       </svg>
     </div>
 
     <!-- Legend -->
     <div class="map-legend">
-      <div class="map-legend-item">
-        <div class="map-legend-box blue"></div>
-        <span>Tu secci&oacute;n (NA27C)</span>
-      </div>
-      <div class="map-legend-item">
-        <div class="map-legend-box gray"></div>
-        <span>Otras secciones</span>
-      </div>
+      <div class="map-legend-item"><div class="map-legend-box rojo"></div><span>Rojo</span></div>
+      <div class="map-legend-item"><div class="map-legend-box amarillo"></div><span>Amarillo</span></div>
+      <div class="map-legend-item"><div class="map-legend-box rosa"></div><span>Rosa</span></div>
+      <div class="map-legend-item"><div class="map-legend-box azul"></div><span>Azul</span></div>
+      <div class="map-legend-item"><div class="map-legend-box morado"></div><span>Morado</span></div>
+      <div class="map-legend-item"><div class="map-legend-box cafe"></div><span>Caf&eacute;</span></div>
+      <div class="map-legend-item"><div class="map-legend-box zonagnp"></div><span>Zona GNP</span></div>
+      <div class="map-legend-item"><div class="map-legend-box verdeb"></div><span>Verde B</span></div>
+      <div class="map-legend-item"><div class="map-legend-box naranjab"></div><span>Naranja B</span></div>
+      <div class="map-legend-item"><div class="map-legend-box verdec"></div><span>Verde C</span></div>
+      <div class="map-legend-item"><div class="map-legend-box naranjac"></div><span>Naranja C</span></div>
+      <div class="map-legend-item"><div class="map-legend-box naranjacc"></div><span>Naranja CC</span></div>
+      <div class="map-legend-item"><div class="map-legend-box generalb"></div><span>General B*</span></div>
+      <div class="map-legend-item"><div class="map-legend-box pcd"></div><span>PCD</span></div>
+      <div class="map-legend-note">*Secci&oacute;n de admisi&oacute;n general de pie</div>
     </div>
   </div>
 </div>
