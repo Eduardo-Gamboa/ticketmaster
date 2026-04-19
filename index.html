@@ -787,9 +787,28 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 .tdp-info-box .pi-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 4px; }
 .tdp-info-box .pi-desc { font-size: 13px; color: #555; line-height: 1.5; }
 
-/* Tickets grid */
+/* Tickets carousel (horizontal scroll with snap) */
 .tdp-tickets-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  scroll-padding-inline: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,.25) transparent;
+}
+.tdp-tickets-grid::-webkit-scrollbar { height: 6px; }
+.tdp-tickets-grid::-webkit-scrollbar-track { background: transparent; }
+.tdp-tickets-grid::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.25); border-radius: 3px;
+}
+.tdp-tickets-grid .ticket-block {
+  flex: 0 0 calc(50% - 8px);
+  min-width: 300px;
+  scroll-snap-align: start;
 }
 
 /* Ticket Block — new card design */
@@ -862,7 +881,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   .tdp-content { padding: 20px 16px; }
   .tdp-action-btns { grid-template-columns: 1fr 1fr; gap: 8px; }
   .btn-tdp-action { padding: 12px 10px; font-size: 13px; }
-  .tdp-tickets-grid { grid-template-columns: 1fr; }
+  .tdp-tickets-grid .ticket-block { flex: 0 0 85%; min-width: 260px; }
   .tb-seat-item .si-value { font-size: 22px; }
   .tdp-date-badge .db-day { font-size: 42px; }
   .tdp-event-info .ei-name { font-size: 16px; }
