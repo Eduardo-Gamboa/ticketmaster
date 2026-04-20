@@ -1311,23 +1311,6 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   .pp-heading { font-size: 24px; }
 }
 
-/* Switch-profile control (in account welcome header) */
-.account-welcome { position: relative; }
-.switch-profile-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: #fff; border: 1px solid #024DDF;
-  color: #024DDF; font-size: 13px; font-weight: 600;
-  cursor: pointer; padding: 7px 14px; border-radius: 20px;
-  font-family: inherit;
-  position: absolute; top: 16px; right: 16px;
-  transition: background .15s ease, color .15s ease;
-}
-.switch-profile-btn:hover { background: #024DDF; color: #fff; }
-.switch-profile-btn svg { width: 14px; height: 14px; fill: currentColor; }
-@media (max-width: 560px) {
-  .switch-profile-btn { position: static; margin-top: 12px; }
-}
-
 /* ========== TRANSFER SUCCESS SCREEN ========== */
 .tsm-overlay {
   display: none; position: fixed; inset: 0; z-index: 4000;
@@ -1923,7 +1906,7 @@ function renderProfilePicker() {
           </div>
         </button>
       </div>
-      <p class="pp-footer">Demo interactiva &middot; Podr\u00e1s cambiar de cuenta en cualquier momento desde &ldquo;Mis boletos&rdquo;.</p>
+      <p class="pp-footer">Demo interactiva</p>
     </div>
   `;
 }
@@ -2196,10 +2179,6 @@ function renderAccount() {
             <p class="greeting">\u00a1Bienvenido de vuelta!</p>
             <p class="name">${profileName()}</p>
           </div>
-          <button class="switch-profile-btn" onclick="switchProfile()" aria-label="Cambiar de cuenta">
-            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-            Cambiar cuenta
-          </button>
         </div>
 
         <div class="account-layout">
@@ -2332,14 +2311,6 @@ function selectProfile(id) {
   } else {
     window.location.hash = '#/account';
   }
-}
-
-function switchProfile() {
-  _currentProfile = null;
-  eventTickets = [];
-  _transferState = null;
-  barcodeCurrentIndex = 0;
-  router();
 }
 
 let barcodeTimerInterval = null;
@@ -3139,10 +3110,6 @@ function renderTransferError() {
             <p class="greeting">\u00a1Bienvenido de vuelta!</p>
             <p class="name">${profileName()}</p>
           </div>
-          <button class="switch-profile-btn" onclick="switchProfile()" aria-label="Cambiar de cuenta">
-            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-            Cambiar cuenta
-          </button>
         </div>
 
         <div class="account-layout">
