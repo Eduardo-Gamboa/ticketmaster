@@ -2019,19 +2019,64 @@
         .tvc-ticket-card:first-of-type {
             margin-top: 20px;
         }
-        /* VENTA ARMY MEMBERSHIP band */
-        
-        .tvc-band {
-            background: #e8e8e8;
+        /* Ticketmaster blue header band */
+
+        .tvc-tm-header {
+            background: #024DDF;
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 500;
+            letter-spacing: -.3px;
+        }
+
+        .tvc-tm-header .tvc-tm-r {
+            font-size: 10px;
+            vertical-align: super;
+            margin-left: 2px;
+            font-style: normal;
+        }
+        /* White body with centered title + info icon */
+
+        .tvc-ticket-body {
+            position: relative;
+            background: #fff;
+            padding-top: 22px;
+            padding-bottom: 4px;
+        }
+
+        .tvc-ticket-info-icon {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #024DDF;
+        }
+
+        .tvc-ticket-info-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .tvc-ticket-title {
+            font-size: 20px;
+            font-weight: 600;
             color: #111;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: .6px;
+            text-align: center;
+            letter-spacing: .3px;
+            line-height: 1.2;
+            padding: 0 48px;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            padding: 14px 20px;
         }
         /* Seat table */
-        
+
         .tvc-table {
             background: #fff;
         }
@@ -5009,7 +5054,6 @@ const profiles = {
     initial: 'F',
     order: '#26-264477/MXC',
     tickets: [
-      { seat: '5', section: 'NA27C', row: '5' },
       { seat: '8', section: 'NA27C', row: '5' },
       { seat: '9', section: 'NA27C', row: '5' },
     ],
@@ -5119,17 +5163,21 @@ function renderTicketDetail(id) {
       </div>
       ${remainingTickets.map(t => `
       <div class="tvc-ticket-card">
-        <div class="tvc-band">VENTA ARMY MEMBERSHIP</div>
-        <div class="tvc-table">
-          <div class="tvc-table-head">
-            <span>Secci&oacute;n</span>
-            <span>Fila</span>
-            <span>Asiento</span>
-          </div>
-          <div class="tvc-table-row">
-            <span>${t.section}</span>
-            <span>${t.row}</span>
-            <span>${t.seat}</span>
+        <div class="tvc-tm-header">ticketmaster<span class="tvc-tm-r">&reg;</span></div>
+        <div class="tvc-ticket-body">
+          <span class="tvc-ticket-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="7.5" r=".9" fill="currentColor" stroke="none"/></svg></span>
+          <div class="tvc-ticket-title">VENTA ARMY MEMBERSHIP</div>
+          <div class="tvc-table">
+            <div class="tvc-table-head">
+              <span>Secci&oacute;n</span>
+              <span>Fila</span>
+              <span>Asiento(s)</span>
+            </div>
+            <div class="tvc-table-row">
+              <span>${t.section}</span>
+              <span>${t.row}</span>
+              <span>${t.seat}</span>
+            </div>
           </div>
         </div>
       </div>`).join('')}
