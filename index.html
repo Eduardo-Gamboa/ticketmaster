@@ -4349,10 +4349,10 @@
             // Mexico events
             {
                 id: 1,
-                date: '2026-05-10',
+                date: '2026-05-09',
                 month: 'may',
-                dayNum: '10',
-                day: 'dom',
+                dayNum: '09',
+                day: 's\u00e1b',
                 time: '8:00 p.m.',
                 city: 'Ciudad de M\u00e9xico, CDMX',
                 venue: 'Estadio GNP Seguros',
@@ -4375,10 +4375,10 @@
                 region: 'mexico'
             }, {
                 id: 3,
-                date: '2026-05-10',
+                date: '2026-05-09',
                 month: 'may',
-                dayNum: '10',
-                day: 'dom',
+                dayNum: '09',
+                day: 'sáb',
                 time: '8:00 p.m.',
                 city: 'Ciudad de M\u00e9xico, CDMX',
                 venue: 'Estadio GNP Seguros',
@@ -4578,7 +4578,7 @@
             id: 1,
             year: 2026,
             title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-            date: 'dom \u00b7 10 may 2026',
+            date: 's\u00e1b \u00b7 9 may 2026',
             venue: 'Estadio GNP Seguros',
             order: 'Compra #29-261345/MXC'
         }];
@@ -4632,7 +4632,7 @@
     <div class="profile-picker">
       <div class="pp-logo">${tmWordmark}</div>
       <h1 class="pp-heading">\u00bfQui\u00e9n eres?</h1>
-      <p class="pp-sub">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; dom 10 may 2026 &bull; Estadio GNP Seguros</p>
+      <p class="pp-sub">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; s&aacute;b 9 may 2026 &bull; Estadio GNP Seguros</p>
       <div class="pp-buttons">
         <button class="pp-button" onclick="selectProfile('laura')" aria-label="Entrar como Laura Ortiz">
           <div class="pp-avatar">${profiles.laura.initial}</div>
@@ -4641,11 +4641,11 @@
             <div class="pp-button-meta">Secci\u00f3n ${profiles.laura.tickets[0].section} &bull; Fila ${profiles.laura.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.laura.tickets)}</div>
           </div>
         </button>
-        <button class="pp-button" onclick="selectProfile('juan')" aria-label="Entrar como Juan Le\u00f3n">
-          <div class="pp-avatar">${profiles.juan.initial}</div>
+        <button class="pp-button" onclick="selectProfile('veronica')" aria-label="Entrar como Ver\u00f3nica Bahena">
+          <div class="pp-avatar">${profiles.veronica.initial}</div>
           <div>
-            <div class="pp-button-name">${profiles.juan.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.juan.tickets[0].section} &bull; Fila ${profiles.juan.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.juan.tickets)}</div>
+            <div class="pp-button-name">${profiles.veronica.name}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.veronica.tickets[0].section} &bull; Fila ${profiles.veronica.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.veronica.tickets)}</div>
           </div>
         </button>
       </div>
@@ -5035,15 +5035,14 @@ const profiles = {
       { seat: '21', section: 'NA27C', row: '4' },
     ],
   },
-  juan: {
-    id: 'juan',
-    name: 'Juan León',
-    initial: 'J',
+  veronica: {
+    id: 'veronica',
+    name: 'Verónica Bahena',
+    initial: 'V',
     order: '#26-264477/MXC',
     tickets: [
-      { seat: '106', section: 'NA27C', row: '10' },
-      { seat: '107', section: 'NA27C', row: '10' },
-      { seat: '120', section: 'PLAT-10A', row: '11' },
+      { seat: '6', section: 'NA27C', row: '10' },
+      { seat: '7', section: 'NA27C', row: '10' },
     ],
   },
 };
@@ -5129,7 +5128,7 @@ function renderTicketDetail(id) {
     <div class="tvc-wrap">
       <div class="tvc-hero">
         <div class="tvc-hero-panel">
-          <p class="tvc-hero-date">DOM &bull; 10 MAY, 2026 &bull; 8:00 P. M.</p>
+          <p class="tvc-hero-date">S&Aacute;B &bull; 9 MAY, 2026 &bull; 8:00 P. M.</p>
           <h3 class="tvc-hero-title">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
           <div class="tvc-hero-venue-row">
             <span class="tvc-hero-venue">Estadio GNP Seguros, Ciudad de M&eacute;xico, CDMX</span>
@@ -5276,7 +5275,7 @@ function renderTicketDetail(id) {
           <div class="eip-grid">
             <div class="eip-card">
               <div class="eip-card-label">Fecha</div>
-              <div class="eip-card-value">Domingo 10 de mayo, 2026</div>
+              <div class="eip-card-value">S&aacute;bado 9 de mayo, 2026</div>
               <div class="eip-card-sub">8:00 p.m. &bull; Puertas: 5:00 p.m.</div>
             </div>
             <div class="eip-card">
@@ -5404,7 +5403,7 @@ function renderTicketDetail(id) {
         <button class="bm-help" onclick="return false">Ayuda</button>
       </div>
       <div class="bm-subheader">
-        BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; dom, may 10, 2026 &bull; 8:00 p.m. &bull; Estadio GNP Seguros
+        BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; s&aacute;b, may 9, 2026 &bull; 8:00 p.m. &bull; Estadio GNP Seguros
       </div>
       <div class="bm-nav">
         <button class="bm-nav-arrow" id="bmPrev" onclick="changeBarcodeTicket(-1)" aria-label="Boleto anterior">&#8249;</button>
@@ -5956,7 +5955,7 @@ function renderTransferError() {
                 <h3>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
                 <div class="transfer-info-row">
                   ${icons.calendar}
-                  <span>dom &middot; 10 may 2026 &mdash; 8:00 p.m.</span>
+                  <span>s&aacute;b &middot; 9 may 2026 &mdash; 8:00 p.m.</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.location}
