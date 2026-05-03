@@ -4641,11 +4641,11 @@
             <div class="pp-button-meta">Secci\u00f3n ${profiles.laura.tickets[0].section} &bull; Fila ${profiles.laura.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.laura.tickets)}</div>
           </div>
         </button>
-        <button class="pp-button" onclick="selectProfile('francisca')" aria-label="Entrar como Francisca Manzaneres">
-          <div class="pp-avatar">${profiles.francisca.initial}</div>
+        <button class="pp-button" onclick="selectProfile('juan')" aria-label="Entrar como Juan Le\u00f3n">
+          <div class="pp-avatar">${profiles.juan.initial}</div>
           <div>
-            <div class="pp-button-name">${profiles.francisca.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.francisca.tickets[0].section} &bull; Fila ${profiles.francisca.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.francisca.tickets)}</div>
+            <div class="pp-button-name">${profiles.juan.name}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.juan.tickets[0].section} &bull; Fila ${profiles.juan.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.juan.tickets)}</div>
           </div>
         </button>
       </div>
@@ -5031,18 +5031,19 @@ const profiles = {
     initial: 'L',
     order: '#29-261345/MXC',
     tickets: [
-      { seat: '16', section: 'NA27C', row: '6' },
-      { seat: '17', section: 'NA27C', row: '6' },
+      { seat: '20', section: 'NA27C', row: '4' },
+      { seat: '21', section: 'NA27C', row: '4' },
     ],
   },
-  francisca: {
-    id: 'francisca',
-    name: 'Francisca Manzaneres',
-    initial: 'F',
+  juan: {
+    id: 'juan',
+    name: 'Juan León',
+    initial: 'J',
     order: '#26-264477/MXC',
     tickets: [
-      { seat: '8', section: 'NA27C', row: '5' },
-      { seat: '9', section: 'NA27C', row: '5' },
+      { seat: '106', section: 'NA27C', row: '10' },
+      { seat: '107', section: 'NA27C', row: '10' },
+      { seat: '120', section: 'PLAT-10A', row: '11' },
     ],
   },
 };
