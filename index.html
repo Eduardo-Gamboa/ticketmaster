@@ -4638,14 +4638,21 @@
           <div class="pp-avatar">${profiles.laura.initial}</div>
           <div>
             <div class="pp-button-name">${profiles.laura.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.laura.tickets[0].section} &bull; Fila ${profiles.laura.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.laura.tickets)}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.laura.tickets[0].section} &bull; ${formatRowLabel(profiles.laura.tickets)} &bull; Asientos ${formatSeatList(profiles.laura.tickets)}</div>
           </div>
         </button>
         <button class="pp-button" onclick="selectProfile('veronica')" aria-label="Entrar como Ver\u00f3nica Bahena">
           <div class="pp-avatar">${profiles.veronica.initial}</div>
           <div>
             <div class="pp-button-name">${profiles.veronica.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.veronica.tickets[0].section} &bull; Fila ${profiles.veronica.tickets[0].row} &bull; Asientos ${formatSeatList(profiles.veronica.tickets)}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.veronica.tickets[0].section} &bull; ${formatRowLabel(profiles.veronica.tickets)} &bull; Asientos ${formatSeatList(profiles.veronica.tickets)}</div>
+          </div>
+        </button>
+        <button class="pp-button" onclick="selectProfile('valeria')" aria-label="Entrar como Valeria Rivera">
+          <div class="pp-avatar">${profiles.valeria.initial}</div>
+          <div>
+            <div class="pp-button-name">${profiles.valeria.name}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.valeria.tickets[0].section} &bull; ${formatRowLabel(profiles.valeria.tickets)} &bull; Asientos ${formatSeatList(profiles.valeria.tickets)}</div>
           </div>
         </button>
       </div>
@@ -5030,6 +5037,8 @@ const profiles = {
     name: 'Laura Ortiz',
     initial: 'L',
     order: '#29-261345/MXC',
+    saleType: 'VENTA ARMY MEMBERSHIP',
+    saleTypeShort: 'Venta ARMY',
     tickets: [
       { seat: '20', section: 'NA27C', row: '4' },
       { seat: '21', section: 'NA27C', row: '4' },
@@ -5040,9 +5049,24 @@ const profiles = {
     name: 'Verónica Bahena',
     initial: 'V',
     order: '#26-264477/MXC',
+    saleType: 'VENTA ARMY MEMBERSHIP',
+    saleTypeShort: 'Venta ARMY',
     tickets: [
       { seat: '6', section: 'NA27C', row: '10' },
       { seat: '7', section: 'NA27C', row: '10' },
+    ],
+  },
+  valeria: {
+    id: 'valeria',
+    name: 'Valeria Rivera',
+    initial: 'V',
+    order: '#27-282390/MXC',
+    saleType: 'Venta general',
+    saleTypeShort: 'Venta general',
+    tickets: [
+      { seat: '6', section: 'NA27C', row: '15' },
+      { seat: '7', section: 'NA27C', row: '15' },
+      { seat: '25', section: 'NA27C', row: '16' },
     ],
   },
 };
@@ -5058,6 +5082,13 @@ function formatSeatList(tickets) {
   if (nums.length === 1) return nums[0];
   if (nums.length === 2) return nums.join(' y ');
   return nums.slice(0, -1).join(', ') + ' y ' + nums[nums.length - 1];
+}
+function formatRowLabel(tickets) {
+  const rows = [...new Set(tickets.map(t => t.row))];
+  if (rows.length === 0) return '';
+  const prefix = rows.length === 1 ? 'Fila' : 'Filas';
+  if (rows.length <= 2) return prefix + ' ' + rows.join(' y ');
+  return prefix + ' ' + rows.slice(0, -1).join(', ') + ' y ' + rows[rows.length - 1];
 }
 function profileSeatsLabel() { return formatSeatList(eventTickets); }
 
@@ -5153,7 +5184,7 @@ function renderTicketDetail(id) {
         <div class="tvc-tm-header">ticketmaster<span class="tvc-tm-r">&reg;</span></div>
         <div class="tvc-ticket-body">
           <span class="tvc-ticket-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="7.5" r=".9" fill="currentColor" stroke="none"/></svg></span>
-          <div class="tvc-ticket-title">VENTA ARMY MEMBERSHIP</div>
+          <div class="tvc-ticket-title">${getProfile().saleType}</div>
           <div class="tvc-table">
             <div class="tvc-table-head">
               <span>Secci&oacute;n</span>
@@ -5605,7 +5636,7 @@ function renderTransfer() {
       <div class="tfp-card-inner">
         <div class="tfp-card-check">${iconCheck}</div>
         <div class="tfp-card-content">
-          <p class="tfp-card-type">Venta ARMY</p>
+          <p class="tfp-card-type">${getProfile().saleTypeShort}</p>
           <div class="tfp-card-grid">
             <div>
               <div class="tfp-grid-label">Secci&oacute;n</div>
@@ -5719,7 +5750,7 @@ function renderTransfer() {
         <p class="tsm-email-line" id="tsmRecipientEmail"></p>
         <hr class="tsm-hr">
         <div class="tsm-ticket-card">
-          <div class="tsm-card-header">VENTA ARMY MEMBERSHIP</div>
+          <div class="tsm-card-header">${getProfile().saleType}</div>
           <div class="tsm-seat-grid" id="tsmSeatGrid"></div>
         </div>
         <p class="tsm-note">Una vez aceptado, el(los) boleto(s) no estar\u00e1(n) disponible(s) en tu cuenta</p>
