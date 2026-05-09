@@ -4634,11 +4634,11 @@
       <h1 class="pp-heading">\u00bfQui\u00e9n eres?</h1>
       <p class="pp-sub">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; s&aacute;b 9 may 2026 &bull; Estadio GNP Seguros</p>
       <div class="pp-buttons">
-        <button class="pp-button" onclick="selectProfile('laura')" aria-label="Entrar como Laura Ortiz">
-          <div class="pp-avatar">${profiles.laura.initial}</div>
+        <button class="pp-button" onclick="selectProfile('francisca')" aria-label="Entrar como Francisca Manzanares">
+          <div class="pp-avatar">${profiles.francisca.initial}</div>
           <div>
-            <div class="pp-button-name">${profiles.laura.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.laura.tickets[0].section} &bull; ${formatRowLabel(profiles.laura.tickets)} &bull; Asientos ${formatSeatList(profiles.laura.tickets)}</div>
+            <div class="pp-button-name">${profiles.francisca.name}</div>
+            <div class="pp-button-meta">Secci\u00f3n ${profiles.francisca.tickets[0].section} &bull; ${formatRowLabel(profiles.francisca.tickets)} &bull; Asientos ${formatSeatList(profiles.francisca.tickets)}</div>
           </div>
         </button>
         <button class="pp-button" onclick="selectProfile('veronica')" aria-label="Entrar como Ver\u00f3nica Bahena">
@@ -5032,16 +5032,16 @@ function renderTicketsList() {
 
 // ========== USER PROFILES ==========
 const profiles = {
-  laura: {
-    id: 'laura',
-    name: 'Laura Ortiz',
-    initial: 'L',
+  francisca: {
+    id: 'francisca',
+    name: 'Francisca Manzanares',
+    initial: 'F',
     order: '#29-261345/MXC',
     saleType: 'VENTA ARMY MEMBERSHIP',
     saleTypeShort: 'Venta ARMY',
     tickets: [
-      { seat: '20', section: 'NA27C', row: '4' },
-      { seat: '21', section: 'NA27C', row: '4' },
+      { seat: '10', section: 'NA27C', row: '14' },
+      { seat: '11', section: 'NA27C', row: '14' },
     ],
   },
   veronica: {
