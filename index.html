@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boletos para BTS | Fechas para el Tour 2026-27 | Ticketmaster MX</title>
+    <title>Boletos para Pumas v. Cruz Azul | Final Vuelta Torneo Clausura 2026 | Ticketmaster MX</title>
     <style>
         /* ========== RESET & BASE ========== */
         
@@ -1489,7 +1489,7 @@
         /* Hero header */
         
         .tdp-header {
-            background: url('bts-new-cover.jpg') center 25% / cover no-repeat;
+            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
             position: relative;
             overflow: hidden;
             padding: 20px 24px 0;
@@ -2081,6 +2081,11 @@
             grid-template-columns: 1fr 1fr 1fr;
             padding: 14px 20px 4px;
         }
+
+        .tvc-table-head.tvc-table-2col,
+        .tvc-table-row.tvc-table-2col {
+            grid-template-columns: 2fr 1fr;
+        }
         
         .tvc-table-head span {
             font-size: 12px;
@@ -2247,7 +2252,7 @@
         .eip-hero {
             border-radius: 12px;
             overflow: hidden;
-            background: url('bts-new-cover.jpg') center 30% / cover no-repeat;
+            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
             position: relative;
             height: 220px;
             margin-bottom: 24px;
@@ -2480,7 +2485,7 @@
         }
         
         .tfp-header {
-            background: url('bts-new-cover.jpg') center 30% / cover no-repeat;
+            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
             padding: 24px 32px 0;
             position: relative;
             overflow: hidden;
@@ -4346,230 +4351,19 @@
     <script>
         // ========== EVENT DATA ==========
         const events = [
-            // Mexico events
             {
                 id: 1,
-                date: '2026-05-10',
-                month: 'may',
-                dayNum: '10',
-                day: 'dom',
-                time: '8:00 p.m.',
-                city: 'Ciudad de M\u00e9xico, CDMX',
-                venue: 'Estadio GNP Seguros',
-                title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-                available: false,
-                country: 'mx',
-                region: 'mexico'
-            }, {
-                id: 2,
-                date: '2026-05-10',
-                month: 'may',
-                dayNum: '10',
-                day: 'dom',
-                time: '8:00 p.m.',
-                city: 'Ciudad de M\u00e9xico, CDMX',
-                venue: 'Estadio GNP Seguros',
-                title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-                available: false,
-                country: 'mx',
-                region: 'mexico'
-            }, {
-                id: 3,
-                date: '2026-05-10',
-                month: 'may',
-                dayNum: '10',
-                day: 'dom',
-                time: '8:00 p.m.',
-                city: 'Ciudad de M\u00e9xico, CDMX',
-                venue: 'Estadio GNP Seguros',
-                title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-                available: false,
-                country: 'mx',
-                region: 'mexico'
-            },
-            // International events
-            {
-                id: 4,
-                date: '2026-04-25',
-                month: 'abr',
-                dayNum: '25',
-                day: 's\u00e1b',
-                time: '8:00 p.m.',
-                city: 'Tampa, FL, Estados Unidos',
-                venue: 'Raymond James Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN TAMPA",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 5,
-                date: '2026-04-26',
-                month: 'abr',
-                dayNum: '26',
-                day: 'dom',
-                time: '8:00 p.m.',
-                city: 'Tampa, FL, Estados Unidos',
-                venue: 'Raymond James Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN TAMPA",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 6,
-                date: '2026-04-28',
-                month: 'abr',
-                dayNum: '28',
-                day: 'mar',
-                time: '8:00 p.m.',
-                city: 'Tampa, FL, Estados Unidos',
-                venue: 'Raymond James Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN TAMPA",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 7,
-                date: '2026-05-02',
-                month: 'may',
-                dayNum: '02',
-                day: 's\u00e1b',
-                time: '8:00 p.m.',
-                city: 'El Paso, TX, Estados Unidos',
-                venue: 'Sun Bowl Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN EL PASO",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 8,
-                date: '2026-05-03',
-                month: 'may',
-                dayNum: '03',
-                day: 'dom',
-                time: '8:00 p.m.',
-                city: 'El Paso, TX, Estados Unidos',
-                venue: 'Sun Bowl Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN EL PASO",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 9,
-                date: '2026-05-16',
-                month: 'may',
-                dayNum: '16',
-                day: 's\u00e1b',
-                time: '7:00 p.m.',
-                city: 'Stanford, CA, Estados Unidos',
-                venue: 'Stanford Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN STANFORD",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 10,
-                date: '2026-05-17',
-                month: 'may',
-                dayNum: '17',
-                day: 'dom',
-                time: '7:00 p.m.',
-                city: 'Stanford, CA, Estados Unidos',
-                venue: 'Stanford Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN STANFORD",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 11,
-                date: '2026-05-19',
-                month: 'may',
-                dayNum: '19',
-                day: 'mar',
-                time: '7:00 p.m.',
-                city: 'Stanford, CA, Estados Unidos',
-                venue: 'Stanford Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN STANFORD",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 12,
-                date: '2026-05-23',
-                month: 'may',
-                dayNum: '23',
-                day: 's\u00e1b',
-                time: '8:00 p.m.',
-                city: 'Las Vegas, NV, Estados Unidos',
-                venue: 'Allegiant Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN LAS VEGAS",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 13,
                 date: '2026-05-24',
                 month: 'may',
                 dayNum: '24',
                 day: 'dom',
-                time: '8:00 p.m.',
-                city: 'Las Vegas, NV, Estados Unidos',
-                venue: 'Allegiant Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN LAS VEGAS",
+                time: '7:00 p.m.',
+                city: 'Ciudad de M\u00e9xico, CDMX',
+                venue: 'Estadio Ol\u00edmpico Universitario',
+                title: 'Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026',
                 available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 14,
-                date: '2026-05-27',
-                month: 'may',
-                dayNum: '27',
-                day: 'mi\u00e9',
-                time: '8:00 p.m.',
-                city: 'Las Vegas, NV, Estados Unidos',
-                venue: 'Allegiant Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN LAS VEGAS",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 15,
-                date: '2026-05-28',
-                month: 'may',
-                dayNum: '28',
-                day: 'jue',
-                time: '8:00 p.m.',
-                city: 'Las Vegas, NV, Estados Unidos',
-                venue: 'Allegiant Stadium',
-                title: "BTS WORLD TOUR 'ARIRANG' IN LAS VEGAS",
-                available: true,
-                country: 'us',
-                region: 'international'
-            }, {
-                id: 16,
-                date: '2026-06-26',
-                month: 'jun',
-                dayNum: '26',
-                day: 'vie',
-                time: '8:00 p.m.',
-                city: 'Madrid, Espa\u00f1a',
-                venue: 'Estadio Riyadh Air Metropolitano',
-                title: "BTS WORLD TOUR 'ARIRANG' IN MADRID",
-                available: true,
-                country: 'es',
-                region: 'international'
-            }, {
-                id: 17,
-                date: '2026-06-27',
-                month: 'jun',
-                dayNum: '27',
-                day: 's\u00e1b',
-                time: '8:00 p.m.',
-                city: 'Madrid, Espa\u00f1a',
-                venue: 'Estadio Riyadh Air Metropolitano',
-                title: "BTS WORLD TOUR 'ARIRANG' IN MADRID",
-                available: true,
-                country: 'es',
-                region: 'international'
+                country: 'mx',
+                region: 'mexico'
             },
         ];
 
@@ -4577,10 +4371,10 @@
         const userTickets = [{
             id: 1,
             year: 2026,
-            title: "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY",
-            date: 'dom \u00b7 10 may 2026',
-            venue: 'Estadio GNP Seguros',
-            order: 'Compra #29-261345/MXC'
+            title: 'Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026',
+            date: 'dom \u00b7 24 may 2026',
+            venue: 'Estadio Ol\u00edmpico Universitario',
+            order: 'Compra #45-28401/MX'
         }];
 
         // ========== SVG ICON HELPERS ==========
@@ -4632,27 +4426,13 @@
     <div class="profile-picker">
       <div class="pp-logo">${tmWordmark}</div>
       <h1 class="pp-heading">\u00bfQui\u00e9n eres?</h1>
-      <p class="pp-sub">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; dom 10 may 2026 &bull; Estadio GNP Seguros</p>
+      <p class="pp-sub">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 &bull; dom 24 may 2026 &bull; Estadio Ol&iacute;mpico Universitario</p>
       <div class="pp-buttons">
-        <button class="pp-button" onclick="selectProfile('vanessa')" aria-label="Entrar como Vanessa D\u00edaz">
-          <div class="pp-avatar">${profiles.vanessa.initial}</div>
+        <button class="pp-button" onclick="selectProfile('francisca')" aria-label="Entrar como Francisca Manzanares">
+          <div class="pp-avatar">${profiles.francisca.initial}</div>
           <div>
-            <div class="pp-button-name">${profiles.vanessa.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.vanessa.tickets[0].section} &bull; ${formatRowLabel(profiles.vanessa.tickets)} &bull; Asientos ${formatSeatList(profiles.vanessa.tickets)}</div>
-          </div>
-        </button>
-        <button class="pp-button" onclick="selectProfile('veronica')" aria-label="Entrar como Ver\u00f3nica Bahena">
-          <div class="pp-avatar">${profiles.veronica.initial}</div>
-          <div>
-            <div class="pp-button-name">${profiles.veronica.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.veronica.tickets[0].section} &bull; ${formatRowLabel(profiles.veronica.tickets)} &bull; Asientos ${formatSeatList(profiles.veronica.tickets)}</div>
-          </div>
-        </button>
-        <button class="pp-button" onclick="selectProfile('valeria')" aria-label="Entrar como Valeria Rivera">
-          <div class="pp-avatar">${profiles.valeria.initial}</div>
-          <div>
-            <div class="pp-button-name">${profiles.valeria.name}</div>
-            <div class="pp-button-meta">Secci\u00f3n ${profiles.valeria.tickets[0].section} &bull; ${formatRowLabel(profiles.valeria.tickets)} &bull; Asientos ${formatSeatList(profiles.valeria.tickets)}</div>
+            <div class="pp-button-name">${profiles.francisca.name}</div>
+            <div class="pp-button-meta">${profiles.francisca.tickets.length} boletos &bull; Palomar Goya y Planta Baja General</div>
           </div>
         </button>
       </div>
@@ -4695,7 +4475,7 @@
 
         // ========== HOME VIEW ==========
         function renderHome() {
-            document.title = 'Boletos para BTS | Fechas para el Tour 2026-27 | Ticketmaster MX';
+            document.title = 'Boletos para Pumas v. Cruz Azul | Final Vuelta Torneo Clausura 2026 | Ticketmaster MX';
             const mexicoEvents = events.filter(e => e.region === 'mexico');
             const intlEvents = events.filter(e => e.region === 'international');
             const totalEvents = events.length;
@@ -4714,13 +4494,13 @@
               <li><span class="sep">${icons.chevronRight}</span></li>
               <li><a href="#/">K-Pop</a></li>
               <li><span class="sep">${icons.chevronRight}</span></li>
-              <li><span class="current">Boletos para BTS</span></li>
+              <li><span class="current">Boletos para Pumas v. Cruz Azul</span></li>
             </ol>
           </nav>
           <p class="hero-label">K-Pop</p>
-          <h1 class="hero-title">Boletos para BTS</h1>
+          <h1 class="hero-title">Boletos para Pumas v. Cruz Azul</h1>
           <div class="hero-actions">
-            <button class="hero-fav-btn" aria-label="Guardar BTS en favoritos">
+            <button class="hero-fav-btn" aria-label="Guardar Pumas en favoritos">
               ${icons.heart}
               <span>Favorito</span>
             </button>
@@ -4816,20 +4596,11 @@
             document.title = `${e.title} | Ticketmaster MX`;
 
             const priceRanges = e.available ? [{
-                section: 'General',
-                price: '$1,200 MXN'
+                section: 'Planta Baja General',
+                price: '$650 MXN'
             }, {
-                section: 'Platea',
-                price: '$2,800 MXN'
-            }, {
-                section: 'Preferente',
-                price: '$4,500 MXN'
-            }, {
-                section: 'VIP',
-                price: '$8,900 MXN'
-            }, {
-                section: 'Platinum',
-                price: '$15,000 MXN'
+                section: 'Palomar Goya',
+                price: '$800 MXN'
             }, ] : [];
 
             mainEl.innerHTML = `
@@ -4897,9 +4668,9 @@
 
           <div class="detail-card">
             <h2>Acerca del evento</h2>
-            <p>BTS regresa con su esperado WORLD TOUR 'ARIRANG', una celebraci\u00f3n de la m\u00fasica, la cultura y la conexi\u00f3n con ARMY alrededor del mundo. Este tour presenta un espect\u00e1culo completamente nuevo con producci\u00f3n de clase mundial.</p>
+            <p>Aficionado auriazul adquiere tus boletos y apoya al equipo en este vibrante encuentro en compa\u00f1\u00eda de tus familiares y amigos.</p>
             <br>
-            <p>El evento incluye acceso al estadio, espect\u00e1culo en vivo y experiencias exclusivas seg\u00fan la secci\u00f3n seleccionada.</p>
+            <p>Final Vuelta del Torneo Clausura 2026. Acceso al Estadio Ol\u00edmpico Universitario y al partido en vivo seg\u00fan la zona seleccionada.</p>
           </div>
 
           <div class="detail-card">
@@ -5032,41 +4803,18 @@ function renderTicketsList() {
 
 // ========== USER PROFILES ==========
 const profiles = {
-  vanessa: {
-    id: 'vanessa',
-    name: 'Vanessa Díaz',
-    initial: 'V',
-    order: '#29-261345/MXC',
-    saleType: 'VENTA ARMY MEMBERSHIP',
-    saleTypeShort: 'Venta ARMY',
-    tickets: [
-      { seat: '14', section: 'NA27C', row: '13' },
-      { seat: '15', section: 'NA27C', row: '13' },
-    ],
-  },
-  veronica: {
-    id: 'veronica',
-    name: 'Verónica Bahena',
-    initial: 'V',
-    order: '#26-264477/MXC',
-    saleType: 'VENTA ARMY MEMBERSHIP',
-    saleTypeShort: 'Venta ARMY',
-    tickets: [
-      { seat: '6', section: 'NA27C', row: '10' },
-      { seat: '7', section: 'NA27C', row: '10' },
-    ],
-  },
-  valeria: {
-    id: 'valeria',
-    name: 'Valeria Rivera',
-    initial: 'V',
-    order: '#26-264477/MXC',
-    saleType: 'Venta general',
+  francisca: {
+    id: 'francisca',
+    name: 'Francisca Manzanares',
+    initial: 'F',
+    order: '#45-28401/MX',
+    saleType: 'VENTA GENERAL',
     saleTypeShort: 'Venta general',
     tickets: [
-      { seat: '6', section: 'NA27C', row: '15' },
-      { seat: '7', section: 'NA27C', row: '15' },
-      { seat: '25', section: 'NA27C', row: '16' },
+      { zone: 'PLANTA BAJA GENERAL', isGeneral: true },
+      { zone: 'PLANTA BAJA GENERAL', isGeneral: true },
+      { zone: 'PALOMAR GOYA', section: 'PG-2', row: 'H', seat: '14' },
+      { zone: 'PALOMAR GOYA', section: 'PG-2', row: 'H', seat: '15' },
     ],
   },
 };
@@ -5110,7 +4858,7 @@ let barcodeSecondsLeft = 120;
 let _transferState = null; // reset on every page reload
 
 function renderTicketDetail(id) {
-  document.title = "BTS WORLD TOUR 'ARIRANG' IN MEXICO CITY | Mis boletos | Ticketmaster MX";
+  document.title = "Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 | Mis boletos | Ticketmaster MX";
 
   const iconPhone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M15.5 1h-8C6.1 1 5 2.1 5 3.5v17C5 21.9 6.1 23 7.5 23h8c1.4 0 2.5-1.1 2.5-2.5v-17C18 2.1 16.9 1 15.5 1zm-4 21c-.8 0-1.5-.7-1.5-1.5S10.7 19 11.5 19s1.5.7 1.5 1.5S12.3 22 11.5 22zm4.5-4H7V4h9v14z"/></svg>';
   const iconBarcode = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1 23h3V1H1zm4 0h1V1H5zm2 0h2V1H7zm3 0h1V1h-1zm2 0h1V1h-1zm2 0h3V1h-3zm4 0h1V1h-1zm2 0h2V1h-2z"/></svg>';
@@ -5159,10 +4907,10 @@ function renderTicketDetail(id) {
     <div class="tvc-wrap">
       <div class="tvc-hero">
         <div class="tvc-hero-panel">
-          <p class="tvc-hero-date">DOM &bull; 10 MAY, 2026 &bull; 8:00 P. M.</p>
-          <h3 class="tvc-hero-title">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
+          <p class="tvc-hero-date">DOM &bull; 24 MAY, 2026 &bull; 7:00 P. M.</p>
+          <h3 class="tvc-hero-title">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h3>
           <div class="tvc-hero-venue-row">
-            <span class="tvc-hero-venue">Estadio GNP Seguros, Ciudad de M&eacute;xico, CDMX</span>
+            <span class="tvc-hero-venue">Estadio Olímpico Universitario, Ciudad de M&eacute;xico, CDMX</span>
             <span class="tvc-hero-stub" aria-hidden="true">${iconTicketStub}</span>
             <span class="tvc-hero-count" aria-label="${remainingTickets.length} boletos"><span class="tvc-x">x</span>${remainingTickets.length}</span>
           </div>
@@ -5185,6 +4933,17 @@ function renderTicketDetail(id) {
         <div class="tvc-ticket-body">
           <span class="tvc-ticket-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="7.5" r=".9" fill="currentColor" stroke="none"/></svg></span>
           <div class="tvc-ticket-title">${getProfile().saleType}</div>
+          ${t.isGeneral ? `
+          <div class="tvc-table">
+            <div class="tvc-table-head tvc-table-2col">
+              <span>Zona</span>
+              <span>Acceso</span>
+            </div>
+            <div class="tvc-table-row tvc-table-2col">
+              <span>${t.zone}</span>
+              <span>General</span>
+            </div>
+          </div>` : `
           <div class="tvc-table">
             <div class="tvc-table-head">
               <span>Secci&oacute;n</span>
@@ -5192,11 +4951,11 @@ function renderTicketDetail(id) {
               <span>Asiento(s)</span>
             </div>
             <div class="tvc-table-row">
-              <span>${t.section}</span>
+              <span>${t.zone}, ${t.section}</span>
               <span>${t.row}</span>
               <span>${t.seat}</span>
             </div>
-          </div>
+          </div>`}
         </div>
       </div>`).join('')}
     </div>
@@ -5211,17 +4970,17 @@ function renderTicketDetail(id) {
             <span class="bc-sep">/</span>
             <a href="#/account">Mis Boletos</a>
             <span class="bc-sep">/</span>
-            <span class="bc-current">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</span>
+            <span class="bc-current">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</span>
           </nav>
           <div class="tdp-event-row">
             <div class="tdp-date-badge">
               <span class="db-month">MAY</span>
-              <span class="db-day">10</span>
+              <span class="db-day">24</span>
             </div>
             <div class="tdp-event-info">
-              <p class="ei-daytime">DOM &middot; 8:00 P.M.</p>
-              <h1 class="ei-name">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h1>
-              <p class="ei-venue">Estadio GNP Seguros &ndash; Ciudad de M\u00e9xico, CDMX</p>
+              <p class="ei-daytime">DOM &middot; 7:00 P.M.</p>
+              <h1 class="ei-name">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h1>
+              <p class="ei-venue">Estadio Olímpico Universitario &ndash; Ciudad de M\u00e9xico, CDMX</p>
               <div class="tdp-share">
                 <span class="tdp-share-label">Comparte que vas a ir</span>
                 <button class="tdp-share-icon" aria-label="Compartir por WhatsApp">
@@ -5265,10 +5024,6 @@ function renderTicketDetail(id) {
           </div>
 
           <div class="tdp-action-btns">
-            <button class="btn-tdp-action${remainingTickets.length === 0 ? ' btn-tdp-action--disabled' : ''}" ${remainingTickets.length === 0 ? 'disabled aria-disabled="true"' : ''} onclick="return false">
-              Venta de Fan a Fan
-              <span class="btn-fan-badge" aria-label="Ayuda">?</span>
-            </button>
             <button class="btn-tdp-action${remainingTickets.length === 0 ? ' btn-tdp-action--disabled' : ''}" ${remainingTickets.length === 0 ? 'disabled aria-disabled="true"' : `onclick="window.location.hash='#/transfer'"`}>
               Transferir a alguien
               ${iconExternal}
@@ -5297,8 +5052,8 @@ function renderTicketDetail(id) {
             <div class="eip-hero-overlay"></div>
             <div class="eip-hero-text">
               <span class="eip-tag">K-Pop &bull; World Tour</span>
-              <h2>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h2>
-              <p>Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</p>
+              <h2>Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h2>
+              <p>Estadio Olímpico Universitario &mdash; Ciudad de M\u00e9xico, CDMX</p>
             </div>
           </div>
 
@@ -5306,12 +5061,12 @@ function renderTicketDetail(id) {
           <div class="eip-grid">
             <div class="eip-card">
               <div class="eip-card-label">Fecha</div>
-              <div class="eip-card-value">Domingo 10 de mayo, 2026</div>
-              <div class="eip-card-sub">8:00 p.m. &bull; Puertas: 5:00 p.m.</div>
+              <div class="eip-card-value">Domingo 24 de mayo, 2026</div>
+              <div class="eip-card-sub">7:00 p.m. &bull; Puertas: 5:30 p.m.</div>
             </div>
             <div class="eip-card">
               <div class="eip-card-label">Recinto</div>
-              <div class="eip-card-value">Estadio GNP Seguros</div>
+              <div class="eip-card-value">Estadio Olímpico Universitario</div>
               <div class="eip-card-sub">Ciudad de M\u00e9xico, CDMX</div>
             </div>
             <div class="eip-card">
@@ -5330,80 +5085,43 @@ function renderTicketDetail(id) {
               <div class="eip-card-sub">Incluye intervalo</div>
             </div>
             <div class="eip-card">
-              <div class="eip-card-label">Productora</div>
-              <div class="eip-card-value">HYBE &bull; Live Nation</div>
-              <div class="eip-card-sub">OCESA &bull; CIE M\u00e9xico</div>
+              <div class="eip-card-label">Organiza</div>
+              <div class="eip-card-value">Club Universidad Nacional</div>
+              <div class="eip-card-sub">Liga MX &bull; pumas.mx</div>
             </div>
           </div>
 
           <!-- Descripción -->
           <div class="eip-desc-card">
-            <h3>Sobre el concierto</h3>
-            <p>BTS regresa a M\u00e9xico con su tan esperado <strong>World Tour &lsquo;ARIRANG&rsquo;</strong>, una gira global que celebra la herencia cultural coreana y el poderoso v\u00ednculo del grupo con sus fans alrededor del mundo. El nombre &lsquo;Arirang&rsquo; hace referencia a la canci\u00f3n folcl\u00f3rica coreana m\u00e1s emblem\u00e1tica, s\u00edmbolo de identidad, resistencia y uni\u00f3n.</p>
-            <p>El espect\u00e1culo incluir\u00e1 una producci\u00f3n audiovisual de \u00faltima generaci\u00f3n, con pantallas LED de 360\u00b0, efectos pir\u00f3tecnicos, coreograf\u00edas en vivo y un set list de m\u00e1s de 30 canciones que recorrer\u00e1 toda su discograf\u00eda: desde \u00e9xitos tempranos como <em>I Need U</em> y <em>FIRE</em>, hasta los hits globales de su era en solitario y en grupo como <em>Dynamite</em>, <em>Butter</em>, <em>DNA</em>, <em>Boy With Luv</em> y <em>MIC Drop</em>.</p>
-            <p>La cita en el <strong>Estadio GNP Seguros</strong> ser\u00e1 hist\u00f3rica: una noche \u00fanica que el ARMY mexicano llevar\u00e1 en el coraz\u00f3n para siempre.</p>
+            <h3>Información del evento</h3>
+            <p>Aficionado auriazul adquiere tus boletos y apoya al equipo en este vibrante encuentro en compañía de tus familiares y amigos.</p>
+            <p>La <strong>Final Vuelta del Torneo Clausura 2026</strong> entre Pumas y Cruz Azul se jugará en el histórico <strong>Estadio Olímpico Universitario</strong>, sede del equipo auriazul desde 1962.</p>
+            <p>Duración aproximada del partido: 2 horas. Apertura de puertas 90 minutos antes del inicio.</p>
           </div>
 
-          <!-- Integrantes -->
+          <!-- Cartel -->
           <div class="eip-members">
-            <h3>Integrantes de BTS</h3>
+            <h3>Cartel</h3>
             <div class="eip-members-grid">
               <div class="eip-member-pill">
-                <div class="eip-member-avatar">RM</div>
+                <div class="eip-member-avatar" style="background:#0c1e3f">PUM</div>
                 <div>
-                  <div class="eip-member-name">RM</div>
-                  <div class="eip-member-role">Rap &bull; L\u00edder</div>
+                  <div class="eip-member-name">Pumas UNAM</div>
+                  <div class="eip-member-role">Local &bull; Auriazul</div>
                 </div>
               </div>
               <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#1249D6">Jin</div>
+                <div class="eip-member-avatar" style="background:#1248a3">CAZ</div>
                 <div>
-                  <div class="eip-member-name">Jin</div>
-                  <div class="eip-member-role">Vocal</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#5b21b6">SG</div>
-                <div>
-                  <div class="eip-member-name">SUGA</div>
-                  <div class="eip-member-role">Rap</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#0e7490">JH</div>
-                <div>
-                  <div class="eip-member-name">j-hope</div>
-                  <div class="eip-member-role">Rap &bull; Dance</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#be123c">JM</div>
-                <div>
-                  <div class="eip-member-name">Jimin</div>
-                  <div class="eip-member-role">Vocal &bull; Dance</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#b45309">V</div>
-                <div>
-                  <div class="eip-member-name">V</div>
-                  <div class="eip-member-role">Vocal</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#166534">JK</div>
-                <div>
-                  <div class="eip-member-name">Jung Kook</div>
-                  <div class="eip-member-role">Vocal &bull; Centro</div>
+                  <div class="eip-member-name">Cruz Azul</div>
+                  <div class="eip-member-role">Visitante &bull; La Máquina</div>
                 </div>
               </div>
             </div>
-          </div>
-
           <!-- Aviso importante -->
           <div class="eip-notice">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFB932"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            <p><strong>Informaci\u00f3n importante:</strong> Est\u00e1 prohibido el ingreso con c\u00e1maras profesionales, gr\u00e1baciones de audio/video, objetos punzocortantes, bebidas en envase de vidrio o aluminio y cualquier objeto que pueda representar un riesgo para los asistentes. El set list y la duraci\u00f3n pueden estar sujetos a cambios sin previo aviso.</p>
+            <p><strong>Informaci\u00f3n importante:</strong> Pagan boleto a partir de 3 a\u00f1os; sin l\u00edmite de edad. No se permite el ingreso de bufandas, cinturones, envases de vidrio o pl\u00e1stico, aerosoles, maquillaje, bengalas, cigarros, carriolas, papel picado o rollos de papel, banderas, l\u00e1ser, armas, mascotas, sombrillas, alimentos y bebidas. L\u00edmite de 4 boletos por comprador. Servicios: venta de alimentos y bebidas. Duraci\u00f3n aproximada 2 horas. P\u00e1gina oficial: www.pumas.mx.</p>
           </div>
 
         </div>
@@ -5413,7 +5131,7 @@ function renderTicketDetail(id) {
       <div class="tdp-panel" id="tdp-panel-inmueble" role="tabpanel">
         <div class="ei-panel">
           <div class="eip-desc-card">
-            <h3>Estadio GNP Seguros</h3>
+            <h3>Estadio Olímpico Universitario</h3>
             <p>Av. Insurgentes Sur 3695, La Joya, Tlalpan, 14090 Ciudad de M\u00e9xico, CDMX.</p>
             <p>Capacidad: 87,000 espectadores. El recinto cuenta con accesos para personas con discapacidad, estacionamiento, sanitarios en todos los niveles y puestos de alimentos y bebidas distribuidos por todo el estadio.</p>
           </div>
@@ -5434,7 +5152,7 @@ function renderTicketDetail(id) {
         <button class="bm-help" onclick="return false">Ayuda</button>
       </div>
       <div class="bm-subheader">
-        BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY &bull; dom, may 10, 2026 &bull; 8:00 p.m. &bull; Estadio GNP Seguros
+        Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 &bull; dom, may 24, 2026 &bull; 7:00 p.m. &bull; Estadio Olímpico Universitario
       </div>
       <div class="bm-nav">
         <button class="bm-nav-arrow" id="bmPrev" onclick="changeBarcodeTicket(-1)" aria-label="Boleto anterior">&#8249;</button>
@@ -5442,17 +5160,17 @@ function renderTicketDetail(id) {
         <button class="bm-nav-arrow" id="bmNext" onclick="changeBarcodeTicket(1)" aria-label="Siguiente boleto">&#8250;</button>
       </div>
       <div class="bm-blue">
-        <p class="bm-boleto-type">Boleto normal</p>
+        <p class="bm-boleto-type" id="bmBoletoType">Boleto normal</p>
         <div class="bm-seat-grid">
           <div class="bm-seat-cell">
-            <div class="sc-label">Secci\u00f3n</div>
+            <div class="sc-label" id="bmSectionLabel">Secci\u00f3n</div>
             <div class="sc-value" id="bmSection">NA27C</div>
           </div>
-          <div class="bm-seat-cell">
+          <div class="bm-seat-cell" id="bmRowCell">
             <div class="sc-label">Fila</div>
             <div class="sc-value" id="bmRow">4</div>
           </div>
-          <div class="bm-seat-cell">
+          <div class="bm-seat-cell" id="bmSeatCell">
             <div class="sc-label">Asiento</div>
             <div class="sc-value" id="bmSeat">20</div>
           </div>
@@ -5587,14 +5305,30 @@ function updateBarcodeDisplay() {
   const t = eventTickets[barcodeCurrentIndex];
   if (!t) return;
   const sectionEl = document.getElementById('bmSection');
+  const sectionLabelEl = document.getElementById('bmSectionLabel');
   const rowEl = document.getElementById('bmRow');
   const seatEl = document.getElementById('bmSeat');
+  const rowCell = document.getElementById('bmRowCell');
+  const seatCell = document.getElementById('bmSeatCell');
+  const boletoTypeEl = document.getElementById('bmBoletoType');
   const counterEl = document.getElementById('bmCounter');
   const prevBtn = document.getElementById('bmPrev');
   const nextBtn = document.getElementById('bmNext');
-  if (sectionEl) sectionEl.textContent = t.section;
-  if (rowEl) rowEl.textContent = t.row;
-  if (seatEl) seatEl.textContent = t.seat;
+  if (t.isGeneral) {
+    if (sectionLabelEl) sectionLabelEl.textContent = 'Zona';
+    if (sectionEl) sectionEl.textContent = t.zone;
+    if (rowCell) rowCell.style.display = 'none';
+    if (seatCell) seatCell.style.display = 'none';
+    if (boletoTypeEl) boletoTypeEl.textContent = 'Acceso general';
+  } else {
+    if (sectionLabelEl) sectionLabelEl.textContent = 'Sección';
+    if (sectionEl) sectionEl.textContent = t.zone ? (t.zone + ' · ' + t.section) : t.section;
+    if (rowCell) rowCell.style.display = '';
+    if (seatCell) seatCell.style.display = '';
+    if (rowEl) rowEl.textContent = t.row;
+    if (seatEl) seatEl.textContent = t.seat;
+    if (boletoTypeEl) boletoTypeEl.textContent = 'Boleto normal';
+  }
   if (counterEl) counterEl.textContent = 'Boleto ' + (barcodeCurrentIndex + 1) + ' de ' + eventTickets.length;
   if (prevBtn) prevBtn.classList.toggle('disabled', barcodeCurrentIndex === 0);
   if (nextBtn) nextBtn.classList.toggle('disabled', barcodeCurrentIndex === eventTickets.length - 1);
@@ -5624,13 +5358,34 @@ function renderTransfer() {
   const allTfpTickets = eventTickets.map((t, i) => ({
     id: 'tfpT' + (i + 1),
     index: i,
+    zone: t.zone,
     section: t.section,
     row: t.row,
     seat: t.seat,
+    isGeneral: !!t.isGeneral,
   }));
   const availableTickets = allTfpTickets.filter(t => !alreadyTransferred.includes(t.index));
 
-  const ticketCardsHTML = availableTickets.map(t => `
+  const ticketCardsHTML = availableTickets.map(t => t.isGeneral ? `
+    <div class="tfp-card selected" id="${t.id}" onclick="tfpToggle(this)">
+      <div class="tfp-card-top"></div>
+      <div class="tfp-card-inner">
+        <div class="tfp-card-check">${iconCheck}</div>
+        <div class="tfp-card-content">
+          <p class="tfp-card-type">${getProfile().saleTypeShort}</p>
+          <div class="tfp-card-grid">
+            <div>
+              <div class="tfp-grid-label">Zona</div>
+              <div class="tfp-grid-value">${t.zone}</div>
+            </div>
+            <div>
+              <div class="tfp-grid-label">Acceso</div>
+              <div class="tfp-grid-value">General</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>` : `
     <div class="tfp-card selected" id="${t.id}" onclick="tfpToggle(this)">
       <div class="tfp-card-top"></div>
       <div class="tfp-card-inner">
@@ -5640,7 +5395,7 @@ function renderTransfer() {
           <div class="tfp-card-grid">
             <div>
               <div class="tfp-grid-label">Secci&oacute;n</div>
-              <div class="tfp-grid-value">${t.section}</div>
+              <div class="tfp-grid-value">${t.zone ? t.zone + ' · ' + t.section : t.section}</div>
             </div>
             <div>
               <div class="tfp-grid-label">Fila</div>
@@ -5734,11 +5489,11 @@ function renderTransfer() {
       </div>
       <!-- Event strip -->
       <div class="tsm-event-strip">
-        <div class="tsm-ev-day-num">10</div>
+        <div class="tsm-ev-day-num">24</div>
         <div class="tsm-ev-info">
-          <div class="tsm-ev-meta">MAY &nbsp; dom &middot; 8:00 P.M.</div>
-          <div class="tsm-ev-title">BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</div>
-          <div class="tsm-ev-venue">Estadio GNP Seguros &middot; Ciudad de M\u00e9xico, CDMX</div>
+          <div class="tsm-ev-meta">MAY &nbsp; dom &middot; 7:00 P.M.</div>
+          <div class="tsm-ev-title">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</div>
+          <div class="tsm-ev-venue">Estadio Olímpico Universitario &middot; Ciudad de M\u00e9xico, CDMX</div>
         </div>
       </div>
       <!-- Body -->
@@ -5806,7 +5561,13 @@ function submitTransfer() {
   eventTickets.forEach((t, i) => {
     const id = 'tfpT' + (i + 1);
     indexMap[id] = i;
-    seatsData[id] = { seccion: t.section, fila: t.row, asiento: t.seat };
+    seatsData[id] = {
+      isGeneral: !!t.isGeneral,
+      zone: t.zone,
+      seccion: t.section,
+      fila: t.row,
+      asiento: t.seat,
+    };
   });
 
   // Recipient name
@@ -5828,13 +5589,25 @@ function submitTransfer() {
   const seatGridEl = document.getElementById('tsmSeatGrid');
   if (seatGridEl && selected.length > 0) {
     const d = seatsData[selected[0]];
-    const asientoLabel = selected.length > 1
-      ? seatsData[selected[0]].asiento + '-' + seatsData[selected[selected.length - 1]].asiento
-      : d.asiento;
-    seatGridEl.innerHTML = `
+    if (d.isGeneral) {
+      seatGridEl.innerHTML = `
+      <div class="tsm-seat-col">
+        <div class="tsm-seat-lbl">Zona</div>
+        <div class="tsm-seat-val">${d.zone}</div>
+      </div>
+      <div class="tsm-seat-col">
+        <div class="tsm-seat-lbl">Acceso</div>
+        <div class="tsm-seat-val">General</div>
+      </div>`;
+    } else {
+      const asientoLabel = selected.length > 1
+        ? seatsData[selected[0]].asiento + '-' + seatsData[selected[selected.length - 1]].asiento
+        : d.asiento;
+      const seccionLabel = d.zone ? (d.zone + ' · ' + d.seccion) : d.seccion;
+      seatGridEl.innerHTML = `
       <div class="tsm-seat-col">
         <div class="tsm-seat-lbl">Secci\u00f3n</div>
-        <div class="tsm-seat-val">${d.seccion}</div>
+        <div class="tsm-seat-val">${seccionLabel}</div>
       </div>
       <div class="tsm-seat-col">
         <div class="tsm-seat-lbl">Fila</div>
@@ -5844,6 +5617,7 @@ function submitTransfer() {
         <div class="tsm-seat-lbl">Asiento(s)</div>
         <div class="tsm-seat-val">${asientoLabel}</div>
       </div>`;
+    }
   }
 
   // Persist transfer state for the session (cleared on page reload)
@@ -5983,18 +5757,18 @@ function renderTransferError() {
                 </span>
               </div>
               <div class="transfer-ticket-body">
-                <h3>BTS WORLD TOUR &lsquo;ARIRANG&rsquo; IN MEXICO CITY</h3>
+                <h3>Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h3>
                 <div class="transfer-info-row">
                   ${icons.calendar}
-                  <span>dom &middot; 10 may 2026 &mdash; 8:00 p.m.</span>
+                  <span>dom &middot; 24 may 2026 &mdash; 7:00 p.m.</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.location}
-                  <span>Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</span>
+                  <span>Estadio Olímpico Universitario &mdash; Ciudad de M\u00e9xico, CDMX</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.tickets}
-                  <span>${eventTickets.length} boleto${eventTickets.length === 1 ? '' : 's'} &bull; Secci\u00f3n ${eventTickets[0] ? eventTickets[0].section : ''} &bull; Fila ${eventTickets[0] ? eventTickets[0].row : ''} &bull; Asientos ${profileSeatsLabel()}</span>
+                  <span>${eventTickets.length} boleto${eventTickets.length === 1 ? '' : 's'} &bull; ${[...new Set(eventTickets.map(t => t.zone || t.section).filter(Boolean))].join(' y ') || ''}</span>
                 </div>
                 <div class="transfer-info-row" style="font-size:11px;color:#646464">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="#646464"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
