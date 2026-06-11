@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIFA World Cup 2026 | Mis boletos</title>
+    <style>
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f1f1f3;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        /* ========== TOP BAR ========== */
+        .topbar {
+            background: #000;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .topbar-inner {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .topbar-back svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .topbar-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+        }
+
+        .topbar-spacer {
+            width: 38px;
+        }
+
+        /* FIFA badge — used in topbar */
+        .fifa-mark {
+            display: inline-flex;
+            flex-direction: column;
+            line-height: 1;
+            font-weight: 900;
+            font-size: 9px;
+            letter-spacing: 0.5px;
+            color: #fff;
+            text-align: center;
+            padding: 6px 10px;
+        }
+
+        .fifa-mark .row-mid {
+            font-size: 12px;
+            letter-spacing: 1px;
+            padding: 1px 0;
+        }
+
+        /* ========== APP CONTAINER ========== */
+        .app {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 22px 18px 60px;
+        }
+
+        /* ========== ACCOUNT (Mis Boletos) ========== */
+        .account-greeting {
+            margin-bottom: 4px;
+        }
+
+        .account-greeting .greeting-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: #777;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .account-greeting .greeting-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #111;
+            line-height: 1.1;
+        }
+
+        .account-section-title {
+            margin-top: 28px;
+            margin-bottom: 14px;
+            font-size: 19px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        /* ========== MATCH CARD ========== */
+        .match-card {
+            display: block;
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px -10px rgba(0, 0, 0, 0.18);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.24);
+        }
+
+        .match-card-banner {
+            background:
+                radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+                linear-gradient(135deg, #0a3d62 0%, #aa1c35 100%);
+            padding: 20px 22px 26px;
+            color: #fff;
+            position: relative;
+        }
+
+        .match-card-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #000;
+            border-radius: 999px;
+            padding: 6px 14px 6px 6px;
+            margin-bottom: 14px;
+        }
+
+        .match-card-badge-logo {
+            display: inline-flex;
+            flex-direction: column;
+            line-height: 1;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            background: #000;
+            color: #fff;
+            padding: 3px 6px;
+            border-radius: 999px;
+        }
+
+        .match-card-badge-logo .row-mid {
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            padding: 1px 0;
+        }
+
+        .match-card-badge-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+
+        .match-card-vs {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 6px;
+        }
+
+        .match-card-meta {
+            font-size: 13px;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        .match-card-info {
+            background: #fff;
+            padding: 16px 22px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .match-card-info-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .match-card-info-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .match-card-info-row svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+
+        .match-card-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: #fff;
+            border-radius: 999px;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .match-card-stripe {
+            background: #f7f7f8;
+            padding: 12px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #555;
+            border-top: 1px solid #ececec;
+        }
+
+        .stripe-pill {
+            background: #e7f0fe;
+            color: #0a3d62;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
+        /* ========== TICKET DETAIL ========== */
+        .td-header {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-top: 6px;
+        }
+
+        .td-counter {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .td-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .td-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #c5c5cc;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+
+        .td-dot.active {
+            background: #111;
+            transform: scale(1.15);
+        }
+
+        /* The actual ticket card matching the reference image */
+        .td-ticket {
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 22px 22px;
+            box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.18);
+            position: relative;
+        }
+
+        .td-ticket-num {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f1f1f3;
+            color: #222;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .td-fifa-badge {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .td-fifa-badge-inner {
+            background: #000;
+            color: #fff;
+            border-radius: 999px;
+            padding: 14px 30px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.05;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 0.8px;
+        }
+
+        .td-fifa-badge-row-big {
+            font-size: 17px;
+            letter-spacing: 1.5px;
+            padding: 2px 0 1px;
+        }
+
+        .td-fifa-badge-tm {
+            font-size: 8px;
+            position: relative;
+            top: -3px;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+
+        .td-match-title {
+            font-size: 27px;
+            font-weight: 800;
+            color: #111;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            padding: 0 6px;
+        }
+
+        .td-match-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .td-match-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .td-match-meta-row svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+        }
+
+        .td-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .td-grid.cols-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .td-grid-cell {
+            background: #f1f1f3;
+            border-radius: 10px;
+            padding: 14px 12px 12px;
+            text-align: center;
+        }
+
+        .td-grid-cell-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: #555;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .td-grid-cell-label-es {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .td-grid-cell-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: #111;
+            line-height: 1.05;
+        }
+
+        .td-overflow-btn {
+            position: absolute;
+            right: 22px;
+            bottom: 110px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #111;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .td-overflow-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: #fff;
+        }
+
+        .td-ticket-divider {
+            border-top: 1px dashed #ccc;
+            margin-top: 18px;
+            padding-top: 14px;
+            text-align: center;
+        }
+
+        .td-ticket-holder-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .td-ticket-holder-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 0.5px;
+        }
+
+        .td-ticket-holder-name .star {
+            color: #aaa;
+            margin: 0 6px;
+        }
+
+        /* Bottom actions */
+        .td-actions {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .td-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #000;
+            color: #fff;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .td-action-btn.secondary {
+            background: #fff;
+            color: #111;
+            border: 1.5px solid #d6d6d8;
+        }
+
+        .td-action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* QR overlay */
+        .qr-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 24px;
+        }
+
+        .qr-overlay.open {
+            display: flex;
+        }
+
+        .qr-card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 26px 22px 22px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+        }
+
+        .qr-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 22px;
+            color: #777;
+            line-height: 1;
+            padding: 4px 8px;
+        }
+
+        .qr-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #111;
+        }
+
+        .qr-card p.qr-sub {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .qr-canvas {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 14px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            display: block;
+        }
+
+        .qr-timer {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .qr-warn {
+            font-size: 11px;
+            color: #a00;
+            line-height: 1.4;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 380px) {
+            .td-match-title {
+                font-size: 23px;
+            }
+
+            .td-grid-cell-value {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top bar -->
+    <header class="topbar">
+        <div class="topbar-inner" id="topbarInner"></div>
+    </header>
+
+    <main id="app" class="app"></main>
+
+    <!-- QR overlay -->
+    <div class="qr-overlay" id="qrOverlay" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+        <div class="qr-card">
+            <button class="qr-close" onclick="closeQr()" aria-label="Cerrar">&times;</button>
+            <h3 id="qrTitle">C&oacute;digo de acceso</h3>
+            <p class="qr-sub" id="qrSub">Boleto 1 de 2 &middot; Secci&oacute;n 605</p>
+            <canvas class="qr-canvas" id="qrCanvas" width="220" height="220"></canvas>
+            <p class="qr-timer">Actualiza en: <span id="qrTimer">2:00</span></p>
+            <p class="qr-warn">Las capturas de pantalla no permiten el ingreso al estadio.</p>
+        </div>
+    </div>
+
+    <script>
+        // ========== DATA ==========
+        const matchInfo = {
+            code: 'M1',
+            home: 'Mexico',
+            away: 'South Africa',
+            dateISO: '2026-06-11',
+            dateLabel: '11 JUN 26',
+            dateLong: 'Jueves 11 de junio, 2026',
+            time: '01:00 P. M.',
+            timeShort: '13:00',
+            venue: 'Mexico City Stadium',
+            venueLong: 'Estadio Azteca, Ciudad de México',
+            stage: 'Partido inaugural',
+            category: 'CAT 4',
+        };
+
+        const profile = {
+            name: 'Francisca Manzanares',
+            holderLabel: 'HC Francisca Manzanares',
+            order: 'WC26-228401',
+        };
+
+        const tickets = [
+            { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '12' },
+            { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '13' },
+        ];
+
+        // ========== ROUTER ==========
+        const appEl = document.getElementById('app');
+        const topbarInnerEl = document.getElementById('topbarInner');
+
+        function router() {
+            const hash = window.location.hash || '#/';
+            if (hash.startsWith('#/ticket')) {
+                renderTicketDetail();
+            } else {
+                renderAccount();
+            }
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        window.addEventListener('DOMContentLoaded', router);
+        window.addEventListener('hashchange', router);
+
+        // ========== ICONS ==========
+        const iconCalendar = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/><path d="M5 22h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2zM5 9h14v11H5z"/></svg>';
+        const iconLocation = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>';
+        const iconBack = '<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>';
+        const iconQr = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13-2h2v2h-2zm2 2h2v2h-2zm-2 2h2v2h-2zm-2-2h2v2h-2zm2-2v2h-2v-2h-2v4h6v-4zm0 4h2v4h-2zm-4 0h2v2h-2zm2 2h2v2h-2zm-2 0v2h-2v-2z"/></svg>';
+        const iconShare = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>';
+        const iconBurger = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+
+        // FIFA badge HTML for topbar
+        function fifaMarkSmall() {
+            return '<div class="fifa-mark" aria-label="FIFA World Cup 2026">'
+                + '<span>FIFA</span>'
+                + '<span class="row-mid">WORLD CUP</span>'
+                + '<span>2026</span>'
+                + '</div>';
+        }
+
+        // ========== ACCOUNT VIEW (Mis boletos) ==========
+        function renderAccount() {
+            document.title = 'FIFA World Cup 2026 | Mis boletos';
+
+            topbarInnerEl.innerHTML = `
+                <a href="index.html" class="topbar-back" aria-label="Volver al selector">${iconBurger}</a>
+                ${fifaMarkSmall()}
+                <span class="topbar-spacer"></span>
+            `;
+
+            appEl.innerHTML = `
+                <div class="account-greeting">
+                    <p class="greeting-eyebrow">Mi cuenta</p>
+                    <h1 class="greeting-name">Hola, ${profile.name.split(' ')[0]}</h1>
+                </div>
+
+                <h2 class="account-section-title">Mis boletos</h2>
+
+                <a class="match-card" href="#/ticket" aria-label="Abrir boletos del partido ${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}">
+                    <div class="match-card-banner">
+                        <div class="match-card-badge">
+                            <div class="match-card-badge-logo">
+                                <span>FIFA</span>
+                                <span class="row-mid">WORLD CUP</span>
+                                <span>2026</span>
+                            </div>
+                            <span class="match-card-badge-label">${matchInfo.stage}</span>
+                        </div>
+                        <p class="match-card-vs">${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}</p>
+                        <p class="match-card-meta">${matchInfo.dateLong} &middot; ${matchInfo.time}</p>
+                    </div>
+                    <div class="match-card-info">
+                        <div class="match-card-info-left">
+                            <div class="match-card-info-row">${iconCalendar}<span>${matchInfo.dateLabel}, ${matchInfo.time}</span></div>
+                            <div class="match-card-info-row">${iconLocation}<span>${matchInfo.venue}</span></div>
+                        </div>
+                        <span class="match-card-cta">Ver boletos &rarr;</span>
+                    </div>
+                    <div class="match-card-stripe">
+                        <span>${tickets.length} boletos &middot; ${matchInfo.category}</span>
+                        <span class="stripe-pill">Secci&oacute;n ${tickets[0].section}</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        // ========== TICKET DETAIL ==========
+        let currentTicketIdx = 0;
+
+        function renderTicketDetail() {
+            document.title = `${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away} | FIFA World Cup 2026`;
+
+            topbarInnerEl.innerHTML = `
+                <a href="#/" class="topbar-back" aria-label="Volver a mis boletos">${iconBack}</a>
+                <span class="topbar-title">Mis boletos</span>
+                <span class="topbar-spacer"></span>
+            `;
+
+            appEl.innerHTML = `
+                <div class="td-header">
+                    <p class="td-counter" id="tdCounter">Boleto ${currentTicketIdx + 1} de ${tickets.length}</p>
+                    <div class="td-dots" id="tdDots">
+                        ${tickets.map((_, i) => `<span class="td-dot ${i === currentTicketIdx ? 'active' : ''}" data-idx="${i}"></span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="td-ticket" id="tdTicket">
+                    ${renderTicketCard(tickets[currentTicketIdx], currentTicketIdx)}
+                </div>
+
+                <div class="td-actions">
+                    <button class="td-action-btn" onclick="openQr()">${iconQr} Mostrar c&oacute;digo de acceso</button>
+                    <button class="td-action-btn secondary" onclick="cycleTicket(1)">Siguiente boleto &rarr;</button>
+                </div>
+            `;
+
+            // Bind dot navigation
+            const dotsEl = document.getElementById('tdDots');
+            if (dotsEl) {
+                dotsEl.querySelectorAll('.td-dot').forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const idx = parseInt(dot.dataset.idx, 10);
+                        if (!isNaN(idx)) goToTicket(idx);
+                    });
+                });
+            }
+        }
+
+        function renderTicketCard(t, idx) {
+            return `
+                <span class="td-ticket-num">${idx + 1}</span>
+                <div class="td-fifa-badge">
+                    <div class="td-fifa-badge-inner">
+                        <span>FIFA</span>
+                        <span class="td-fifa-badge-row-big">WORLD CUP</span>
+                        <span>2026<span class="td-fifa-badge-tm">TM</span></span>
+                    </div>
+                </div>
+
+                <h1 class="td-match-title">${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}</h1>
+
+                <div class="td-match-meta">
+                    <div class="td-match-meta-row">${iconCalendar}<span>${matchInfo.dateLabel}, ${matchInfo.time}</span></div>
+                    <div class="td-match-meta-row">${iconLocation}<span>${matchInfo.venue}</span></div>
+                </div>
+
+                <div class="td-grid">
+                    <div class="td-grid-cell">
+                        <div class="td-grid-cell-label">ENTRANCE<span class="td-grid-cell-label-es">Ingreso</span></div>
+                        <div class="td-grid-cell-value">${t.entrance}</div>
+                    </div>
+                    <div class="td-grid-cell">
+                        <div class="td-grid-cell-label">TUNNEL/RAMP<span class="td-grid-cell-label-es">T&uacute;nel/Rampa</span></div>
+                        <div class="td-grid-cell-value">${t.tunnel}</div>
+                    </div>
+                </div>
+
+                <div class="td-grid cols-3">
+                    <div class="td-grid-cell">
+                        <div class="td-grid-cell-label">SECTION<span class="td-grid-cell-label-es">Secci&oacute;n</span></div>
+                        <div class="td-grid-cell-value">${t.section}</div>
+                    </div>
+                    <div class="td-grid-cell">
+                        <div class="td-grid-cell-label">ROW<span class="td-grid-cell-label-es">Fila</span></div>
+                        <div class="td-grid-cell-value">${t.row}</div>
+                    </div>
+                    <div class="td-grid-cell">
+                        <div class="td-grid-cell-label">SEAT<span class="td-grid-cell-label-es">Asiento</span></div>
+                        <div class="td-grid-cell-value">${t.seat}</div>
+                    </div>
+                </div>
+
+                <div class="td-ticket-divider">
+                    <p class="td-ticket-holder-label">TITULAR</p>
+                    <p class="td-ticket-holder-name"><span class="star">*</span>${profile.holderLabel}<span class="star">*</span></p>
+                </div>
+            `;
+        }
+
+        function goToTicket(idx) {
+            if (idx < 0 || idx >= tickets.length) return;
+            currentTicketIdx = idx;
+            const ticketEl = document.getElementById('tdTicket');
+            const counterEl = document.getElementById('tdCounter');
+            if (ticketEl) ticketEl.innerHTML = renderTicketCard(tickets[idx], idx);
+            if (counterEl) counterEl.textContent = `Boleto ${idx + 1} de ${tickets.length}`;
+            document.querySelectorAll('.td-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === idx);
+            });
+        }
+
+        function cycleTicket(dir) {
+            const next = (currentTicketIdx + dir + tickets.length) % tickets.length;
+            goToTicket(next);
+        }
+
+        // ========== QR OVERLAY ==========
+        let qrInterval = null;
+        let qrSecondsLeft = 120;
+
+        function openQr() {
+            const overlay = document.getElementById('qrOverlay');
+            const sub = document.getElementById('qrSub');
+            const t = tickets[currentTicketIdx];
+            if (sub) sub.textContent = `Boleto ${currentTicketIdx + 1} de ${tickets.length} · Sección ${t.section} · Asiento ${t.seat}`;
+            if (overlay) overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            qrSecondsLeft = 120;
+            const timerEl = document.getElementById('qrTimer');
+            if (timerEl) timerEl.textContent = '2:00';
+            drawQr();
+            startQrTimer();
+        }
+
+        function closeQr() {
+            const overlay = document.getElementById('qrOverlay');
+            if (overlay) overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            stopQrTimer();
+        }
+
+        function startQrTimer() {
+            stopQrTimer();
+            qrInterval = setInterval(() => {
+                qrSecondsLeft--;
+                if (qrSecondsLeft <= 0) {
+                    qrSecondsLeft = 120;
+                    drawQr();
+                }
+                const timerEl = document.getElementById('qrTimer');
+                if (timerEl) {
+                    const m = Math.floor(qrSecondsLeft / 60);
+                    const s = qrSecondsLeft % 60;
+                    timerEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+                }
+            }, 1000);
+        }
+
+        function stopQrTimer() {
+            if (qrInterval) {
+                clearInterval(qrInterval);
+                qrInterval = null;
+            }
+        }
+
+        // Fake QR pattern (visually convincing — not a real scannable code)
+        function drawQr() {
+            const canvas = document.getElementById('qrCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, W, H);
+
+            const modules = 25;
+            const cell = Math.floor(W / modules);
+            const offset = Math.floor((W - cell * modules) / 2);
+
+            // Seeded RNG
+            let s = (Date.now() ^ currentTicketIdx * 999983) >>> 0;
+            const rand = () => {
+                s ^= s << 13; s ^= s >>> 17; s ^= s << 5;
+                return (s >>> 0) / 4294967296;
+            };
+
+            // Random pattern body
+            ctx.fillStyle = '#111';
+            for (let r = 0; r < modules; r++) {
+                for (let c = 0; c < modules; c++) {
+                    if (rand() < 0.48) {
+                        ctx.fillRect(offset + c * cell, offset + r * cell, cell, cell);
+                    }
+                }
+            }
+
+            // Three position-detection finders (top-left, top-right, bottom-left)
+            const finders = [[0, 0], [0, modules - 7], [modules - 7, 0]];
+            finders.forEach(([r0, c0]) => {
+                // Clear background
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(offset + c0 * cell, offset + r0 * cell, 7 * cell, 7 * cell);
+                // Outer black square
+                ctx.fillStyle = '#111';
+                ctx.fillRect(offset + c0 * cell, offset + r0 * cell, 7 * cell, 7 * cell);
+                // Inner white
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(offset + (c0 + 1) * cell, offset + (r0 + 1) * cell, 5 * cell, 5 * cell);
+                // Inner black
+                ctx.fillStyle = '#111';
+                ctx.fillRect(offset + (c0 + 2) * cell, offset + (r0 + 2) * cell, 3 * cell, 3 * cell);
+            });
+        }
+
+        // Close on overlay backdrop click
+        document.addEventListener('click', (e) => {
+            const overlay = document.getElementById('qrOverlay');
+            if (overlay && overlay.classList.contains('open') && e.target === overlay) {
+                closeQr();
+            }
+        });
+    </script>
+</body>
+</html>
