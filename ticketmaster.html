@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boletos para Pumas v. Cruz Azul | Final Vuelta Torneo Clausura 2026 | Ticketmaster MX</title>
+    <title>Boletos para Harry Styles | Together, Together Tour 2026 | Ticketmaster MX</title>
     <style>
         /* ========== RESET & BASE ========== */
         
@@ -1489,7 +1489,7 @@
         /* Hero header */
         
         .tdp-header {
-            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
+            background: url('harry-styles-cover.jpg') center 30% / cover no-repeat;
             position: relative;
             overflow: hidden;
             padding: 20px 24px 0;
@@ -2252,7 +2252,7 @@
         .eip-hero {
             border-radius: 12px;
             overflow: hidden;
-            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
+            background: url('harry-styles-cover.jpg') center 30% / cover no-repeat;
             position: relative;
             height: 220px;
             margin-bottom: 24px;
@@ -2485,7 +2485,7 @@
         }
         
         .tfp-header {
-            background: url('pumas-fc.jpg') center 30% / cover no-repeat;
+            background: url('harry-styles-cover.jpg') center 30% / cover no-repeat;
             padding: 24px 32px 0;
             position: relative;
             overflow: hidden;
@@ -4353,14 +4353,14 @@
         const events = [
             {
                 id: 1,
-                date: '2026-05-24',
-                month: 'may',
-                dayNum: '24',
-                day: 'dom',
-                time: '7:00 p.m.',
+                date: '2026-08-08',
+                month: 'ago',
+                dayNum: '08',
+                day: 's\u00e1b',
+                time: '9:00 p.m.',
                 city: 'Ciudad de M\u00e9xico, CDMX',
-                venue: 'Estadio Ol\u00edmpico Universitario',
-                title: 'Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026',
+                venue: 'Estadio GNP Seguros',
+                title: 'Harry Styles: Together, Together',
                 available: true,
                 country: 'mx',
                 region: 'mexico'
@@ -4371,10 +4371,10 @@
         const userTickets = [{
             id: 1,
             year: 2026,
-            title: 'Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026',
-            date: 'dom \u00b7 24 may 2026',
-            venue: 'Estadio Ol\u00edmpico Universitario',
-            order: 'Compra #45-28401/MX'
+            title: 'Harry Styles: Together, Together',
+            date: 's\u00e1b \u00b7 8 ago 2026',
+            venue: 'Estadio GNP Seguros',
+            order: 'Compra #08-280826/MXC'
         }];
 
         // ========== SVG ICON HELPERS ==========
@@ -4426,13 +4426,13 @@
     <div class="profile-picker">
       <div class="pp-logo">${tmWordmark}</div>
       <h1 class="pp-heading">\u00bfQui\u00e9n eres?</h1>
-      <p class="pp-sub">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 &bull; dom 24 may 2026 &bull; Estadio Ol&iacute;mpico Universitario</p>
+      <p class="pp-sub">Harry Styles: Together, Together &bull; s\u00e1b 8 ago 2026 &bull; Estadio Ol&iacute;mpico Universitario</p>
       <div class="pp-buttons">
         <button class="pp-button" onclick="selectProfile('francisca')" aria-label="Entrar como Francisca Manzanares">
           <div class="pp-avatar">${profiles.francisca.initial}</div>
           <div>
             <div class="pp-button-name">${profiles.francisca.name}</div>
-            <div class="pp-button-meta">${profiles.francisca.tickets.length} boletos &bull; Palomar Goya y Planta Baja General</div>
+            <div class="pp-button-meta">${profiles.francisca.tickets.length} boletos &bull; Acceso General GRAL-C</div>
           </div>
         </button>
       </div>
@@ -4475,7 +4475,7 @@
 
         // ========== HOME VIEW ==========
         function renderHome() {
-            document.title = 'Boletos para Pumas v. Cruz Azul | Final Vuelta Torneo Clausura 2026 | Ticketmaster MX';
+            document.title = 'Boletos para Harry Styles | Together, Together Tour 2026 | Ticketmaster MX';
             const mexicoEvents = events.filter(e => e.region === 'mexico');
             const intlEvents = events.filter(e => e.region === 'international');
             const totalEvents = events.length;
@@ -4494,13 +4494,13 @@
               <li><span class="sep">${icons.chevronRight}</span></li>
               <li><a href="#/">K-Pop</a></li>
               <li><span class="sep">${icons.chevronRight}</span></li>
-              <li><span class="current">Boletos para Pumas v. Cruz Azul</span></li>
+              <li><span class="current">Boletos para Harry Styles</span></li>
             </ol>
           </nav>
           <p class="hero-label">K-Pop</p>
-          <h1 class="hero-title">Boletos para Pumas v. Cruz Azul</h1>
+          <h1 class="hero-title">Boletos para Harry Styles</h1>
           <div class="hero-actions">
-            <button class="hero-fav-btn" aria-label="Guardar Pumas en favoritos">
+            <button class="hero-fav-btn" aria-label="Guardar Harry Styles en favoritos">
               ${icons.heart}
               <span>Favorito</span>
             </button>
@@ -4596,11 +4596,20 @@
             document.title = `${e.title} | Ticketmaster MX`;
 
             const priceRanges = e.available ? [{
-                section: 'Planta Baja General',
-                price: '$650 MXN'
+                section: 'General GRAL-C',
+                price: '$1,890 MXN'
             }, {
-                section: 'Palomar Goya',
-                price: '$800 MXN'
+                section: 'General GRAL-A/B',
+                price: '$2,490 MXN'
+            }, {
+                section: 'Cancha',
+                price: '$3,890 MXN'
+            }, {
+                section: 'Platea Numerada',
+                price: '$5,490 MXN'
+            }, {
+                section: 'Cancha VIP',
+                price: '$8,900 MXN'
             }, ] : [];
 
             mainEl.innerHTML = `
@@ -4668,9 +4677,9 @@
 
           <div class="detail-card">
             <h2>Acerca del evento</h2>
-            <p>Aficionado auriazul adquiere tus boletos y apoya al equipo en este vibrante encuentro en compa\u00f1\u00eda de tus familiares y amigos.</p>
+            <p>Harry Styles regresa a M\u00e9xico con su nueva gira mundial <strong>Together, Together</strong>, una noche en vivo con su producci\u00f3n m\u00e1s ambiciosa hasta la fecha y un set list que repasa todas sus eras.</p>
             <br>
-            <p>Final Vuelta del Torneo Clausura 2026. Acceso al Estadio Ol\u00edmpico Universitario y al partido en vivo seg\u00fan la zona seleccionada.</p>
+            <p>El acceso incluye entrada al Estadio GNP Seguros y al espect\u00e1culo en vivo seg\u00fan la zona seleccionada.</p>
           </div>
 
           <div class="detail-card">
@@ -4807,14 +4816,14 @@ const profiles = {
     id: 'francisca',
     name: 'Francisca Manzanares',
     initial: 'F',
-    order: '#45-28401/MX',
+    order: '#08-280826/MXC',
     saleType: 'VENTA GENERAL',
     saleTypeShort: 'Venta general',
     tickets: [
-      { zone: 'PLANTA BAJA GENERAL', isGeneral: true },
-      { zone: 'PLANTA BAJA GENERAL', isGeneral: true },
-      { zone: 'PALOMAR GOYA', section: 'PG-2', row: 'H', seat: '14' },
-      { zone: 'PALOMAR GOYA', section: 'PG-2', row: 'H', seat: '15' },
+      { zone: 'GRAL-C', isGeneral: true },
+      { zone: 'GRAL-C', isGeneral: true },
+      { zone: 'GRAL-C', isGeneral: true },
+      { zone: 'GRAL-C', isGeneral: true },
     ],
   },
 };
@@ -4858,7 +4867,7 @@ let barcodeSecondsLeft = 120;
 let _transferState = null; // reset on every page reload
 
 function renderTicketDetail(id) {
-  document.title = "Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 | Mis boletos | Ticketmaster MX";
+  document.title = "Harry Styles: Together, Together | Mis boletos | Ticketmaster MX";
 
   const iconPhone = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M15.5 1h-8C6.1 1 5 2.1 5 3.5v17C5 21.9 6.1 23 7.5 23h8c1.4 0 2.5-1.1 2.5-2.5v-17C18 2.1 16.9 1 15.5 1zm-4 21c-.8 0-1.5-.7-1.5-1.5S10.7 19 11.5 19s1.5.7 1.5 1.5S12.3 22 11.5 22zm4.5-4H7V4h9v14z"/></svg>';
   const iconBarcode = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1 23h3V1H1zm4 0h1V1H5zm2 0h2V1H7zm3 0h1V1h-1zm2 0h1V1h-1zm2 0h3V1h-3zm4 0h1V1h-1zm2 0h2V1h-2z"/></svg>';
@@ -4907,10 +4916,10 @@ function renderTicketDetail(id) {
     <div class="tvc-wrap">
       <div class="tvc-hero">
         <div class="tvc-hero-panel">
-          <p class="tvc-hero-date">DOM &bull; 24 MAY, 2026 &bull; 7:00 P. M.</p>
-          <h3 class="tvc-hero-title">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h3>
+          <p class="tvc-hero-date">S&Aacute;B &bull; 8 AGO, 2026 &bull; 9:00 P. M.</p>
+          <h3 class="tvc-hero-title">Harry Styles: Together, Together</h3>
           <div class="tvc-hero-venue-row">
-            <span class="tvc-hero-venue">Estadio Olímpico Universitario, Ciudad de M&eacute;xico, CDMX</span>
+            <span class="tvc-hero-venue">Estadio GNP Seguros, Ciudad de M&eacute;xico, CDMX</span>
             <span class="tvc-hero-stub" aria-hidden="true">${iconTicketStub}</span>
             <span class="tvc-hero-count" aria-label="${remainingTickets.length} boletos"><span class="tvc-x">x</span>${remainingTickets.length}</span>
           </div>
@@ -4970,17 +4979,17 @@ function renderTicketDetail(id) {
             <span class="bc-sep">/</span>
             <a href="#/account">Mis Boletos</a>
             <span class="bc-sep">/</span>
-            <span class="bc-current">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</span>
+            <span class="bc-current">Harry Styles: Together, Together</span>
           </nav>
           <div class="tdp-event-row">
             <div class="tdp-date-badge">
-              <span class="db-month">MAY</span>
-              <span class="db-day">24</span>
+              <span class="db-month">AGO</span>
+              <span class="db-day">8</span>
             </div>
             <div class="tdp-event-info">
-              <p class="ei-daytime">DOM &middot; 7:00 P.M.</p>
-              <h1 class="ei-name">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h1>
-              <p class="ei-venue">Estadio Olímpico Universitario &ndash; Ciudad de M\u00e9xico, CDMX</p>
+              <p class="ei-daytime">S&Aacute;B &middot; 9:00 P.M.</p>
+              <h1 class="ei-name">Harry Styles: Together, Together</h1>
+              <p class="ei-venue">Estadio GNP Seguros &ndash; Ciudad de M\u00e9xico, CDMX</p>
               <div class="tdp-share">
                 <span class="tdp-share-label">Comparte que vas a ir</span>
                 <button class="tdp-share-icon" aria-label="Compartir por WhatsApp">
@@ -5052,8 +5061,8 @@ function renderTicketDetail(id) {
             <div class="eip-hero-overlay"></div>
             <div class="eip-hero-text">
               <span class="eip-tag">K-Pop &bull; World Tour</span>
-              <h2>Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h2>
-              <p>Estadio Olímpico Universitario &mdash; Ciudad de M\u00e9xico, CDMX</p>
+              <h2>Harry Styles: Together, Together</h2>
+              <p>Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</p>
             </div>
           </div>
 
@@ -5061,12 +5070,12 @@ function renderTicketDetail(id) {
           <div class="eip-grid">
             <div class="eip-card">
               <div class="eip-card-label">Fecha</div>
-              <div class="eip-card-value">Domingo 24 de mayo, 2026</div>
-              <div class="eip-card-sub">7:00 p.m. &bull; Puertas: 5:30 p.m.</div>
+              <div class="eip-card-value">S\u00e1bado 8 de agosto, 2026</div>
+              <div class="eip-card-sub">9:00 p.m. &bull; Puertas: 9:00 p.m.</div>
             </div>
             <div class="eip-card">
               <div class="eip-card-label">Recinto</div>
-              <div class="eip-card-value">Estadio Olímpico Universitario</div>
+              <div class="eip-card-value">Estadio GNP Seguros</div>
               <div class="eip-card-sub">Ciudad de M\u00e9xico, CDMX</div>
             </div>
             <div class="eip-card">
@@ -5085,43 +5094,36 @@ function renderTicketDetail(id) {
               <div class="eip-card-sub">Incluye intervalo</div>
             </div>
             <div class="eip-card">
-              <div class="eip-card-label">Organiza</div>
-              <div class="eip-card-value">Club Universidad Nacional</div>
-              <div class="eip-card-sub">Liga MX &bull; pumas.mx</div>
+              <div class="eip-card-label">Productora</div>
+              <div class="eip-card-value">OCESA</div>
+              <div class="eip-card-sub">Live Nation &bull; harrystyles.com</div>
             </div>
           </div>
 
           <!-- Descripción -->
           <div class="eip-desc-card">
-            <h3>Información del evento</h3>
-            <p>Aficionado auriazul adquiere tus boletos y apoya al equipo en este vibrante encuentro en compañía de tus familiares y amigos.</p>
-            <p>La <strong>Final Vuelta del Torneo Clausura 2026</strong> entre Pumas y Cruz Azul se jugará en el histórico <strong>Estadio Olímpico Universitario</strong>, sede del equipo auriazul desde 1962.</p>
-            <p>Duración aproximada del partido: 2 horas. Apertura de puertas 90 minutos antes del inicio.</p>
+            <h3>Sobre el concierto</h3>
+            <p>Después de tres años de espera, Harry Styles aterriza en Ciudad de México con <strong>Together, Together</strong>, su tercera gira mundial.</p>
+            <p>La noche del <strong>sábado 8 de agosto</strong> en el <strong>Estadio GNP Seguros</strong> incluirá un set list que repasa <em>Harry's House</em>, <em>Fine Line</em> y <em>Harry Styles</em>, además de adelantos de su próximo material.</p>
+            <p>Duración aproximada del concierto: 2 horas 15 min. Apertura de puertas 2 horas antes del inicio.</p>
           </div>
 
           <!-- Cartel -->
           <div class="eip-members">
-            <h3>Cartel</h3>
+            <h3>Artista</h3>
             <div class="eip-members-grid">
               <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#0c1e3f">PUM</div>
+                <div class="eip-member-avatar" style="background:#e8a33d">HS</div>
                 <div>
-                  <div class="eip-member-name">Pumas UNAM</div>
-                  <div class="eip-member-role">Local &bull; Auriazul</div>
-                </div>
-              </div>
-              <div class="eip-member-pill">
-                <div class="eip-member-avatar" style="background:#1248a3">CAZ</div>
-                <div>
-                  <div class="eip-member-name">Cruz Azul</div>
-                  <div class="eip-member-role">Visitante &bull; La Máquina</div>
+                  <div class="eip-member-name">Harry Styles</div>
+                  <div class="eip-member-role">Pop &bull; Together, Together Tour</div>
                 </div>
               </div>
             </div>
           <!-- Aviso importante -->
           <div class="eip-notice">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFB932"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            <p><strong>Informaci\u00f3n importante:</strong> Pagan boleto a partir de 3 a\u00f1os; sin l\u00edmite de edad. No se permite el ingreso de bufandas, cinturones, envases de vidrio o pl\u00e1stico, aerosoles, maquillaje, bengalas, cigarros, carriolas, papel picado o rollos de papel, banderas, l\u00e1ser, armas, mascotas, sombrillas, alimentos y bebidas. L\u00edmite de 4 boletos por comprador. Servicios: venta de alimentos y bebidas. Duraci\u00f3n aproximada 2 horas. P\u00e1gina oficial: www.pumas.mx.</p>
+            <p><strong>Informaci\u00f3n importante:</strong> Evento apto para todas las edades. Menores de 12 a\u00f1os deben ingresar acompa\u00f1ados de un adulto. No se permite el ingreso con c\u00e1maras profesionales, grabaciones de audio/video, objetos punzocortantes, envases de vidrio o aluminio, bengalas, l\u00e1ser, armas, ni mascotas. L\u00edmite de 4 boletos por comprador. Servicios: venta de alimentos y bebidas. Duraci\u00f3n aproximada 2 horas 15 min. El set list y la duraci\u00f3n pueden estar sujetos a cambios sin previo aviso. Sitio oficial: harrystyles.com.</p>
           </div>
 
         </div>
@@ -5131,7 +5133,7 @@ function renderTicketDetail(id) {
       <div class="tdp-panel" id="tdp-panel-inmueble" role="tabpanel">
         <div class="ei-panel">
           <div class="eip-desc-card">
-            <h3>Estadio Olímpico Universitario</h3>
+            <h3>Estadio GNP Seguros</h3>
             <p>Av. Insurgentes Sur 3695, La Joya, Tlalpan, 14090 Ciudad de M\u00e9xico, CDMX.</p>
             <p>Capacidad: 87,000 espectadores. El recinto cuenta con accesos para personas con discapacidad, estacionamiento, sanitarios en todos los niveles y puestos de alimentos y bebidas distribuidos por todo el estadio.</p>
           </div>
@@ -5152,7 +5154,7 @@ function renderTicketDetail(id) {
         <button class="bm-help" onclick="return false">Ayuda</button>
       </div>
       <div class="bm-subheader">
-        Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026 &bull; dom, may 24, 2026 &bull; 7:00 p.m. &bull; Estadio Olímpico Universitario
+        Harry Styles: Together, Together &bull; s\u00e1b, ago 8, 2026 &bull; 9:00 p.m. &bull; Estadio GNP Seguros
       </div>
       <div class="bm-nav">
         <button class="bm-nav-arrow" id="bmPrev" onclick="changeBarcodeTicket(-1)" aria-label="Boleto anterior">&#8249;</button>
@@ -5489,11 +5491,11 @@ function renderTransfer() {
       </div>
       <!-- Event strip -->
       <div class="tsm-event-strip">
-        <div class="tsm-ev-day-num">24</div>
+        <div class="tsm-ev-day-num">8</div>
         <div class="tsm-ev-info">
-          <div class="tsm-ev-meta">MAY &nbsp; dom &middot; 7:00 P.M.</div>
-          <div class="tsm-ev-title">Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</div>
-          <div class="tsm-ev-venue">Estadio Olímpico Universitario &middot; Ciudad de M\u00e9xico, CDMX</div>
+          <div class="tsm-ev-meta">AGO &nbsp; s&aacute;b &middot; 9:00 P.M.</div>
+          <div class="tsm-ev-title">Harry Styles: Together, Together</div>
+          <div class="tsm-ev-venue">Estadio GNP Seguros &middot; Ciudad de M\u00e9xico, CDMX</div>
         </div>
       </div>
       <!-- Body -->
@@ -5757,14 +5759,14 @@ function renderTransferError() {
                 </span>
               </div>
               <div class="transfer-ticket-body">
-                <h3>Pumas v. Cruz Azul Final Vuelta Torneo Clausura 2026</h3>
+                <h3>Harry Styles: Together, Together</h3>
                 <div class="transfer-info-row">
                   ${icons.calendar}
-                  <span>dom &middot; 24 may 2026 &mdash; 7:00 p.m.</span>
+                  <span>s\u00e1b &middot; 8 ago 2026 &mdash; 9:00 p.m.</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.location}
-                  <span>Estadio Olímpico Universitario &mdash; Ciudad de M\u00e9xico, CDMX</span>
+                  <span>Estadio GNP Seguros &mdash; Ciudad de M\u00e9xico, CDMX</span>
                 </div>
                 <div class="transfer-info-row">
                   ${icons.tickets}
