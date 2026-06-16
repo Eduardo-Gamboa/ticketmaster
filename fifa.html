@@ -135,6 +135,13 @@
             color: #111;
         }
 
+        /* ========== MATCH CARD LIST ========== */
+        .match-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         /* ========== MATCH CARD ========== */
         .match-card {
             display: block;
@@ -627,31 +634,75 @@
 
     <script>
         // ========== DATA ==========
-        const matchInfo = {
-            code: 'M1',
-            home: 'Mexico',
-            away: 'South Africa',
-            dateISO: '2026-06-11',
-            dateLabel: '11 JUN 26',
-            dateLong: 'Jueves 11 de junio, 2026',
-            time: '01:00 P. M.',
-            timeShort: '13:00',
-            venue: 'Mexico City Stadium',
-            venueLong: 'Estadio Azteca, Ciudad de México',
-            stage: 'Partido inaugural',
-            category: 'CAT 4',
-        };
-
         const profile = {
             name: 'Francisca Manzanares',
             holderLabel: 'HC Francisca Manzanares',
             order: 'WC26-228401',
         };
 
-        const tickets = [
-            { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '12' },
-            { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '13' },
+        const matches = [
+            {
+                id: 'm1',
+                code: 'M1',
+                home: 'Mexico',
+                away: 'South Africa',
+                dateISO: '2026-06-11',
+                dateLabel: '11 JUN 26',
+                dateLong: 'Jueves 11 de junio, 2026',
+                time: '01:00 P. M.',
+                venue: 'Mexico City Stadium',
+                venueLong: 'Estadio Azteca, Ciudad de México',
+                stage: 'Partido inaugural',
+                category: 'CAT 4',
+                gradient: 'linear-gradient(135deg, #0a3d62 0%, #aa1c35 100%)',
+                tickets: [
+                    { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '12' },
+                    { entrance: 'B', tunnel: 'Ramp 3', section: '605', row: '7', seat: '13' },
+                ],
+            },
+            {
+                id: 'm24',
+                code: 'M24',
+                home: 'Colombia',
+                away: 'Uzbekistan',
+                dateISO: '2026-06-17',
+                dateLabel: '17 JUN 26',
+                dateLong: 'Miércoles 17 de junio, 2026',
+                time: '08:00 P. M.',
+                venue: 'Mexico City Stadium',
+                venueLong: 'Estadio Azteca, Ciudad de México',
+                stage: 'Fase de grupos · Grupo K',
+                category: 'CAT 1',
+                gradient: 'linear-gradient(135deg, #0b6e4f 0%, #f0c419 100%)',
+                tickets: [
+                    { entrance: 'C', tunnel: 'Ramp 1', section: '139', row: '7', seat: '12' },
+                    { entrance: 'C', tunnel: 'Ramp 1', section: '139', row: '7', seat: '13' },
+                ],
+            },
+            {
+                id: 'm28',
+                code: 'M28',
+                home: 'Mexico',
+                away: 'South Korea',
+                dateISO: '2026-06-18',
+                dateLabel: '18 JUN 26',
+                dateLong: 'Jueves 18 de junio, 2026',
+                time: '07:00 P. M.',
+                venue: 'Estadio Akron',
+                venueLong: 'Estadio Akron, Zapopan, Jalisco',
+                stage: 'Fase de grupos · Grupo A',
+                category: 'CAT 2',
+                gradient: 'linear-gradient(135deg, #006847 0%, #ce1126 100%)',
+                tickets: [
+                    { entrance: 'A', tunnel: 'Ramp 7', section: 'T2-26', row: 'L', seat: '4' },
+                    { entrance: 'A', tunnel: 'Ramp 7', section: 'T2-26', row: 'L', seat: '5' },
+                ],
+            },
         ];
+
+        function getMatchById(id) {
+            return matches.find(m => m.id === id) || null;
+        }
 
         // ========== ROUTER ==========
         const appEl = document.getElementById('app');
@@ -659,11 +710,18 @@
 
         function router() {
             const hash = window.location.hash || '#/';
-            if (hash.startsWith('#/ticket')) {
-                renderTicketDetail();
-            } else {
-                renderAccount();
+            const ticketMatch = hash.match(/^#\/ticket\/([\w-]+)/);
+            if (ticketMatch) {
+                const m = getMatchById(ticketMatch[1]);
+                if (m) {
+                    renderTicketDetail(m);
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                    return;
+                }
+                window.location.hash = '#/';
+                return;
             }
+            renderAccount();
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
@@ -697,6 +755,8 @@
                 <span class="topbar-spacer"></span>
             `;
 
+            const cardsHTML = matches.map(m => renderMatchCard(m)).join('');
+
             appEl.innerHTML = `
                 <div class="account-greeting">
                     <p class="greeting-eyebrow">Mi cuenta</p>
@@ -705,39 +765,50 @@
 
                 <h2 class="account-section-title">Mis boletos</h2>
 
-                <a class="match-card" href="#/ticket" aria-label="Abrir boletos del partido ${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}">
-                    <div class="match-card-banner">
+                <div class="match-card-list">
+                    ${cardsHTML}
+                </div>
+            `;
+        }
+
+        function renderMatchCard(m) {
+            return `
+                <a class="match-card" href="#/ticket/${m.id}" aria-label="Abrir boletos del partido ${m.code} ${m.home} vs ${m.away}">
+                    <div class="match-card-banner" style="background:${m.gradient}">
                         <div class="match-card-badge">
                             <div class="match-card-badge-logo">
                                 <span>FIFA</span>
                                 <span class="row-mid">WORLD CUP</span>
                                 <span>2026</span>
                             </div>
-                            <span class="match-card-badge-label">${matchInfo.stage}</span>
+                            <span class="match-card-badge-label">${m.stage}</span>
                         </div>
-                        <p class="match-card-vs">${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}</p>
-                        <p class="match-card-meta">${matchInfo.dateLong} &middot; ${matchInfo.time}</p>
+                        <p class="match-card-vs">${m.code} ${m.home} vs ${m.away}</p>
+                        <p class="match-card-meta">${m.dateLong} &middot; ${m.time}</p>
                     </div>
                     <div class="match-card-info">
                         <div class="match-card-info-left">
-                            <div class="match-card-info-row">${iconCalendar}<span>${matchInfo.dateLabel}, ${matchInfo.time}</span></div>
-                            <div class="match-card-info-row">${iconLocation}<span>${matchInfo.venue}</span></div>
+                            <div class="match-card-info-row">${iconCalendar}<span>${m.dateLabel}, ${m.time}</span></div>
+                            <div class="match-card-info-row">${iconLocation}<span>${m.venue}</span></div>
                         </div>
                         <span class="match-card-cta">Ver boletos &rarr;</span>
                     </div>
                     <div class="match-card-stripe">
-                        <span>${tickets.length} boletos &middot; ${matchInfo.category}</span>
-                        <span class="stripe-pill">Secci&oacute;n ${tickets[0].section}</span>
+                        <span>${m.tickets.length} boletos &middot; ${m.category}</span>
+                        <span class="stripe-pill">Secci&oacute;n ${m.tickets[0].section}</span>
                     </div>
                 </a>
             `;
         }
 
         // ========== TICKET DETAIL ==========
+        let currentMatch = null;
         let currentTicketIdx = 0;
 
-        function renderTicketDetail() {
-            document.title = `${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away} | FIFA World Cup 2026`;
+        function renderTicketDetail(m) {
+            currentMatch = m;
+            currentTicketIdx = 0;
+            document.title = `${m.code} ${m.home} vs ${m.away} | FIFA World Cup 2026`;
 
             topbarInnerEl.innerHTML = `
                 <a href="#/" class="topbar-back" aria-label="Volver a mis boletos">${iconBack}</a>
@@ -747,14 +818,14 @@
 
             appEl.innerHTML = `
                 <div class="td-header">
-                    <p class="td-counter" id="tdCounter">Boleto ${currentTicketIdx + 1} de ${tickets.length}</p>
+                    <p class="td-counter" id="tdCounter">Boleto ${currentTicketIdx + 1} de ${m.tickets.length}</p>
                     <div class="td-dots" id="tdDots">
-                        ${tickets.map((_, i) => `<span class="td-dot ${i === currentTicketIdx ? 'active' : ''}" data-idx="${i}"></span>`).join('')}
+                        ${m.tickets.map((_, i) => `<span class="td-dot ${i === currentTicketIdx ? 'active' : ''}" data-idx="${i}"></span>`).join('')}
                     </div>
                 </div>
 
                 <div class="td-ticket" id="tdTicket">
-                    ${renderTicketCard(tickets[currentTicketIdx], currentTicketIdx)}
+                    ${renderTicketCard(m, m.tickets[currentTicketIdx], currentTicketIdx)}
                 </div>
 
                 <div class="td-actions">
@@ -775,7 +846,7 @@
             }
         }
 
-        function renderTicketCard(t, idx) {
+        function renderTicketCard(m, t, idx) {
             return `
                 <span class="td-ticket-num">${idx + 1}</span>
                 <div class="td-fifa-badge">
@@ -786,11 +857,11 @@
                     </div>
                 </div>
 
-                <h1 class="td-match-title">${matchInfo.code} ${matchInfo.home} vs ${matchInfo.away}</h1>
+                <h1 class="td-match-title">${m.code} ${m.home} vs ${m.away}</h1>
 
                 <div class="td-match-meta">
-                    <div class="td-match-meta-row">${iconCalendar}<span>${matchInfo.dateLabel}, ${matchInfo.time}</span></div>
-                    <div class="td-match-meta-row">${iconLocation}<span>${matchInfo.venue}</span></div>
+                    <div class="td-match-meta-row">${iconCalendar}<span>${m.dateLabel}, ${m.time}</span></div>
+                    <div class="td-match-meta-row">${iconLocation}<span>${m.venue}</span></div>
                 </div>
 
                 <div class="td-grid">
@@ -827,19 +898,22 @@
         }
 
         function goToTicket(idx) {
-            if (idx < 0 || idx >= tickets.length) return;
+            if (!currentMatch) return;
+            if (idx < 0 || idx >= currentMatch.tickets.length) return;
             currentTicketIdx = idx;
             const ticketEl = document.getElementById('tdTicket');
             const counterEl = document.getElementById('tdCounter');
-            if (ticketEl) ticketEl.innerHTML = renderTicketCard(tickets[idx], idx);
-            if (counterEl) counterEl.textContent = `Boleto ${idx + 1} de ${tickets.length}`;
+            if (ticketEl) ticketEl.innerHTML = renderTicketCard(currentMatch, currentMatch.tickets[idx], idx);
+            if (counterEl) counterEl.textContent = `Boleto ${idx + 1} de ${currentMatch.tickets.length}`;
             document.querySelectorAll('.td-dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === idx);
             });
         }
 
         function cycleTicket(dir) {
-            const next = (currentTicketIdx + dir + tickets.length) % tickets.length;
+            if (!currentMatch) return;
+            const total = currentMatch.tickets.length;
+            const next = (currentTicketIdx + dir + total) % total;
             goToTicket(next);
         }
 
@@ -848,10 +922,11 @@
         let qrSecondsLeft = 120;
 
         function openQr() {
+            if (!currentMatch) return;
             const overlay = document.getElementById('qrOverlay');
             const sub = document.getElementById('qrSub');
-            const t = tickets[currentTicketIdx];
-            if (sub) sub.textContent = `Boleto ${currentTicketIdx + 1} de ${tickets.length} · Sección ${t.section} · Asiento ${t.seat}`;
+            const t = currentMatch.tickets[currentTicketIdx];
+            if (sub) sub.textContent = `Boleto ${currentTicketIdx + 1} de ${currentMatch.tickets.length} · Sección ${t.section} · Asiento ${t.seat}`;
             if (overlay) overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
             qrSecondsLeft = 120;
