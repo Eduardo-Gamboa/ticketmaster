@@ -4396,10 +4396,10 @@
                 tickets: [
                     { zone: 'GRAL-C', isGeneral: true },
                     { zone: 'GRAL-C', isGeneral: true },
-                    { zone: 'GRAL-C', isGeneral: true },
-                    { zone: 'GRAL-C', isGeneral: true },
+                    { zone: 'GRAL-B', isGeneral: true },
+                    { zone: 'GRAL-B', isGeneral: true },
                 ],
-                pickerSubtitle: '4 boletos &bull; Acceso General GRAL-C',
+                pickerSubtitle: '4 boletos &bull; General GRAL-C y GRAL-B',
             },
             strayKids: {
                 id: 'strayKids',
@@ -5109,7 +5109,7 @@ function renderTicketDetail(id) {
               <span>Asiento(s)</span>
             </div>
             <div class="tvc-table-row">
-              <span>${t.zone}, ${t.section}</span>
+              <span>${t.zone && t.section ? t.zone + ' &middot; ' + t.section : (t.zone || t.section || '')}</span>
               <span>${t.row}</span>
               <span>${t.seat}</span>
             </div>
@@ -5472,7 +5472,7 @@ function updateBarcodeDisplay() {
     if (boletoTypeEl) boletoTypeEl.textContent = 'Acceso general';
   } else {
     if (sectionLabelEl) sectionLabelEl.textContent = 'Sección';
-    if (sectionEl) sectionEl.textContent = t.zone ? (t.zone + ' · ' + t.section) : t.section;
+    if (sectionEl) sectionEl.textContent = t.zone && t.section ? (t.zone + ' · ' + t.section) : (t.zone || t.section || '');
     if (rowCell) rowCell.style.display = '';
     if (seatCell) seatCell.style.display = '';
     if (rowEl) rowEl.textContent = t.row;
@@ -5545,7 +5545,7 @@ function renderTransfer() {
           <div class="tfp-card-grid">
             <div>
               <div class="tfp-grid-label">Secci&oacute;n</div>
-              <div class="tfp-grid-value">${t.zone ? t.zone + ' · ' + t.section : t.section}</div>
+              <div class="tfp-grid-value">${t.zone && t.section ? t.zone + ' · ' + t.section : (t.zone || t.section || '')}</div>
             </div>
             <div>
               <div class="tfp-grid-label">Fila</div>
@@ -5753,7 +5753,7 @@ function submitTransfer() {
       const asientoLabel = selected.length > 1
         ? seatsData[selected[0]].asiento + '-' + seatsData[selected[selected.length - 1]].asiento
         : d.asiento;
-      const seccionLabel = d.zone ? (d.zone + ' · ' + d.seccion) : d.seccion;
+      const seccionLabel = d.zone && d.seccion ? (d.zone + ' · ' + d.seccion) : (d.zone || d.seccion || '');
       seatGridEl.innerHTML = `
       <div class="tsm-seat-col">
         <div class="tsm-seat-lbl">Secci\u00f3n</div>
