@@ -1279,5 +1279,27 @@
   });
 </script>
 
+<script>
+  // Dynamic user switcher: ?user=veronica rewrites "Francisca Manzanares" text nodes.
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var userMap = { veronica: 'Verónica Bahena', francisca: 'Francisca Manzanares' };
+    var userKey = params.get('user');
+    if (!userKey || !userMap[userKey] || userMap[userKey] === 'Francisca Manzanares') return;
+    var target = userMap[userKey];
+    function walk(node) {
+      if (node.nodeType === 3) {
+        var t = node.nodeValue;
+        if (t.indexOf('Francisca Manzanares') !== -1) {
+          node.nodeValue = t.replace(/Francisca Manzanares/g, target);
+        }
+      } else if (node.nodeType === 1) {
+        for (var c = 0; c < node.childNodes.length; c++) walk(node.childNodes[c]);
+      }
+    }
+    walk(document.body);
+  })();
+</script>
+
 </body>
 </html>

@@ -1206,18 +1206,29 @@
 </script>
 
 <script>
-  // Dynamic date switcher: opens as 17 jul by default; ?fecha=18 rewrites text nodes.
+  // Dynamic switchers:
+  //  - ?fecha=18 → rewrite 17 jul → 18 jul text
+  //  - ?user=veronica → rewrite "Francisca Manzanares" → "Verónica Bahena"
   (function () {
     var params = new URLSearchParams(window.location.search);
-    var fecha = params.get('fecha');
-    if (fecha !== '18') return;
+    var replacements = [];
 
-    var replacements = [
-      [/Vie 17 Jul 2026 @  ?9:00 pm/g, 'Sáb 18 Jul 2026 @  9:00 pm'],
-      [/17 de julio/g, '18 de julio'],
-      [/Viernes 17/g, 'Sábado 18'],
-      [/17\/07\/2026/g, '18/07/2026'],
-    ];
+    if (params.get('fecha') === '18') {
+      replacements.push(
+        [/Vie 17 Jul 2026 @  ?9:00 pm/g, 'Sáb 18 Jul 2026 @  9:00 pm'],
+        [/17 de julio/g, '18 de julio'],
+        [/Viernes 17/g, 'Sábado 18'],
+        [/17\/07\/2026/g, '18/07/2026']
+      );
+    }
+
+    var userMap = { veronica: 'Verónica Bahena', francisca: 'Francisca Manzanares' };
+    var userKey = params.get('user');
+    if (userKey && userMap[userKey] && userMap[userKey] !== 'Francisca Manzanares') {
+      replacements.push([/Francisca Manzanares/g, userMap[userKey]]);
+    }
+
+    if (!replacements.length) return;
 
     function walk(node) {
       if (node.nodeType === 3) {
@@ -1232,13 +1243,13 @@
     }
     walk(document.body);
 
-    // The 2nd Grupo Firme date (18 jul) went on preventa 20 may; venta general the day after
-    var dateEl = document.querySelector('.email-date');
-    if (dateEl && dateEl.textContent.indexOf('30 abr') !== -1) {
-      dateEl.textContent = '21 may. 2026';
+    if (params.get('fecha') === '18') {
+      var dateEl = document.querySelector('.email-date');
+      if (dateEl && dateEl.textContent.indexOf('30 abr') !== -1) {
+        dateEl.textContent = '21 may. 2026';
+      }
+      document.title = document.title.replace(/17/g, '18');
     }
-
-    document.title = document.title.replace(/17/g, '18');
   })();
 </script>
 
