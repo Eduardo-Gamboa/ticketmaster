@@ -1205,5 +1205,42 @@
   });
 </script>
 
+<script>
+  // Dynamic date switcher: opens as 17 jul by default; ?fecha=18 rewrites text nodes.
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var fecha = params.get('fecha');
+    if (fecha !== '18') return;
+
+    var replacements = [
+      [/Vie 17 Jul 2026 @  ?9:00 pm/g, 'Sáb 18 Jul 2026 @  9:00 pm'],
+      [/17 de julio/g, '18 de julio'],
+      [/Viernes 17/g, 'Sábado 18'],
+      [/17\/07\/2026/g, '18/07/2026'],
+    ];
+
+    function walk(node) {
+      if (node.nodeType === 3) {
+        var t = node.nodeValue, nt = t;
+        for (var i = 0; i < replacements.length; i++) {
+          nt = nt.replace(replacements[i][0], replacements[i][1]);
+        }
+        if (nt !== t) node.nodeValue = nt;
+      } else if (node.nodeType === 1) {
+        for (var c = 0; c < node.childNodes.length; c++) walk(node.childNodes[c]);
+      }
+    }
+    walk(document.body);
+
+    // The 2nd Grupo Firme date (18 jul) went on preventa 20 may; venta general the day after
+    var dateEl = document.querySelector('.email-date');
+    if (dateEl && dateEl.textContent.indexOf('30 abr') !== -1) {
+      dateEl.textContent = '21 may. 2026';
+    }
+
+    document.title = document.title.replace(/17/g, '18');
+  })();
+</script>
+
 </body>
 </html>

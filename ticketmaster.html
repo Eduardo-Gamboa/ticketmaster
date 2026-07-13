@@ -3301,7 +3301,29 @@
             font-size: 12px;
             margin-top: 32px;
         }
-        
+
+        .gf-mail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: background 0.18s ease, border-color 0.18s ease;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .gf-mail-link:hover {
+            background: rgba(200, 16, 46, 0.25);
+            border-color: rgba(200, 16, 46, 0.6);
+        }
+
+
         @media (max-width: 600px) {
             .pp-buttons {
                 grid-template-columns: 1fr;
@@ -4515,10 +4537,33 @@
                     { zone: 'GRAL-B', isGeneral: true },
                 ],
                 pickerSubtitle: '2 boletos &bull; Acceso General GRAL-B',
+                dateOptions: [
+                    {
+                        key: '17',
+                        dateISO: '2026-07-17',
+                        dayNum: '17',
+                        dayNumBare: '17',
+                        weekdayShort: 'vie',
+                        weekdayShortUpper: 'VIE',
+                        weekdayLong: 'Viernes',
+                        dateLongFormatted: 'Viernes 17 de julio, 2026',
+                    },
+                    {
+                        key: '18',
+                        dateISO: '2026-07-18',
+                        dayNum: '18',
+                        dayNumBare: '18',
+                        weekdayShort: 'sáb',
+                        weekdayShortUpper: 'SÁB',
+                        weekdayLong: 'Sábado',
+                        dateLongFormatted: 'Sábado 18 de julio, 2026',
+                    },
+                ],
             },
         };
 
         let _currentConcert = null;
+        let _grupoFirmeDateChosen = null;
         function getConcert() { return _currentConcert ? CONCERTS[_currentConcert] : null; }
 
         function applyConcert(id) {
@@ -4559,7 +4604,25 @@
         }
 
         function selectConcert(id) {
+            if (id === 'grupoFirme' && !_grupoFirmeDateChosen) {
+                _currentConcert = 'grupoFirme';
+                window.location.hash = '';
+                router();
+                return;
+            }
             applyConcert(id);
+            window.location.hash = '#/account';
+            router();
+        }
+
+        function selectGrupoFirmeDate(dateKey) {
+            const gf = CONCERTS.grupoFirme;
+            const dopt = (gf.dateOptions || []).find(d => d.key === dateKey);
+            if (!dopt) return;
+            // Merge the chosen date fields into the concert (dateISO, dayNum, weekday*, dateLongFormatted)
+            Object.assign(gf, dopt);
+            _grupoFirmeDateChosen = dateKey;
+            applyConcert('grupoFirme');
             window.location.hash = '#/account';
             router();
         }
@@ -4660,6 +4723,48 @@
   `;
         }
 
+        function renderGrupoFirmeDatePicker() {
+            const gf = CONCERTS.grupoFirme;
+            document.title = 'Elige la fecha - ' + gf.artist + ' | Ticketmaster MX';
+
+            const dateCards = (gf.dateOptions || []).map(d => `
+              <button class="pp-button" onclick="selectGrupoFirmeDate('${d.key}')" aria-label="Elegir ${d.weekdayLong} ${d.dayNumBare} de julio" style="text-align:left">
+                <div class="pp-avatar" style="background:${gf.accentColor};color:#fff;font-size:22px">${d.dayNum}</div>
+                <div>
+                  <div class="pp-button-name">${d.weekdayLong} ${d.dayNumBare} de julio</div>
+                  <div class="pp-button-meta">${gf.venue} &middot; ${gf.time}</div>
+                  <div class="pp-button-meta" style="font-size:11px;margin-top:2px">${gf.pickerSubtitle}</div>
+                </div>
+              </button>
+            `).join('');
+
+            const mailLinks = (gf.dateOptions || []).map(d => `
+              <a class="gf-mail-link" href="francisca-resumen_compra_GrupoFirme.html?fecha=${d.key}" target="_blank" rel="noopener">
+                Ver correo del ${d.dayNumBare} jul
+              </a>
+            `).join('');
+
+            mainEl.innerHTML = `
+    <div class="profile-picker">
+      <div class="pp-logo" style="background:${gf.accentColor}20;border-radius:10px;padding:10px 16px">
+        <span style="color:${gf.accentColor};font-weight:900;letter-spacing:1px;font-size:14px">${gf.artist.toUpperCase()}</span>
+      </div>
+      <h1 class="pp-heading">${gf.title}</h1>
+      <p class="pp-sub">Este show tiene 2 fechas. Elige la que compraste.</p>
+      <div class="pp-buttons">
+        ${dateCards}
+      </div>
+      <div style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:10px">
+        <p style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#a0a0a0;margin:0">Ver correo evento</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+          ${mailLinks}
+        </div>
+      </div>
+      <p class="pp-footer">Demo interactiva</p>
+    </div>
+  `;
+        }
+
                 function router() {
             if (_currentProfile === null) {
                 renderProfilePicker();
@@ -4668,6 +4773,11 @@
             }
             if (_currentConcert === null) {
                 renderConcertPicker();
+                window.scrollTo(0, 0);
+                return;
+            }
+            if (_currentConcert === 'grupoFirme' && !_grupoFirmeDateChosen) {
+                renderGrupoFirmeDatePicker();
                 window.scrollTo(0, 0);
                 return;
             }
@@ -5059,6 +5169,7 @@ function profileSeatsLabel() { return formatSeatList(eventTickets); }
 function selectProfile(id) {
   _currentProfile = id;
   _currentConcert = null;
+  _grupoFirmeDateChosen = null;
   eventTickets = [];
   _transferState = null;
   barcodeCurrentIndex = 0;
