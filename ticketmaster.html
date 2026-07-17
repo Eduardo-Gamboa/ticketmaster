@@ -4560,11 +4560,94 @@
                     },
                 ],
             },
+            grupoFirme4: {
+                id: 'grupoFirme4',
+                artist: 'Grupo Firme',
+                title: 'Grupo Firme en Vivo',
+                tourName: 'Tour 2026',
+                coverImage: 'grupo-firme-cover.jpg',
+                accentColor: '#c8102e',
+                dateISO: '2026-07-17',
+                dayNum: '17',
+                dayNumBare: '17',
+                weekdayShort: 'vie',
+                weekdayShortUpper: 'VIE',
+                weekdayLong: 'Viernes',
+                monthShort: 'jul',
+                monthShortUpper: 'JUL',
+                monthLong: 'julio',
+                dateLongFormatted: 'Viernes 17 de julio, 2026',
+                time: '9:00 p.m.',
+                timeUpper: '9:00 P.M.',
+                timeDot: '9:00 P. M.',
+                doorsOpen: '7:00 p.m.',
+                duration: '2 horas 30 min',
+                venue: 'Estadio GNP Seguros',
+                city: 'Ciudad de México, CDMX',
+                saleType: 'VENTA GENERAL',
+                saleTypeShort: 'Venta general',
+                order: '#45-284013/MX',
+                productora: { value: 'OCESA', sub: 'grupofirme.mx' },
+                productoraLabel: 'Productora',
+                artists: [
+                    { initials: 'EC', bg: '#c8102e', name: 'Eduin Caz', role: 'Voz líder' },
+                    { initials: 'JR', bg: '#7a1420', name: 'Joaquín Ruiz', role: 'Bajo' },
+                    { initials: 'JS', bg: '#5b21b6', name: 'José Rubio', role: 'Guitarra' },
+                    { initials: 'CT', bg: '#0e7490', name: 'Christian Téllez', role: 'Bajo &bull; Percusión' },
+                ],
+                aboutHtml: '<p>Grupo Firme regresa a la Ciudad de México con su Tour 2026 para un show en el Estadio GNP Seguros.</p><br><p>El acceso incluye entrada al recinto y al concierto en vivo según la zona seleccionada.</p>',
+                descTitle: 'Sobre el concierto',
+                descHtml: '<p>Grupo Firme, máxima referencia del regional mexicano contemporáneo, se presenta en el <strong>Estadio GNP Seguros</strong> como parte de su gira <strong>Tour 2026</strong>.</p><p>El set list repasa éxitos como <em>Ya Supérame</em>, <em>El Amor No Fue Pa\' Mi</em>, <em>En Tu Perra Vida</em>, <em>Ni Contigo Ni Sin Ti</em> y <em>Se Fue La Pantera</em>, con banda completa y producción de estadio.</p><p>Duración aproximada del concierto: 2 horas 30 min. Apertura de puertas 2 horas antes del inicio.</p>',
+                noticeHtml: '<strong>Información importante:</strong> Evento apto para todas las edades. Menores de 12 años deben ingresar acompañados de un adulto. No se permite el ingreso con cámaras profesionales, grabaciones de audio/video, objetos punzocortantes, envases de vidrio o aluminio, bengalas, láser, armas, ni mascotas. Límite de 8 boletos por comprador. Servicios: venta de alimentos y bebidas. Duración aproximada 2 horas 30 min. El set list y la duración pueden estar sujetos a cambios sin previo aviso.',
+                tagLabel: 'Regional Mexicano &bull; Tour 2026',
+                priceRanges: [
+                    { section: 'General B', price: '$856 MXN' },
+                    { section: 'Naranja C', price: '$1,104 MXN' },
+                    { section: 'Verde C', price: '$1,352 MXN' },
+                    { section: 'Naranja B', price: '$1,724 MXN' },
+                    { section: 'Verde B', price: '$2,096 MXN' },
+                    { section: 'Zona GNP', price: '$2,468 MXN' },
+                    { section: 'Platino D', price: '$3,124 MXN' },
+                    { section: 'Platino A', price: '$4,550 MXN' },
+                ],
+                tickets: [
+                    { zone: 'GRAL-B', isGeneral: true },
+                    { zone: 'GRAL-B', isGeneral: true },
+                    { zone: 'GRAL-B', isGeneral: true },
+                    { zone: 'GRAL-B', isGeneral: true },
+                ],
+                pickerSubtitle: '4 boletos &bull; Acceso General GRAL-B',
+                dateOptions: [
+                    {
+                        key: '17',
+                        dateISO: '2026-07-17',
+                        dayNum: '17',
+                        dayNumBare: '17',
+                        weekdayShort: 'vie',
+                        weekdayShortUpper: 'VIE',
+                        weekdayLong: 'Viernes',
+                        dateLongFormatted: 'Viernes 17 de julio, 2026',
+                    },
+                    {
+                        key: '18',
+                        dateISO: '2026-07-18',
+                        dayNum: '18',
+                        dayNumBare: '18',
+                        weekdayShort: 'sáb',
+                        weekdayShortUpper: 'SÁB',
+                        weekdayLong: 'Sábado',
+                        dateLongFormatted: 'Sábado 18 de julio, 2026',
+                    },
+                ],
+            },
         };
 
         let _currentConcert = null;
-        let _grupoFirmeDateChosen = null;
+        const _dateChosenByConcert = {};
         function getConcert() { return _currentConcert ? CONCERTS[_currentConcert] : null; }
+        function needsDatePick(id) {
+            return !!(CONCERTS[id] && CONCERTS[id].dateOptions && !_dateChosenByConcert[id]);
+        }
 
         function applyConcert(id) {
             _currentConcert = id;
@@ -4605,8 +4688,8 @@
         }
 
         function selectConcert(id) {
-            if (id === 'grupoFirme' && !_grupoFirmeDateChosen) {
-                _currentConcert = 'grupoFirme';
+            if (needsDatePick(id)) {
+                _currentConcert = id;
                 window.location.hash = '';
                 router();
                 return;
@@ -4616,14 +4699,15 @@
             router();
         }
 
-        function selectGrupoFirmeDate(dateKey) {
-            const gf = CONCERTS.grupoFirme;
-            const dopt = (gf.dateOptions || []).find(d => d.key === dateKey);
+        function selectConcertDate(concertId, dateKey) {
+            const c = CONCERTS[concertId];
+            if (!c) return;
+            const dopt = (c.dateOptions || []).find(d => d.key === dateKey);
             if (!dopt) return;
             // Merge the chosen date fields into the concert (dateISO, dayNum, weekday*, dateLongFormatted)
-            Object.assign(gf, dopt);
-            _grupoFirmeDateChosen = dateKey;
-            applyConcert('grupoFirme');
+            Object.assign(c, dopt);
+            _dateChosenByConcert[concertId] = dateKey;
+            applyConcert(concertId);
             window.location.hash = '#/account';
             router();
         }
@@ -4729,22 +4813,23 @@
   `;
         }
 
-        function renderGrupoFirmeDatePicker() {
-            const gf = CONCERTS.grupoFirme;
-            document.title = 'Elige la fecha - ' + gf.artist + ' | Ticketmaster MX';
+        function renderConcertDatePicker(concertId) {
+            const c = CONCERTS[concertId];
+            if (!c) return;
+            document.title = 'Elige la fecha - ' + c.artist + ' | Ticketmaster MX';
 
-            const dateCards = (gf.dateOptions || []).map(d => `
-              <button class="pp-button" onclick="selectGrupoFirmeDate('${d.key}')" aria-label="Elegir ${d.weekdayLong} ${d.dayNumBare} de julio" style="text-align:left">
-                <div class="pp-avatar" style="background:${gf.accentColor};color:#fff;font-size:22px">${d.dayNum}</div>
+            const dateCards = (c.dateOptions || []).map(d => `
+              <button class="pp-button" onclick="selectConcertDate('${c.id}', '${d.key}')" aria-label="Elegir ${d.weekdayLong} ${d.dayNumBare} de julio" style="text-align:left">
+                <div class="pp-avatar" style="background:${c.accentColor};color:#fff;font-size:22px">${d.dayNum}</div>
                 <div>
                   <div class="pp-button-name">${d.weekdayLong} ${d.dayNumBare} de julio</div>
-                  <div class="pp-button-meta">${gf.venue} &middot; ${gf.time}</div>
-                  <div class="pp-button-meta" style="font-size:11px;margin-top:2px">${gf.pickerSubtitle}</div>
+                  <div class="pp-button-meta">${c.venue} &middot; ${c.time}</div>
+                  <div class="pp-button-meta" style="font-size:11px;margin-top:2px">${c.pickerSubtitle}</div>
                 </div>
               </button>
             `).join('');
 
-            const mailLinks = (gf.dateOptions || []).map(d => `
+            const mailLinks = (c.dateOptions || []).map(d => `
               <a class="gf-mail-link" href="francisca-resumen_compra_GrupoFirme.html?fecha=${d.key}&user=${_currentProfile || 'francisca'}" target="_blank" rel="noopener">
                 Ver correo del ${d.dayNumBare} jul
               </a>
@@ -4752,10 +4837,10 @@
 
             mainEl.innerHTML = `
     <div class="profile-picker">
-      <div class="pp-logo" style="background:${gf.accentColor}20;border-radius:10px;padding:10px 16px">
-        <span style="color:${gf.accentColor};font-weight:900;letter-spacing:1px;font-size:14px">${gf.artist.toUpperCase()}</span>
+      <div class="pp-logo" style="background:${c.accentColor}20;border-radius:10px;padding:10px 16px">
+        <span style="color:${c.accentColor};font-weight:900;letter-spacing:1px;font-size:14px">${c.artist.toUpperCase()}</span>
       </div>
-      <h1 class="pp-heading">${gf.title}</h1>
+      <h1 class="pp-heading">${c.title}</h1>
       <p class="pp-sub">Este show tiene 2 fechas. Elige la que compraste.</p>
       <div class="pp-buttons">
         ${dateCards}
@@ -4782,8 +4867,8 @@
                 window.scrollTo(0, 0);
                 return;
             }
-            if (_currentConcert === 'grupoFirme' && !_grupoFirmeDateChosen) {
-                renderGrupoFirmeDatePicker();
+            if (needsDatePick(_currentConcert)) {
+                renderConcertDatePicker(_currentConcert);
                 window.scrollTo(0, 0);
                 return;
             }
@@ -5189,7 +5274,7 @@ function profileSeatsLabel() { return formatSeatList(eventTickets); }
 function selectProfile(id) {
   _currentProfile = id;
   _currentConcert = null;
-  _grupoFirmeDateChosen = null;
+  Object.keys(_dateChosenByConcert).forEach(k => delete _dateChosenByConcert[k]);
   eventTickets = [];
   _transferState = null;
   barcodeCurrentIndex = 0;
