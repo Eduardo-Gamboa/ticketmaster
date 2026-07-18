@@ -4829,8 +4829,9 @@
               </button>
             `).join('');
 
+            const mailTicketCount = (c.tickets || []).length;
             const mailLinks = (c.dateOptions || []).map(d => `
-              <a class="gf-mail-link" href="francisca-resumen_compra_GrupoFirme.html?fecha=${d.key}&user=${_currentProfile || 'francisca'}" target="_blank" rel="noopener">
+              <a class="gf-mail-link" href="francisca-resumen_compra_GrupoFirme.html?fecha=${d.key}&user=${_currentProfile || 'francisca'}&count=${mailTicketCount}" target="_blank" rel="noopener">
                 Ver correo del ${d.dayNumBare} jul
               </a>
             `).join('');
