@@ -1280,19 +1280,35 @@
 </script>
 
 <script>
-  // Dynamic user switcher: ?user=veronica rewrites "Francisca Manzanares" text nodes.
+  // Dynamic switchers:
+  //  - ?fecha=25 → rewrite Sáb 26 Sep → Vie 25 Sep
+  //  - ?user=veronica → rewrite "Francisca Manzanares" → "Verónica Bahena"
   (function () {
     var params = new URLSearchParams(window.location.search);
+    var replacements = [];
+
+    // Default in the file is fecha=26 (Sábado 26 de septiembre). If ?fecha=25 flip to Viernes 25.
+    if (params.get('fecha') === '25') {
+      replacements.push(
+        [/Sáb 26 Sep 2026 @  ?6:30 pm/g, 'Vie 25 Sep 2026 @  6:30 pm']
+      );
+    }
+
     var userMap = { veronica: 'Verónica Bahena', francisca: 'Francisca Manzanares' };
     var userKey = params.get('user');
-    if (!userKey || !userMap[userKey] || userMap[userKey] === 'Francisca Manzanares') return;
-    var target = userMap[userKey];
+    if (userKey && userMap[userKey] && userMap[userKey] !== 'Francisca Manzanares') {
+      replacements.push([/Francisca Manzanares/g, userMap[userKey]]);
+    }
+
+    if (!replacements.length) return;
+
     function walk(node) {
       if (node.nodeType === 3) {
-        var t = node.nodeValue;
-        if (t.indexOf('Francisca Manzanares') !== -1) {
-          node.nodeValue = t.replace(/Francisca Manzanares/g, target);
+        var t = node.nodeValue, nt = t;
+        for (var i = 0; i < replacements.length; i++) {
+          nt = nt.replace(replacements[i][0], replacements[i][1]);
         }
+        if (nt !== t) node.nodeValue = nt;
       } else if (node.nodeType === 1) {
         for (var c = 0; c < node.childNodes.length; c++) walk(node.childNodes[c]);
       }

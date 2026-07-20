@@ -2,7 +2,26 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "Bash(curl -s --max-time 10 https://github.com 2>&1 | head -5)"
+      "Bash(curl -s --max-time 10 https://github.com 2>&1 | head -5)",
+      "Bash(ls -lh C:UsersSistemasDocumentswebprojectsTicketMaster/*.jpg C:UsersSistemasDocumentswebprojectsTicketMaster/*.jpeg C:UsersSistemasDocumentswebprojectsTicketMaster/*.png)",
+      "Bash(where gh:*)",
+      "Bash(winget list:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "PowerShell(gh run *)",
+      "Bash(curl -s --max-time 10 \"https://api.github.com/repos/Eduardo-Gamboa/ticketmaster/actions/runs?per_page=5\")",
+      "Bash(curl -s --max-time 10 \"https://api.github.com/repos/Eduardo-Gamboa/ticketmaster/actions/runs/24845439256/jobs\")",
+      "Bash(curl *)",
+      "Bash(grep *)",
+      "Bash(python *)",
+      "Bash(git mv *)",
+      "WebFetch(domain:www.goal.com)",
+      "WebFetch(domain:help.ticketmaster.com.mx)",
+      "WebFetch(domain:www.ticketmaster.com.mx)",
+      "WebFetch(domain:www.milenio.com)",
+      "Bash(git rm *)"
     ]
   }
 }
