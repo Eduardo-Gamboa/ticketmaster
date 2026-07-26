@@ -4425,6 +4425,19 @@
                 receiptFile: 'francisca-resumen_compra_HarryStyles.html',
                 dateOptions: [
                     {
+                        key: '31',
+                        dateISO: '2026-07-31',
+                        dayNum: '31',
+                        dayNumBare: '31',
+                        weekdayShort: 'vie',
+                        weekdayShortUpper: 'VIE',
+                        weekdayLong: 'Viernes',
+                        monthShort: 'jul',
+                        monthShortUpper: 'JUL',
+                        monthLong: 'julio',
+                        dateLongFormatted: 'Viernes 31 de julio, 2026',
+                    },
+                    {
                         key: '01',
                         dateISO: '2026-08-01',
                         dayNum: '01',
@@ -4707,27 +4720,28 @@
             if (!c) return;
             document.title = 'Elige la fecha - ' + c.artist + ' | Ticketmaster MX';
 
-            const monthLong = c.monthLong || '';
-            const monthShort = c.monthShort || '';
-
-            const dateCards = (c.dateOptions || []).map(d => `
-              <button class="pp-button" onclick="selectConcertDate('${c.id}', '${d.key}')" aria-label="Elegir ${d.weekdayLong} ${d.dayNumBare} de ${monthLong}" style="text-align:left">
+            const dateCards = (c.dateOptions || []).map(d => {
+              const ml = d.monthLong || c.monthLong || '';
+              return `
+              <button class="pp-button" onclick="selectConcertDate('${c.id}', '${d.key}')" aria-label="Elegir ${d.weekdayLong} ${d.dayNumBare} de ${ml}" style="text-align:left">
                 <div class="pp-avatar" style="background:${c.accentColor};color:#fff;font-size:22px">${d.dayNum}</div>
                 <div>
-                  <div class="pp-button-name">${d.weekdayLong} ${d.dayNumBare} de ${monthLong}</div>
+                  <div class="pp-button-name">${d.weekdayLong} ${d.dayNumBare} de ${ml}</div>
                   <div class="pp-button-meta">${c.venue} &middot; ${c.time}</div>
                   <div class="pp-button-meta" style="font-size:11px;margin-top:2px">${c.pickerSubtitle}</div>
                 </div>
-              </button>
-            `).join('');
+              </button>`;
+            }).join('');
 
             const receiptFile = c.receiptFile || '';
             const mailTicketCount = (c.tickets || []).length;
-            const mailLinks = receiptFile ? (c.dateOptions || []).map(d => `
+            const mailLinks = receiptFile ? (c.dateOptions || []).map(d => {
+              const ms = d.monthShort || c.monthShort || '';
+              return `
               <a class="gf-mail-link" href="${receiptFile}?fecha=${d.key}&user=${_currentProfile || 'francisca'}&count=${mailTicketCount}" target="_blank" rel="noopener">
-                Ver correo del ${d.dayNumBare} ${monthShort}
-              </a>
-            `).join('') : '';
+                Ver correo del ${d.dayNumBare} ${ms}
+              </a>`;
+            }).join('') : '';
 
             mainEl.innerHTML = `
     <div class="profile-picker">

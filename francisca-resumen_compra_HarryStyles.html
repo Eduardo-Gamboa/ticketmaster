@@ -1282,15 +1282,20 @@
 <script>
   // Dynamic switchers:
   //  - ?fecha=01 → rewrite Sáb 8 Ago → Sáb 1 Ago
+  //  - ?fecha=31 → rewrite Sáb 8 Ago → Vie 31 Jul
   //  - ?user=veronica → rewrite "Francisca Manzanares" → "Verónica Bahena"
   (function () {
     var params = new URLSearchParams(window.location.search);
     var replacements = [];
 
-    // Default in the file is fecha=08 (Sábado 8 de agosto). If ?fecha=01 flip to Sábado 1 de agosto.
+    // Default in the file is fecha=08 (Sábado 8 de agosto). Alternates:
     if (params.get('fecha') === '01') {
       replacements.push(
         [/Sáb 8 Ago 2026 @  ?9:00 pm/g, 'Sáb 1 Ago 2026 @  9:00 pm']
+      );
+    } else if (params.get('fecha') === '31') {
+      replacements.push(
+        [/Sáb 8 Ago 2026 @  ?9:00 pm/g, 'Vie 31 Jul 2026 @  9:00 pm']
       );
     }
 
