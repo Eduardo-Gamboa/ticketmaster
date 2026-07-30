@@ -1281,21 +1281,25 @@
 
 <script>
   // Dynamic switchers:
-  //  - ?fecha=01 → rewrite Sáb 8 Ago → Sáb 1 Ago
-  //  - ?fecha=31 → rewrite Sáb 8 Ago → Vie 31 Jul
+  //  - ?fecha=NN → rewrite the default "Sáb 8 Ago 2026 @ 9:00 pm" hero line
   //  - ?user=veronica → rewrite "Francisca Manzanares" → "Verónica Bahena"
   (function () {
     var params = new URLSearchParams(window.location.search);
     var replacements = [];
 
-    // Default in the file is fecha=08 (Sábado 8 de agosto). Alternates:
-    if (params.get('fecha') === '01') {
+    // Default in the file is fecha=08 (Sábado 8 de agosto).
+    // Map of alternate dates to their hero label (matches "Vie 31 Jul 2026 @  9:00 pm" pattern).
+    var dateMap = {
+      '31': 'Vie 31 Jul 2026 @  9:00 pm',
+      '01': 'Sáb 1 Ago 2026 @  9:00 pm',
+      '04': 'Mar 4 Ago 2026 @  9:00 pm',
+      '07': 'Vie 7 Ago 2026 @  9:00 pm',
+      '10': 'Lun 10 Ago 2026 @  9:00 pm'
+    };
+    var fechaKey = params.get('fecha');
+    if (fechaKey && dateMap[fechaKey]) {
       replacements.push(
-        [/Sáb 8 Ago 2026 @  ?9:00 pm/g, 'Sáb 1 Ago 2026 @  9:00 pm']
-      );
-    } else if (params.get('fecha') === '31') {
-      replacements.push(
-        [/Sáb 8 Ago 2026 @  ?9:00 pm/g, 'Vie 31 Jul 2026 @  9:00 pm']
+        [/Sáb 8 Ago 2026 @  ?9:00 pm/g, dateMap[fechaKey]]
       );
     }
 
