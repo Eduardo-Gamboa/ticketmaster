@@ -1282,7 +1282,7 @@
 <script>
   // Dynamic switchers:
   //  - ?fecha=25 → rewrite Sáb 26 Sep → Vie 25 Sep
-  //  - ?user=veronica → rewrite "Francisca Manzanares" → "Verónica Bahena"
+  //  - ?user=veronica → rewrite "Francisca Manzanares" → "Laura Ortiz"
   (function () {
     var params = new URLSearchParams(window.location.search);
     var replacements = [];
@@ -1294,7 +1294,7 @@
       );
     }
 
-    var userMap = { veronica: 'Verónica Bahena', francisca: 'Francisca Manzanares' };
+    var userMap = { laura: 'Laura Ortiz', francisca: 'Francisca Manzanares' };
     var userKey = params.get('user');
     if (userKey && userMap[userKey] && userMap[userKey] !== 'Francisca Manzanares') {
       replacements.push([/Francisca Manzanares/g, userMap[userKey]]);
