@@ -4428,7 +4428,7 @@
                     { zone: 'GRAL-B', isGeneral: true },
                 ],
                 pickerSubtitle: '5 boletos &bull; 3 General A + 2 General B',
-                receiptFile: 'francisca-resumen_compra_KarolG.html',
+                receiptFile: 'veronica-resumen_compra_KarolG.html',
                 dateOptions: [
                     {
                         key: '13',
@@ -4516,7 +4516,7 @@
                     { section: 'D19', row: 'J', seat: '16' },
                 ],
                 pickerSubtitle: '4 boletos &bull; 2 Nivel A (Pista) + 2 Nivel D (D19)',
-                receiptFile: 'francisca-resumen_compra_RobbieWilliams.html',
+                receiptFile: 'veronica-resumen_compra_RobbieWilliams.html',
                 dateOptions: [
                     {
                         key: '07',
@@ -4576,7 +4576,7 @@
                 venue: c.venue,
                 order: 'Compra ' + c.order,
             });
-            const activeProfile = _currentProfile && profiles[_currentProfile] ? profiles[_currentProfile] : profiles.francisca;
+            const activeProfile = _currentProfile && profiles[_currentProfile] ? profiles[_currentProfile] : profiles.veronica;
             activeProfile.tickets = c.tickets;
             activeProfile.order = c.order;
             activeProfile.saleType = c.saleType;
@@ -4736,7 +4736,7 @@
             const mailLinks = receiptFile ? (c.dateOptions || []).map(d => {
               const ms = d.monthShort || c.monthShort || '';
               return `
-              <a class="gf-mail-link" href="${receiptFile}?fecha=${d.key}&user=${_currentProfile || 'francisca'}&count=${mailTicketCount}" target="_blank" rel="noopener">
+              <a class="gf-mail-link" href="${receiptFile}?fecha=${d.key}&user=${_currentProfile || 'veronica'}&count=${mailTicketCount}" target="_blank" rel="noopener">
                 Ver correo del ${d.dayNumBare} ${ms}
               </a>`;
             }).join('') : '';
@@ -5126,10 +5126,10 @@ function renderTicketsList() {
 
 // ========== USER PROFILES ==========
 const profiles = {
-  francisca: {
-    id: 'francisca',
-    name: 'Francisca Manzanares',
-    initial: 'F',
+  veronica: {
+    id: 'veronica',
+    name: 'Veronica Bahena',
+    initial: 'V',
     order: '#45-284013/MX',
     saleType: 'VENTA GENERAL',
     saleTypeShort: 'Venta general',

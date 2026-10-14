@@ -334,7 +334,7 @@
 
           <td style="padding:26px 16px 5px;color:#ffffff;text-align:center">
 
-            <h1 style="font-size:26px;line-height:34px;margin:0">Francisca Manzanares, los detalles de tu compra.
+            <h1 style="font-size:26px;line-height:34px;margin:0">Veronica Bahena, los detalles de tu compra.
 
             </h1>
 
@@ -1311,7 +1311,7 @@
 <script>
   // Dynamic switchers for Karol G receipt:
   //  - ?fecha=13|14|15 → rewrite Vie 13 Nov → correct label
-  //  - ?user=laura|francisca → swap holder name
+  //  - ?user=laura|veronica → swap holder name
   (function () {
     var params = new URLSearchParams(window.location.search);
     var replacements = [];
@@ -1327,10 +1327,10 @@
       replacements.push([/Vie 13 Nov 2026 @  ?9:00 pm/g, dateMap[fechaKey]]);
     }
 
-    var userMap = { laura: 'Laura Ortiz', francisca: 'Francisca Manzanares' };
+    var userMap = { laura: 'Laura Ortiz', veronica: 'Veronica Bahena' };
     var userKey = params.get('user');
-    if (userKey && userMap[userKey] && userMap[userKey] !== 'Francisca Manzanares') {
-      replacements.push([/Francisca Manzanares/g, userMap[userKey]]);
+    if (userKey && userMap[userKey] && userMap[userKey] !== 'Veronica Bahena') {
+      replacements.push([/Veronica Bahena/g, userMap[userKey]]);
     }
 
     if (!replacements.length) return;
